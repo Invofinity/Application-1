@@ -1,3 +1,4 @@
+import 'package:News_App/loginRegisterPage.dart';
 import 'package:flutter/material.dart';
 import 'package:News_App/views/home.dart';
 
@@ -10,11 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'My Application',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Colors.white,
+          primaryColor: Colors.amber[800],
         ),
-        home: Home());
+        home: LoginRegisterPage());
   }
 }

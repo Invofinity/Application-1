@@ -38,20 +38,27 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final bgColor = const Color(0xFFffffff);
+    final txtColor = const Color(0xFF171717);
+    final up = const Color(0xFFff416c);
+    final down = const Color(0xFFff4b2b);
+
     return Scaffold(
+      backgroundColor: bgColor,
       appBar: AppBar(
+        backgroundColor: bgColor,
+        elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text("News"),
             Text(
               "App",
-              style: TextStyle(color: Colors.blue),
+              style: TextStyle(color: txtColor, fontFamily: 'PoppinsBold'),
             ),
           ],
         ),
         centerTitle: true,
-        elevation: 0.0,
       ),
       body: _loading
           ? Center(
@@ -142,7 +149,7 @@ class CategoryTile extends StatelessWidget {
               child: Text(
                 categoryName,
                 style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: FontWeight.w500,
                     color: Colors.white),
               ),
@@ -184,8 +191,10 @@ class BlogTile extends StatelessWidget {
           ),
           Text(
             title,
-            style:
-                TextStyle(color: Colors.black87, fontWeight: FontWeight.w500),
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.black87,
+                fontWeight: FontWeight.w500),
           ),
           SizedBox(
             height: 8,
