@@ -1,6 +1,5 @@
-import 'package:News_App/loginRegisterPage.dart';
+import 'package:News_App/screens/Welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:News_App/views/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +15,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.amber[800],
         ),
-        home: LoginRegisterPage());
+        home: WelcomeScreen());
   }
 }
