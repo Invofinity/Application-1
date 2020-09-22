@@ -6,6 +6,7 @@ import 'package:News_App/screens/Login/login_screen.dart';
 import 'package:News_App/screens/SignUp/components/background.dart';
 import 'package:News_App/screens/SignUp/components/or_divider.dart';
 import 'package:News_App/screens/SignUp/components/social_icon.dart';
+import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
@@ -41,7 +42,16 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "SIGNUP",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Home();
+                    },
+                  ),
+                );
+              },
             ),
             AlreadyHaveAccountCheck(
               login: false,
