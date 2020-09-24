@@ -29,18 +29,20 @@ class Body extends StatelessWidget {
               height: size.height * 0.5,
             ),
             SizedBox(height: size.height * 0.04),
-            RoundedButton(
-              text: "LOGIN", //add fontfamily
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginScreen();
-                    },
-                  ),
-                );
-              },
+            Container(
+              child: RoundedButton(
+                text: "LOGIN", //add fontfamily
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LoginScreen();
+                      },
+                    ),
+                  );
+                },
+              ),
             ),
             RoundedButton(
               text: "SIGN UP", //add fontfamily
