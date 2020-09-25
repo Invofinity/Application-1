@@ -27,7 +27,6 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getNews();
     _loading = true;
@@ -45,26 +44,29 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final bgColor = const Color(0xFFffffff);
-    final txtColor = const Color(0xFF171717);
     final up = const Color(0xFFff416c);
-    final down = const Color(0xFFff4b2b);
+    //final down = const Color(0xFFff4b2b);
 
     return Scaffold(
         backgroundColor: bgColor,
         appBar: AppBar(
+          centerTitle: true,
           backgroundColor: bgColor,
           elevation: 0,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text("News"),
               Text(
-                "App",
-                style: TextStyle(color: txtColor, fontFamily: 'PoppinsBold'),
+                "Daily",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 27,
+                  fontFamily: 'PoppinsBold',
+                ),
               ),
             ],
           ),
-          centerTitle: true,
         ),
         body: _loading
             ? Center(
@@ -134,13 +136,13 @@ class _HomeState extends State<Home> {
                 backgroundColor: up,
                 icon: RadiantGradientMask(
                   child: Icon(
-                    FontAwesome.bookmark,
+                    FontAwesome.book,
                     size: 18.0,
                   ),
                 ),
                 activeIcon: RadiantGradientMask(
                   child: Icon(
-                    FontAwesome.bookmark,
+                    FontAwesome.book,
                     size: 18.0,
                   ),
                 ),
@@ -172,7 +174,6 @@ class _HomeState extends State<Home> {
   }
 }
 
-// ignore: must_be_immutable
 class CategoryTile extends StatelessWidget {
   final String imageURL, categoryName;
 

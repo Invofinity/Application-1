@@ -35,11 +35,7 @@ class _CategoryNewsState extends State<CategoryNews> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("News"),
-            Text(
-              "App",
-              style: TextStyle(color: Colors.blue),
-            ),
+            Text("Daily"),
           ],
         ),
         actions: <Widget>[
