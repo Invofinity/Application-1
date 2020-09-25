@@ -75,7 +75,6 @@ class _CategoryNewsState extends State<CategoryNews> {
                               return BlogTile(
                                 imageURL: articles[index].urlToImage,
                                 title: articles[index].title,
-                                description: articles[index].description,
                                 url: articles[index].url,
                               );
                             }),

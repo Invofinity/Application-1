@@ -6,27 +6,23 @@ class News {
   List<ArticleModel> news = [];
 
   Future<void> getNews() async {
-    String url = "https://fir-news-api-veokara.firebaseio.com/.json";
+    String url = "https://fir-news-api-veokara.firebaseio.com/cricket.json";
 
     var response = await http.get(url);
-
     var jsonData = jsonDecode(response.body);
 
-    if (jsonData['status'] == "ok") {
-      jsonData["articles"].forEach((element) {
-        if (element["urlToImage"] != null && element['description'] != null) {
-          ArticleModel articleModel = ArticleModel(
-              title: element['title'],
-              author: element["author"],
-              description: element["description"],
-              url: element["url"],
-              urlToImage: element["urlToImage"],
-              content: element["content"]);
+    jsonData.forEach((element) {
+      ArticleModel articleModel = ArticleModel(
+        title: element['title'],
+        //author: element["author"],
+        //description: element["description"],
+        url: element["domain"],
+        urlToImage: element["thumbnail"],
+        //content: element["content"]
+      );
 
-          news.add(articleModel);
-        }
-      });
-    }
+      news.add(articleModel);
+    });
   }
 }
 
@@ -34,27 +30,23 @@ class CategoryNewsClass {
   List<ArticleModel> news = [];
 
   Future<void> getNews(String category) async {
-    String url =
-        "https://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=3fe4ad1a102c4da2b88a218a0c998d9b";
+    String url = "https://fir-news-api-veokara.firebaseio.com/$category.json";
 
     var response = await http.get(url);
 
     var jsonData = jsonDecode(response.body);
 
-    if (jsonData['status'] == "ok") {
-      jsonData["articles"].forEach((element) {
-        if (element["urlToImage"] != null && element['description'] != null) {
-          ArticleModel articleModel = ArticleModel(
-              title: element['title'],
-              author: element["author"],
-              description: element["description"],
-              url: element["url"],
-              urlToImage: element["urlToImage"],
-              content: element["content"]);
+    jsonData.forEach((element) {
+      ArticleModel articleModel = ArticleModel(
+        title: element['title'],
+        //author: element["author"],
+        //description: element["description"],
+        url: element["domain"],
+        urlToImage: element["thumbnail"],
+        //content: element["content"]
+      );
 
-          news.add(articleModel);
-        }
-      });
-    }
+      news.add(articleModel);
+    });
   }
 }
