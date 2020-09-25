@@ -227,13 +227,9 @@ class CategoryTile extends StatelessWidget {
 }
 
 class BlogTile extends StatelessWidget {
-  final String imageURL, title, description, url;
+  final String imageURL, title, url;
 
-  BlogTile(
-      {@required this.imageURL,
-      @required this.title,
-      @required this.description,
-      @required this.url});
+  BlogTile({@required this.imageURL, @required this.title, @required this.url});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -265,11 +261,11 @@ class BlogTile extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          Text(description,
+          /*Text(description,
               style: TextStyle(
                 color: Colors.black54,
                 fontFamily: 'Poppins',
-              ))
+              ))*/
         ]),
       ),
     );
@@ -328,7 +324,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 1),
           child: Column(
             children: <Widget>[
               //categories
@@ -415,7 +411,6 @@ class _HomePageState extends State<HomePage> {
                       return BlogTile(
                         imageURL: articles[index].urlToImage,
                         title: articles[index].title,
-                        description: articles[index].description,
                         url: articles[index].url,
                       );
                     }),
