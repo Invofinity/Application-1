@@ -2,7 +2,7 @@ import 'package:News_App/components/text_field_container.dart';
 import 'package:News_App/constants.dart';
 import 'package:flutter/material.dart';
 
-class RoundedPasswordField extends StatelessWidget {
+class RoundedPasswordField extends StatefulWidget {
   final ValueChanged<String> onChanged;
   const RoundedPasswordField({
     Key key,
@@ -10,11 +10,18 @@ class RoundedPasswordField extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _RoundedPasswordFieldState createState() => _RoundedPasswordFieldState();
+}
+
+class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
+  TextEditingController _passwordController;
+  @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
+        controller: _passwordController,
         obscureText: true,
-        onChanged: onChanged,
+        onChanged: widget.onChanged,
         decoration: InputDecoration(
           hintText: "Password",
           icon: Icon(
