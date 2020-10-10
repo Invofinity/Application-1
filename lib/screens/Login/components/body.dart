@@ -14,12 +14,11 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, //hello
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
               "LOGIN",
