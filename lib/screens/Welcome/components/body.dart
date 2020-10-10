@@ -4,6 +4,7 @@ import 'package:News_App/screens/Login/login_screen.dart';
 import 'package:News_App/screens/SignUp/signup_screen.dart';
 import 'package:News_App/screens/Welcome/components/background.dart';
 import 'package:flutter/material.dart';
+import 'package:News_App/main.dart';
 
 class Body extends StatelessWidget {
   @override
