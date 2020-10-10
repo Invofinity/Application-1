@@ -40,22 +40,6 @@ class _BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
-<<<<<<< HEAD
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "LOGIN",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'PoppinsBold',
-                  fontSize: 18),
-            ),
-            SizedBox(height: size.height * 0.03),
-            Image.asset(
-              "assets/login (1).png",
-              height: size.height * 0.35,
-=======
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center, //hello
         children: <Widget>[
@@ -104,7 +88,6 @@ class _BodyState extends State<Body> {
                   ],
                 ),
               ),
->>>>>>> 5d54358fa3534a1606008fbaeb57256f2ee9f7fe
             ),
           ),
           SizedBox(height: size.height * 0.03),
