@@ -1,9 +1,4 @@
-import 'package:News_App/components/already_have_an_account_check.dart';
-import 'package:News_App/components/rounded_button.dart';
 import 'package:News_App/screens/Login/components/background.dart';
-import 'package:News_App/components/rounded_input_field.dart';
-import 'package:News_App/screens/Login/components/rounded_password_field.dart';
-import 'package:News_App/screens/SignUp/signup_screen.dart';
 import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:News_App/main.dart';
