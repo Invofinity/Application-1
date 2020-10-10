@@ -19,7 +19,6 @@ class _SettingsState extends State<Settings> {
   String userName;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _handleInfo();
   }

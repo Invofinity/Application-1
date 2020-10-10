@@ -23,14 +23,6 @@
           }
         },
         {
-          "client_id": "1083116059275-cleq8rcbqpi0i5eriouee7sjiudk240u.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.News_App",
-            "certificate_hash": "b7755cdabcf4c5b34d718d724f239e7d3323d9b1"
-          }
-        },
-        {
           "client_id": "1083116059275-99asffiq2en9ue9msqjc5lgagp9qhfou.apps.googleusercontent.com",
           "client_type": 3
         }
