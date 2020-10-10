@@ -32,7 +32,6 @@ class _BodyState extends State<Body> {
   }
 
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
