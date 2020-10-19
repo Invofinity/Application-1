@@ -1,4 +1,4 @@
-import 'package:News_App/screens/Login/components/background.dart';
+/*import 'package:News_App/screens/Login/components/background.dart';
 import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:News_App/main.dart';
@@ -95,5 +95,237 @@ class _SettingsState extends State<Settings> {
     } catch (error) {
       print(error);
     }
+  }
+}*/
+
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart';
+import 'package:share/share.dart';
+
+class Settings extends StatefulWidget {
+  @override
+  _SettingsState createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
+  int currentIndex;
+  bool receive = true;
+  final FirebaseMessaging _fcm = FirebaseMessaging();
+
+  Future<void> _launch() async {
+    await launch(
+        'https://play.google.com/store/apps/details?id=com.whatsapp&hl=en_IN&gl=US');
+  }
+
+  _onShare(BuildContext context) async {
+    final RenderBox box = context.findRenderObject();
+    await Share.share(
+        'Download https://play.google.com/store/apps?hl=en_IN&gl=US',
+        subject: 'Invofinity',
+        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    receive
+        ? _fcm.subscribeToTopic('Invofinity')
+        : _fcm.unsubscribeFromTopic('Invofinity');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final bgColor = const Color(0xFFffffff);
+    final txtColor = const Color(0xFF171717);
+    final up = const Color(0xFFff416c);
+    final cardColor = const Color(0xFFf8f8f8);
+    final down = const Color(0xFFff4b2b);
+    final switchColor = const Color(0xFFFF483C);
+
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                GestureDetector(
+                  onTap: () => {
+                    receive ? receive = false : receive = true,
+                  },
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width,
+                    color: bgColor,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Icon(Feather.bell),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                          width: 250,
+                          child: Text(
+                            'Notifications',
+                            style: TextStyle(
+                              fontFamily: 'PoppinsSemiBold',
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Switch(
+                          value: receive,
+                          activeColor: switchColor,
+                          onChanged: (value) {
+                            setState(() {
+                              value
+                                  ? _fcm.subscribeToTopic('Invofinity')
+                                  : _fcm.unsubscribeFromTopic('Invofinity');
+                              receive = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  //height: 394,
+                  height: (MediaQuery.of(context).size.height) - 212,
+                  width: MediaQuery.of(context).size.width,
+                  color: cardColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 20,
+                      ),
+                      GestureDetector(
+                        onTap: () => _onShare(context),
+                        child: Container(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20),
+                              Text(
+                                'Share',
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      GestureDetector(
+                        onTap: () => {
+                          _launch(),
+                        },
+                        child: Container(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20),
+                              Text(
+                                'Rate Us',
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20),
+                              Text(
+                                'Buy Us a Coffee',
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20),
+                              Text(
+                                'Help & FAQ',
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20),
+                              Text(
+                                'About Us',
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
