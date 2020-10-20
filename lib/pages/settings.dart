@@ -268,26 +268,6 @@ class _SettingsState extends State<Settings> {
                             children: [
                               SizedBox(width: 20),
                               Text(
-                                'Buy Us a Coffee',
-                                style: TextStyle(
-                                  fontFamily: 'PoppinsSemiBold',
-                                  fontSize: 13,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      GestureDetector(
-                        child: Container(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(width: 20),
-                              Text(
                                 'Help & FAQ',
                                 style: TextStyle(
                                   fontFamily: 'PoppinsSemiBold',

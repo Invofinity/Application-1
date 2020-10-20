@@ -13,6 +13,11 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:News_App/pages/articles.dart';
 import 'package:News_App/pages/discover.dart';
 import 'package:News_App/pages/settings.dart';
+import 'package:News_App/components/gradient.dart';
+import 'package:News_App/components/circle_indicator.dart';
+import 'package:News_App/pages/widgets/news_tile.dart';
+import 'package:News_App/models/sections.dart';
+import 'package:News_App/helper/data_new.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -61,7 +66,7 @@ class _HomeState extends State<Home> {
                 "Daily",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 27,
+                  fontSize: 20,
                   fontFamily: 'PoppinsBold',
                 ),
               ),
@@ -272,32 +277,13 @@ class BlogTile extends StatelessWidget {
   }
 }
 
-class RadiantGradientMask extends StatelessWidget {
-  final up = const Color(0xFFff416c);
-  final down = const Color(0xFFff4b2b);
-  RadiantGradientMask({this.child});
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return ShaderMask(
-      shaderCallback: (bounds) => LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [up, down],
-        tileMode: TileMode.mirror,
-      ).createShader(bounds),
-      child: child,
-    );
-  }
-}
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   List<CategoryModel> categories = new List<CategoryModel>();
   List<ArticleModel> articles = new List<ArticleModel>();
 
@@ -306,12 +292,16 @@ class _HomePageState extends State<HomePage> {
   final txtColor = const Color(0xFF171717);
   final up = const Color(0xFFff416c);
   final down = const Color(0xFFff4b2b);
+  TabController tabcontroller;
+  var impList = [];
 
   @override
   void initState() {
     super.initState();
     categories = getCategories();
     getNews();
+    fetchNews();
+    tabcontroller = new TabController(vsync: this, length: 6);
   }
 
   void getNews() async {
@@ -320,17 +310,21 @@ class _HomePageState extends State<HomePage> {
     articles = newsClass.news;
   }
 
+  Future<void> fetchNews() async {
+    ImpNews newsClass1 = ImpNews();
+    await newsClass1.getData();
+    impList = newsClass1.news;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return SafeArea(
       child: Container(
           padding: EdgeInsets.symmetric(horizontal: 1),
           child: Column(
             children: <Widget>[
               //categories
-              SizedBox(
-                height: 14,
-              ),
+
               CarouselSlider(
                 height: 160.0,
                 aspectRatio: 9 / 16,
@@ -343,7 +337,7 @@ class _HomePageState extends State<HomePage> {
                     current = index;
                   });
                 }),
-                items: imgList
+                items: impList
                     .map((e) => Builder(builder: (BuildContext context) {
                           return Container(
                             margin: EdgeInsets.all(5.0),
@@ -351,7 +345,7 @@ class _HomePageState extends State<HomePage> {
                                 color: txtColor,
                                 borderRadius: BorderRadius.circular(14.0),
                                 image: DecorationImage(
-                                  image: AssetImage(e),
+                                  image: AssetImage(e.img),
                                   fit: BoxFit.cover,
                                 )),
                             child: Column(
@@ -361,7 +355,8 @@ class _HomePageState extends State<HomePage> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    imgInf[imgList.indexOf(e)],
+                                    //imgInf[imgList.indexOf(e)],
+                                    e.head,
                                     maxLines: 2,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -386,7 +381,7 @@ class _HomePageState extends State<HomePage> {
                 height: 10,
               ),
 
-              Container(
+              /*Container(
                 height: 70,
                 child: ListView.builder(
                     itemCount: categories.length,
@@ -408,13 +403,52 @@ class _HomePageState extends State<HomePage> {
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return BlogTile(
-                        imageURL: articles[index].urlToImage,
-                        title: articles[index].title,
-                        url: articles[index].url,
+                      return Tile(
+                        img: articles[index].urlToImage,
+                        head: articles[index].title,
+                        des: articles[index].url,
                       );
                     }),
-              )
+              )*/
+              TabBar(
+                  labelColor: txtColor,
+                  isScrollable: true,
+                  labelStyle: TextStyle(
+                    fontFamily: 'PoppinsSemiBold',
+                    fontSize: 12,
+                  ),
+                  indicator: CircleTabIndicator(color: txtColor, radius: 2),
+                  indicatorWeight: 4,
+                  controller: tabcontroller,
+                  tabs: [
+                    Tab(
+                      text: 'All',
+                    ),
+                    Tab(
+                      text: 'Business',
+                    ),
+                    Tab(
+                      text: 'Sports',
+                    ),
+                    Tab(
+                      text: 'Politics',
+                    ),
+                    Tab(
+                      text: 'Entertainment',
+                    ),
+                    Tab(
+                      text: 'Science',
+                    )
+                  ]),
+              Expanded(
+                  child: TabBarView(controller: tabcontroller, children: [
+                All(),
+                Business(),
+                Sports(),
+                Politics(),
+                Entertainment(),
+                Science()
+              ]))
             ],
           )),
     );
