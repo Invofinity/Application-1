@@ -1,10 +1,8 @@
 import 'package:News_App/components/rounded_button.dart';
 import 'package:News_App/constants.dart';
-import 'package:News_App/screens/Login/login_screen.dart';
-import 'package:News_App/screens/SignUp/signup_screen.dart';
 import 'package:News_App/screens/Welcome/components/background.dart';
+import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
-import 'package:News_App/main.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -32,33 +30,18 @@ class Body extends StatelessWidget {
             SizedBox(height: size.height * 0.04),
             Container(
               child: RoundedButton(
-                text: "LOGIN", //add fontfamily
+                text: "Get Started...", //add fontfamily
                 press: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return LoginScreen();
+                        return Home();
                       },
                     ),
                   );
                 },
               ),
-            ),
-            RoundedButton(
-              text: "SIGN UP", //add fontfamily
-              color: kPrimaryLightColor,
-              textColor: Colors.black,
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return SignUpScreen();
-                    },
-                  ),
-                );
-              },
             ),
           ],
         ),

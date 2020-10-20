@@ -96,6 +96,7 @@ class _BusinessState extends State<Business> {
   }
 }
 
+// ignore: must_be_immutable
 class Sports extends StatefulWidget {
   ScrollController controller = ScrollController();
 

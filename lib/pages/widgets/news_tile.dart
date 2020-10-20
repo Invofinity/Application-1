@@ -88,6 +88,7 @@ class _TileState extends State<Tile> {
   }
 }
 
+// ignore: must_be_immutable
 class Save extends StatefulWidget {
   bool isPlaying;
   @override

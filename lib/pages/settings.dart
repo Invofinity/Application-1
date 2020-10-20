@@ -268,8 +268,6 @@ class _SettingsState extends State<Settings> {
                             children: [
                               SizedBox(width: 20),
                               Text(
-<<<<<<< HEAD
-=======
                                 'Buy Us a Coffee',
                                 style: TextStyle(
                                   fontFamily: 'PoppinsSemiBold',
@@ -290,7 +288,6 @@ class _SettingsState extends State<Settings> {
                             children: [
                               SizedBox(width: 20),
                               Text(
->>>>>>> ee7ec06165a4b62b46855ac98f1844dd981a8371
                                 'Help & FAQ',
                                 style: TextStyle(
                                   fontFamily: 'PoppinsSemiBold',
