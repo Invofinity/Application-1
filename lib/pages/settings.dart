@@ -144,8 +144,10 @@ class _SettingsState extends State<Settings> {
     final cardColor = const Color(0xFFf8f8f8);
     final down = const Color(0xFFff4b2b);
     final switchColor = const Color(0xFFFF483C);
+    Size size = MediaQuery.of(context).size;
 
-    return SafeArea(
+    return ClipRect(
+        child: Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -154,25 +156,25 @@ class _SettingsState extends State<Settings> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 10,
+                  height: size.height * 0.02,
                 ),
                 GestureDetector(
                   onTap: () => {
                     receive ? receive = false : receive = true,
                   },
                   child: Container(
-                    height: 50,
+                    height: size.height * 0.02,
                     width: MediaQuery.of(context).size.width,
                     color: bgColor,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: 20,
+                          width: size.width * 0.03,
                         ),
                         Icon(Feather.bell),
                         SizedBox(
-                          width: 20,
+                          width: size.width * 0.02,
                         ),
                         Container(
                           width: 250,
@@ -184,9 +186,7 @@ class _SettingsState extends State<Settings> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
+                        SizedBox(width: size.width * 0.08),
                         Switch(
                           value: receive,
                           activeColor: switchColor,
@@ -204,7 +204,7 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: size.height * 0.03,
                 ),
                 Container(
                   //height: 394,
@@ -215,7 +215,7 @@ class _SettingsState extends State<Settings> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 20,
+                        height: size.height * 0.03,
                       ),
                       GestureDetector(
                         onTap: () => _onShare(context),
@@ -236,7 +236,7 @@ class _SettingsState extends State<Settings> {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: size.height * 0.03,
                       ),
                       GestureDetector(
                         onTap: () => {
@@ -259,7 +259,7 @@ class _SettingsState extends State<Settings> {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: size.height * 0.03,
                       ),
                       GestureDetector(
                         child: Container(
@@ -268,6 +268,29 @@ class _SettingsState extends State<Settings> {
                             children: [
                               SizedBox(width: 20),
                               Text(
+<<<<<<< HEAD
+=======
+                                'Buy Us a Coffee',
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20),
+                              Text(
+>>>>>>> ee7ec06165a4b62b46855ac98f1844dd981a8371
                                 'Help & FAQ',
                                 style: TextStyle(
                                   fontFamily: 'PoppinsSemiBold',
@@ -279,7 +302,7 @@ class _SettingsState extends State<Settings> {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: size.height * 0.03,
                       ),
                       GestureDetector(
                         child: Container(
@@ -306,6 +329,6 @@ class _SettingsState extends State<Settings> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
