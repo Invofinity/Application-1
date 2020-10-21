@@ -7,7 +7,7 @@ class Data {
 
   Future<void> getData() async {
     var response = await get(
-        'https://fir-news-api-veokara.firebaseio.com/GlobalNews.json');
+        'https://fir-news-api-veokara.firebaseio.com/globalnews.json');
     var jsonData = jsonDecode(response.body);
 
     jsonData.forEach((element) {
@@ -108,7 +108,7 @@ class Data4 {
 
   Future<void> getData() async {
     var response = await get(
-        'https://fir-news-api-veokara.firebaseio.com/Entertainment.json');
+        'https://fir-news-api-veokara.firebaseio.com/entertainment.json');
     var jsonData = jsonDecode(response.body);
     //if (jsonData['status'] == "ok") {
     jsonData.forEach((element) {
