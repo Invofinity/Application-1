@@ -31,19 +31,10 @@ class _AllState extends State<All> {
     return ListView.builder(
         itemCount: allarticles.length,
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () =>
-                Navigator.pushNamed(context, '/information', arguments: {
-              '/link': allarticles[index].url,
-              '/content': allarticles[index].content,
-              '/head': allarticles[index].head,
-              '/img': allarticles[index].img
-            }),
-            child: Tile(
-              img: allarticles[index].img,
-              head: allarticles[index].head,
-              des: allarticles[index].url,
-            ),
+          return Tile(
+            img: allarticles[index].img,
+            head: allarticles[index].head,
+            des: allarticles[index].url,
           );
         });
   }
@@ -60,10 +51,12 @@ class _BusinessState extends State<Business> {
   final up = const Color(0xFFff416c);
   final down = const Color(0xFFff4b2b);
   var allarticles1 = [];
+  bool _loading;
 
   @override
   void initState() {
     super.initState();
+    _loading = true;
     fetchNews();
   }
 
@@ -71,6 +64,9 @@ class _BusinessState extends State<Business> {
     Data1 newsClass1 = Data1();
     await newsClass1.getData();
     allarticles1 = newsClass1.articles1;
+    setState(() {
+      _loading = false;
+    });
   }
 
   @override
@@ -78,20 +74,18 @@ class _BusinessState extends State<Business> {
     return ListView.builder(
         itemCount: allarticles1.length,
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () =>
-                Navigator.pushNamed(context, '/information', arguments: {
-              '/link': allarticles1[index].url,
-              '/content': allarticles1[index].content,
-              '/head': allarticles1[index].head,
-              '/img': allarticles1[index].img
-            }),
-            child: Tile(
-              img: allarticles1[index].img,
-              head: allarticles1[index].head,
-              des: allarticles1[index].url,
-            ),
-          );
+          return _loading
+              ? Container(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    valueColor: new AlwaysStoppedAnimation<Color>(down),
+                  ),
+                )
+              : Tile(
+                  img: allarticles1[index].img,
+                  head: allarticles1[index].head,
+                  des: allarticles1[index].url,
+                );
         });
   }
 }

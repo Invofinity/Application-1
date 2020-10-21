@@ -50,7 +50,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final bgColor = const Color(0xFFffffff);
     final up = const Color(0xFFff416c);
-    //final down = const Color(0xFFff4b2b);
+
+    final down = const Color(0xFFff4b2b);
 
     return Scaffold(
         backgroundColor: bgColor,
@@ -76,7 +77,10 @@ class _HomeState extends State<Home> {
         body: _loading
             ? Center(
                 child: Container(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    valueColor: new AlwaysStoppedAnimation<Color>(down),
+                  ),
                 ),
               )
             : PageView(
@@ -96,7 +100,8 @@ class _HomeState extends State<Home> {
             setState(() {
               currentIndex = index;
               pageController.animateToPage(currentIndex,
-                  duration: Duration(milliseconds: 200), curve: Curves.linear);
+                  duration: Duration(milliseconds: 100),
+                  curve: Curves.bounceIn);
             });
           },
           items: <BubbleBottomBarItem>[
@@ -105,13 +110,13 @@ class _HomeState extends State<Home> {
                 icon: RadiantGradientMask(
                   child: Icon(
                     Entypo.news,
-                    size: 18.0,
+                    size: 20.0,
                   ),
                 ),
                 activeIcon: RadiantGradientMask(
                   child: Icon(
                     Entypo.news,
-                    size: 18.0,
+                    size: 20.0,
                   ),
                 ),
                 title: RadiantGradientMask(
@@ -123,14 +128,14 @@ class _HomeState extends State<Home> {
                 backgroundColor: up,
                 icon: RadiantGradientMask(
                   child: Icon(
-                    Entypo.tumblr,
-                    size: 18.0,
+                    Entypo.compass,
+                    size: 20.0,
                   ),
                 ),
                 activeIcon: RadiantGradientMask(
                     child: Icon(
-                  Entypo.tumblr,
-                  size: 18.0,
+                  Entypo.compass,
+                  size: 20.0,
                 )),
                 title: RadiantGradientMask(
                   child: Text('Discover',
@@ -141,14 +146,14 @@ class _HomeState extends State<Home> {
                 backgroundColor: up,
                 icon: RadiantGradientMask(
                   child: Icon(
-                    FontAwesome.book,
-                    size: 18.0,
+                    Feather.book_open,
+                    size: 20.0,
                   ),
                 ),
                 activeIcon: RadiantGradientMask(
                   child: Icon(
-                    FontAwesome.book,
-                    size: 18.0,
+                    Feather.book_open,
+                    size: 20.0,
                   ),
                 ),
                 title: RadiantGradientMask(
@@ -160,14 +165,14 @@ class _HomeState extends State<Home> {
                 backgroundColor: up,
                 icon: RadiantGradientMask(
                   child: Icon(
-                    Entypo.cog,
-                    size: 18.0,
+                    Feather.settings,
+                    size: 20.0,
                   ),
                 ),
                 activeIcon: RadiantGradientMask(
                     child: Icon(
-                  Entypo.cog,
-                  size: 18.0,
+                  Feather.settings,
+                  size: 20.0,
                 )),
                 title: RadiantGradientMask(
                   child: Text('Settings',
@@ -294,26 +299,31 @@ class _HomePageState extends State<HomePage>
   final down = const Color(0xFFff4b2b);
   TabController tabcontroller;
   var impList = [];
+  bool _loading;
 
   @override
   void initState() {
     super.initState();
     categories = getCategories();
-    getNews();
+    //getNews();
+    _loading = true;
     fetchNews();
     tabcontroller = new TabController(vsync: this, length: 6);
   }
 
-  void getNews() async {
+  /*void getNews() async {
     News newsClass = News();
     await newsClass.getNews();
     articles = newsClass.news;
-  }
+  }*/
 
   Future<void> fetchNews() async {
     ImpNews newsClass1 = ImpNews();
     await newsClass1.getData();
     impList = newsClass1.news;
+    setState(() {
+      _loading = false;
+    });
   }
 
   @override
@@ -324,55 +334,67 @@ class _HomePageState extends State<HomePage>
           child: Column(
             children: <Widget>[
               //categories
-
-              CarouselSlider(
-                height: 160.0,
-                aspectRatio: 9 / 16,
-                autoPlay: true,
-                autoPlayAnimationDuration: Duration(seconds: 1),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enableInfiniteScroll: true,
-                onPageChanged: ((index) {
-                  setState(() {
-                    current = index;
-                  });
-                }),
-                items: impList
-                    .map((e) => Builder(builder: (BuildContext context) {
-                          return Container(
-                            margin: EdgeInsets.all(5.0),
-                            decoration: BoxDecoration(
-                                color: txtColor,
-                                borderRadius: BorderRadius.circular(14.0),
-                                image: DecorationImage(
-                                  image: AssetImage(e.img),
-                                  fit: BoxFit.cover,
-                                )),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(height: 80.0, width: 510),
-                                Container(
-                                  width: 200,
-                                  child: Text(
-                                    //imgInf[imgList.indexOf(e)],
-                                    e.head,
-                                    maxLines: 2,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'PoppinsSemiBold',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14.0,
-                                      color: bgColor,
-                                    ),
+              _loading
+                  ? Container(
+                      height: 160,
+                      child: Center(
+                        child: Container(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: new AlwaysStoppedAnimation<Color>(down),
+                          ),
+                        ),
+                      ),
+                    )
+                  : CarouselSlider(
+                      height: 160.0,
+                      aspectRatio: 9 / 16,
+                      autoPlay: true,
+                      autoPlayAnimationDuration: Duration(seconds: 1),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enableInfiniteScroll: true,
+                      onPageChanged: ((index) {
+                        setState(() {
+                          current = index;
+                        });
+                      }),
+                      items: impList
+                          .map((e) => Builder(builder: (BuildContext context) {
+                                return Container(
+                                  margin: EdgeInsets.all(5.0),
+                                  decoration: BoxDecoration(
+                                      color: txtColor,
+                                      borderRadius: BorderRadius.circular(14.0),
+                                      image: DecorationImage(
+                                        image: AssetImage(e.img),
+                                        fit: BoxFit.cover,
+                                      )),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox(height: 80.0, width: 510),
+                                      Container(
+                                        width: 200,
+                                        child: Text(
+                                          //imgInf[imgList.indexOf(e)],
+                                          e.head,
+                                          maxLines: 2,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontFamily: 'PoppinsSemiBold',
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14.0,
+                                            color: bgColor,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }))
-                    .toList(),
-              ),
+                                );
+                              }))
+                          .toList(),
+                    ),
               SizedBox(
                 height: 5,
               ),

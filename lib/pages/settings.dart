@@ -104,6 +104,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart';
 import 'package:share/share.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -268,29 +269,6 @@ class _SettingsState extends State<Settings> {
                             children: [
                               SizedBox(width: 20),
                               Text(
-<<<<<<< HEAD
-=======
-                                'Buy Us a Coffee',
-                                style: TextStyle(
-                                  fontFamily: 'PoppinsSemiBold',
-                                  fontSize: 13,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.03,
-                      ),
-                      GestureDetector(
-                        child: Container(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(width: 20),
-                              Text(
->>>>>>> ee7ec06165a4b62b46855ac98f1844dd981a8371
                                 'Help & FAQ',
                                 style: TextStyle(
                                   fontFamily: 'PoppinsSemiBold',
