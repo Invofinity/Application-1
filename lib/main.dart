@@ -1,7 +1,6 @@
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
 import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
-import 'package:dynamic_theme/dynamic_theme.dart';
 
 void main() {
   runApp(MyApp());

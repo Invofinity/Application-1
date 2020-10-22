@@ -7,7 +7,6 @@ class Articles extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Articles',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
@@ -15,6 +14,14 @@ class Articles extends StatelessWidget {
     );
   }
 }
+
+final bgColor = const Color(0xFFffffff);
+final txtColor = const Color(0xFF171717);
+final up = const Color(0xFFff416c);
+final down = const Color(0xFFff4b2b);
+final Shader linearGradient = LinearGradient(
+  colors: <Color>[Color(0xFFff416c), Color(0xFFff4b2b)],
+).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
 
 class ArticleWelcome extends StatelessWidget {
   @override
@@ -31,28 +38,47 @@ class ArticleWelcome extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: 'PoppinsBold',
-                  fontSize: 35,
-                  color: Colors.black,
+                  fontSize: 20,
+                  foreground: Paint()..shader = linearGradient,
                 ),
               ),
             ),
-            SizedBox(height: size.height * 0.03),
-            Image.asset("assets/Articles.jpg"),
+            SizedBox(height: size.height * 0.18),
+            Image.asset("assets/reading.png"),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.6,
-              child: RoundedButton(
-                text: "Start Reading...",
-                fontSize: 18,
-                press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return ArticlesHomeScreen();
-                      },
-                    ),
-                  );
-                },
+              height: 100,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ArticlesHomeScreen();
+                    },
+                  ),
+                );
+              },
+              child: Container(
+                width: 180,
+                height: 50,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [up, down],
+                      tileMode: TileMode.mirror,
+                    )),
+                child: Center(
+                  child: Text(
+                    'Start Reading..',
+                    style: TextStyle(
+                        fontFamily: 'PoppinsSemiBold',
+                        fontSize: 18.0,
+                        color: bgColor),
+                  ),
+                ),
               ),
             )
           ],

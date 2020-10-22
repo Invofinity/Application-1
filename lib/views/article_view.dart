@@ -4,6 +4,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class ArticleView extends StatefulWidget {
   final String blogUrl;
+
   ArticleView({@required this.blogUrl});
 
   @override
@@ -13,6 +14,8 @@ class ArticleView extends StatefulWidget {
 class _ArticleViewState extends State<ArticleView> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
+  bool isLoading = true;
+  final down = const Color(0xFFff4b2b);
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +23,15 @@ class _ArticleViewState extends State<ArticleView> {
         appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text("News"),
               Text(
-                "App",
-                style: TextStyle(color: Colors.blue),
+                "Daily",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: 'PoppinsBold',
+                ),
               ),
             ],
           ),
@@ -40,15 +47,29 @@ class _ArticleViewState extends State<ArticleView> {
           centerTitle: true,
           elevation: 0.0,
         ),
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: WebView(
-            initialUrl: widget.blogUrl,
-            onWebViewCreated: ((WebViewController webViewController) {
-              _controller.complete(webViewController);
-            }),
+        body: Stack(children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: WebView(
+              initialUrl: widget.blogUrl,
+              onPageFinished: (finish) {
+                setState(() {
+                  isLoading = false;
+                });
+              },
+              onWebViewCreated: ((WebViewController webViewController) {
+                _controller.complete(webViewController);
+              }),
+            ),
           ),
-        ));
+          isLoading
+              ? LinearProgressIndicator(
+                  backgroundColor: Colors.white,
+                  minHeight: 1.5,
+                  valueColor: new AlwaysStoppedAnimation<Color>(down),
+                )
+              : Stack(),
+        ]));
   }
 }

@@ -44,9 +44,9 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: size.height * 0.04),
+            SizedBox(height: size.height * 0.02),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: RichText(
                 text: TextSpan(
                   // ignore: deprecated_member_use
@@ -56,6 +56,7 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
                       text: "What are you \nreading ",
                       style: TextStyle(
                         color: Colors.black,
+                        fontSize: 20,
                       ),
                     ),
                     TextSpan(
@@ -63,13 +64,14 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
+                        fontSize: 20,
                       ),
                     )
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 4),
             /*Container(
               height: 245,
               width: 500,

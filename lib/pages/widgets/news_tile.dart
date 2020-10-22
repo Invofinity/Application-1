@@ -44,11 +44,11 @@ class _TileState extends State<Tile> {
       child: Container(
         height: 100.0,
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-          color: bgColor,
-          border: Border.all(color: border, width: 1.5),
+          borderRadius: BorderRadius.circular(10),
+          color: Color(0xFFf6f6f6),
+          //border: Border.all(color: border, width: 1.5),
           //boxShadow: [
           /*BoxShadow(
                   color: txtColor.withOpacity(0.25),
@@ -80,7 +80,7 @@ class _TileState extends State<Tile> {
               Container(
                 width: 90.0,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   color: bgColor,
                   image: DecorationImage(
                       image: NetworkImage(

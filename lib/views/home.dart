@@ -1,9 +1,7 @@
-import 'package:News_App/helper/data.dart';
 import 'package:News_App/helper/news.dart';
 import 'package:News_App/models/article_model.dart';
 import 'package:News_App/models/category_model.dart';
 import 'package:News_App/views/article_view.dart';
-import 'package:News_App/views/category_news.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:News_App/models/lists.dart';
@@ -46,11 +44,14 @@ class _HomeState extends State<Home> {
     });
   }
 
+  final Shader linearGradient = LinearGradient(
+    colors: <Color>[Color(0xFFff416c), Color(0xFFff4b2b)],
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+
   @override
   Widget build(BuildContext context) {
     final bgColor = const Color(0xFFffffff);
     final up = const Color(0xFFff416c);
-
     final down = const Color(0xFFff4b2b);
 
     return Scaffold(
@@ -59,27 +60,40 @@ class _HomeState extends State<Home> {
           centerTitle: true,
           backgroundColor: bgColor,
           elevation: 0,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                "Daily",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  fontFamily: 'PoppinsBold',
-                ),
+          title: RadiantGradientMask(
+            child: Text(
+              'Daily',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+                fontFamily: 'PoppinsBold',
               ),
-            ],
+            ),
           ),
         ),
         body: _loading
             ? Center(
                 child: Container(
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    valueColor: new AlwaysStoppedAnimation<Color>(down),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      RadiantGradientMask(
+                          child: Text(
+                        'Please Wait....',
+                        style: TextStyle(
+                          fontFamily: 'PoppinsSemiBold',
+                          fontSize: 16,
+                          foreground: Paint()..shader = linearGradient,
+                        ),
+                      )),
+                      SizedBox(
+                        height: 60,
+                      ),
+                      CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: new AlwaysStoppedAnimation<Color>(down),
+                      ),
+                    ],
                   ),
                 ),
               )
@@ -101,7 +115,7 @@ class _HomeState extends State<Home> {
               currentIndex = index;
               pageController.animateToPage(currentIndex,
                   duration: Duration(milliseconds: 100),
-                  curve: Curves.bounceIn);
+                  curve: Curves.slowMiddle);
             });
           },
           items: <BubbleBottomBarItem>[
@@ -184,7 +198,7 @@ class _HomeState extends State<Home> {
   }
 }
 
-class CategoryTile extends StatelessWidget {
+/*class CategoryTile extends StatelessWidget {
   final String imageURL, categoryName;
 
   CategoryTile({this.imageURL, this.categoryName});
@@ -234,9 +248,9 @@ class CategoryTile extends StatelessWidget {
       ),
     );
   }
-}
+}*/
 
-class BlogTile extends StatelessWidget {
+/*class BlogTile extends StatelessWidget {
   final String imageURL, title, url;
 
   BlogTile({@required this.imageURL, @required this.title, @required this.url});
@@ -280,7 +294,7 @@ class BlogTile extends StatelessWidget {
       ),
     );
   }
-}
+}*/
 
 class HomePage extends StatefulWidget {
   @override
@@ -304,7 +318,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    categories = getCategories();
+    //categories = getCategories();
     //getNews();
     _loading = true;
     fetchNews();
@@ -360,38 +374,50 @@ class _HomePageState extends State<HomePage>
                       }),
                       items: impList
                           .map((e) => Builder(builder: (BuildContext context) {
-                                return Container(
-                                  margin: EdgeInsets.all(5.0),
-                                  decoration: BoxDecoration(
-                                      color: txtColor,
-                                      borderRadius: BorderRadius.circular(14.0),
-                                      image: DecorationImage(
-                                        image: AssetImage(e.img),
-                                        fit: BoxFit.cover,
-                                      )),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(height: 80.0, width: 510),
-                                      Container(
-                                        width: 200,
-                                        child: Text(
-                                          //imgInf[imgList.indexOf(e)],
-                                          e.head,
-                                          maxLines: 2,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'PoppinsSemiBold',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14.0,
-                                            color: bgColor,
+                                return Stack(children: [
+                                  Container(
+                                    margin: EdgeInsets.all(5.0),
+                                    decoration: BoxDecoration(
+                                        color: txtColor,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        image: DecorationImage(
+                                          image: NetworkImage(e.img),
+                                          fit: BoxFit.cover,
+                                        )),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.all(5.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(width: 510),
+                                        Container(
+                                          width: 200,
+                                          child: Text(
+                                            //imgInf[imgList.indexOf(e)],
+                                            e.head,
+                                            maxLines: 2,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontFamily: 'PoppinsSemiBold',
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14.0,
+                                              color: bgColor,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                );
+                                      ],
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: txtColor.withOpacity(0.18),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  )
+                                ]);
                               }))
                           .toList(),
                     ),
@@ -444,7 +470,7 @@ class _HomePageState extends State<HomePage>
                   controller: tabcontroller,
                   tabs: [
                     Tab(
-                      text: 'All',
+                      text: 'Global',
                     ),
                     Tab(
                       text: 'Business',
@@ -453,7 +479,7 @@ class _HomePageState extends State<HomePage>
                       text: 'Sports',
                     ),
                     Tab(
-                      text: 'Politics',
+                      text: 'Health',
                     ),
                     Tab(
                       text: 'Entertainment',
@@ -467,7 +493,7 @@ class _HomePageState extends State<HomePage>
                 All(),
                 Business(),
                 Sports(),
-                Politics(),
+                Health(),
                 Entertainment(),
                 Science()
               ]))
