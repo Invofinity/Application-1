@@ -71,8 +71,8 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        body: _loading
-            ? Center(
+        body: //_loading
+            /*? Center(
                 child: Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -97,15 +97,16 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               )
-            : PageView(
-                children: [HomePage(), Discover(), Articles(), Settings()],
-                onPageChanged: (index) {
-                  setState(() {
-                    currentIndex = index;
-                  });
-                },
-                controller: pageController,
-              ),
+            :*/
+            PageView(
+          children: [HomePage(), Discover(), Articles(), Settings()],
+          onPageChanged: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          controller: pageController,
+        ),
         bottomNavigationBar: BubbleBottomBar(
           opacity: 0.12,
           backgroundColor: bgColor,
@@ -142,13 +143,13 @@ class _HomeState extends State<Home> {
                 backgroundColor: up,
                 icon: RadiantGradientMask(
                   child: Icon(
-                    Entypo.compass,
+                    Feather.compass,
                     size: 20.0,
                   ),
                 ),
                 activeIcon: RadiantGradientMask(
                     child: Icon(
-                  Entypo.compass,
+                  Feather.compass,
                   size: 20.0,
                 )),
                 title: RadiantGradientMask(

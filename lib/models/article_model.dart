@@ -21,7 +21,7 @@ class NewsArticles {
   String des;
   String img;
   String url;
-  String content;
+  String tag;
   String source;
   String time;
 
@@ -30,7 +30,7 @@ class NewsArticles {
       this.des,
       this.img,
       this.url,
-      this.content,
+      this.tag,
       this.time,
       this.source});
 }
