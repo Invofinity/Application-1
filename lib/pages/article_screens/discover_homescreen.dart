@@ -6,17 +6,6 @@ class DiscoverHome extends StatefulWidget {
   _DiscoverHomeState createState() => _DiscoverHomeState();
 }
 
-class _DiscoverHomeState extends State<DiscoverHome> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.pink,
-      ),
-    );
-  }
-}
-
 class _DiscoverHomeState extends State<DiscoverHome>
     with SingleTickerProviderStateMixin {
   final bgColor = const Color(0xFFffffff);
