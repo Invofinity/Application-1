@@ -170,3 +170,32 @@ class ImpNews {
     });
   }
 }
+
+class Data6 {
+  List<NewsArticles> articles6 = [];
+
+  Future<void> getData() async {
+    var response =
+        await get('https://fir-news-api-veokara.firebaseio.com/discover.json');
+    var jsonData = jsonDecode(response.body);
+    //if (jsonData['status'] == "ok") {
+    jsonData.forEach((element) {
+      //if (element['urlToImage'] != null && element['description'] != null) {
+      NewsArticles newsarticles6 = NewsArticles(
+        head: element['title'],
+        source: element['source'],
+        tag: element['tag'],
+        des: element['selftext'],
+        // des: element['description'],
+        img: element['thumbnail'],
+        url: element['domain'],
+        // content: element['content'],
+        //source: element['source'].name,
+        // time: element['publishedAt'],
+      );
+      articles6.add(newsarticles6);
+      // }
+    });
+    //}
+  }
+}
