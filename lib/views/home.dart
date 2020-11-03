@@ -425,7 +425,7 @@ class _HomePageState extends State<HomePage>
               SizedBox(
                 height: 5,
               ),
-              SelectedImage(noOfDots: imgList.length, index: current),
+              SelectedImage(noOfDots: 3, index: current),
               SizedBox(
                 height: 10,
               ),

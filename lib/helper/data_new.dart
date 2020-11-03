@@ -199,3 +199,19 @@ class Data6 {
     //}
   }
 }
+
+class ChallengesCall {
+  List<Challenges> challengeslist = [];
+  Future<void> getData() async {
+    var response = await get(
+        'https://fir-news-api-veokara.firebaseio.com/challenges.json');
+    var jsonData = jsonDecode(response.body);
+    jsonData.forEach((element) {
+      Challenges challenges = Challenges(
+        day: element['day'],
+        task: element['task'],
+      );
+      challengeslist.add(challenges);
+    });
+  }
+}
