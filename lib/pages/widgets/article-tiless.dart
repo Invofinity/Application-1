@@ -17,6 +17,14 @@ class _ArticleTileState extends State<ArticleTile> {
   final txtColor = const Color(0xFF171717);
   final border = Colors.grey[300];
   final border1 = Colors.grey[400];
+
+  _onShare(BuildContext context, String url) async {
+    final RenderBox box = context.findRenderObject();
+    await Share.share(url,
+        subject: 'Invofinity',
+        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -35,7 +43,7 @@ class _ArticleTileState extends State<ArticleTile> {
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(10),
           color: Color(0xFFf6f6f6),
         ),
         alignment: Alignment.bottomLeft,
@@ -45,13 +53,6 @@ class _ArticleTileState extends State<ArticleTile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  color: Color(0xFFc4c4c4),
-                  width: MediaQuery.of(context).size.width - 46,
-                ),
-                SizedBox(
-                  height: 14.0,
-                ),
-                Container(
                   width: MediaQuery.of(context).size.width - 46,
                   height: size.height * 0.25,
                   decoration: BoxDecoration(
@@ -59,26 +60,28 @@ class _ArticleTileState extends State<ArticleTile> {
                     color: bgColor,
                     image: DecorationImage(
                         image: NetworkImage(
-                          widget.thumbnail != null
+                          widget
+                              .thumbnail /*!= null
                               ? widget.thumbnail.toString()
-                              : "",
+                              : ""*/
+                          ,
                         ),
                         fit: BoxFit.cover),
                   ),
                 ),
-                SizedBox(height: 4),
+                SizedBox(height: 12),
                 Expanded(
                   child: Container(
                     width: MediaQuery.of(context).size.width - 46,
                     child: Expanded(
                       child: Text(
-                        widget.title != null ? widget.title.toString() : "",
-                        maxLines: 4,
+                        widget.title /*!= null ? widget.title.toString() : ""*/,
+                        maxLines: 9,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontFamily: 'PoppinsSemiBold',
                           fontWeight: FontWeight.bold,
-                          fontSize: 12.0,
+                          fontSize: 16.0,
                           color: txtColor,
                         ),
                       ),
@@ -92,18 +95,29 @@ class _ArticleTileState extends State<ArticleTile> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(
+                      width: 4,
+                    ),
                     Container(
-                      width: size.width * 0.20,
+                      width: 180,
                       child: Text(
-                          widget.source != null ? widget.source.toString() : "",
+                          "Author : " +
+                              (widget.source != null
+                                  ? widget.source.toString()
+                                  : ""),
                           style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 10,
+                              fontFamily: 'PoppinsSemiBold',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
                               color: border1)),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width - 170),
+                    SizedBox(width: MediaQuery.of(context).size.width - 260),
                     GestureDetector(
-                      onTap: () => _onShare(context, widget.domain),
+                      onTap: () => _onShare(
+                          context,
+                          widget.domain != null
+                              ? widget.domain.toString()
+                              : ""),
                       child: Container(
                         child: Icon(
                           Feather.share_2,
@@ -115,18 +129,11 @@ class _ArticleTileState extends State<ArticleTile> {
                   ],
                 ),
                 SizedBox(
-                  height: 4,
+                  height: 8,
                 ),
               ],
             )),
       ),
     );
   }
-}
-
-_onShare(BuildContext context, String url) async {
-  final RenderBox box = context.findRenderObject();
-  await Share.share(url,
-      subject: 'Invofinity',
-      sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
 }

@@ -215,3 +215,32 @@ class ChallengesCall {
     });
   }
 }
+
+class FeedCall {
+  List<NewsArticles> feed = [];
+
+  Future<void> getData() async {
+    var response =
+        await get('https://fir-news-api-veokara.firebaseio.com/feed.json');
+    var jsonData = jsonDecode(response.body);
+    //if (jsonData['status'] == "ok") {
+    jsonData.forEach((element) {
+      //if (element['urlToImage'] != null && element['description'] != null) {
+      NewsArticles feed1 = NewsArticles(
+        head: element['title'],
+        source: element['source'],
+        tag: element['tag'],
+        des: element['selftext'],
+        // des: element['description'],
+        img: element['thumbnail'],
+        url: element['domain'],
+        //content: element['selftext'],
+        //source: element['source'].name,
+        // time: element['publishedAt'],
+      );
+      feed.add(feed1);
+      // }
+    });
+    //}
+  }
+}

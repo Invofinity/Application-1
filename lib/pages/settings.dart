@@ -175,7 +175,7 @@ class _SettingsState extends State<Settings> {
                         ),
                         Icon(Feather.bell),
                         SizedBox(
-                          width: size.width * 0.02,
+                          width: size.width * 0.04,
                         ),
                         Container(
                           width: 250,

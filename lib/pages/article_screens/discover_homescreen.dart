@@ -221,6 +221,22 @@ class _Challenges1State extends State<Challenges1> {
                 SizedBox(
                   height: 15,
                 ),
+                Container(
+                  height: 20,
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                      "Scroll for content",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'PoppinsSemiBold',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10.0,
+                        color: txtColor.withOpacity(0.4),
+                      ),
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Container(
@@ -233,7 +249,7 @@ class _Challenges1State extends State<Challenges1> {
                       magnification: 1.5,
                       childDelegate: ListWheelChildBuilderDelegate(
                           builder: (context, index) {
-                        if (index < 0 || index > 29) {
+                        if (index < 0 || index > (allchallenges.length - 1)) {
                           return null;
                         }
                         return ChallengesTile(
@@ -247,7 +263,7 @@ class _Challenges1State extends State<Challenges1> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 7,
                 ),
                 Container(
                   height: 60,
