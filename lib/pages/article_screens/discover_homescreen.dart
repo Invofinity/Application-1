@@ -94,28 +94,30 @@ class _TipsAndTricksState extends State<TipsAndTricks> {
 
   @override
   Widget build(BuildContext context) {
-    return _loading
-        ? Container(
-            height: 300,
-            child: Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                valueColor: new AlwaysStoppedAnimation<Color>(down),
-              ),
-            ),
-          )
-        : ListView.builder(
-            itemCount: allarticles6.length,
-            itemBuilder: (context, index) {
-              return TNTTile(
-                img: allarticles6[index].img,
-                head: allarticles6[index].head,
-                des: allarticles6[index].url,
-                source: allarticles6[index].source,
-                tag: allarticles6[index].tag,
-                content: allarticles6[index].des,
-              );
-            });
+    if (_loading) {
+      return Container(
+        height: 300,
+        child: Center(
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            valueColor: new AlwaysStoppedAnimation<Color>(down),
+          ),
+        ),
+      );
+    } else {
+      return ListView.builder(
+          itemCount: allarticles6.length,
+          itemBuilder: (context, index) {
+            return TNTTile(
+              img: allarticles6[index].img,
+              head: allarticles6[index].head,
+              des: allarticles6[index].url,
+              source: allarticles6[index].source,
+              tag: allarticles6[index].tag,
+              content: allarticles6[index].des,
+            );
+          });
+    }
   }
 }
 

@@ -47,13 +47,6 @@ class _TNTTileState extends State<TNTTile> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Color(0xFFf6f6f6),
-          //border: Border.all(color: border, width: 1.5),
-          //boxShadow: [
-          /*BoxShadow(
-                  color: txtColor.withOpacity(0.25),
-                  offset: Offset(0, 1),
-                  blurRadius: 0.5),
-            ]*/
         ),
         child: Padding(
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
@@ -94,7 +87,7 @@ class _TNTTileState extends State<TNTTile> {
                                   image: NetworkImage(
                                     widget.img,
                                   ),
-                                  fit: BoxFit.cover),
+                                  fit: BoxFit.scaleDown),
                             ),
                           ),
                           SizedBox(

@@ -136,7 +136,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 title: RadiantGradientMask(
-                  child: Text('News',
+                  child: Text('Feeds',
                       style: TextStyle(
                           fontFamily: 'PoppinsSemiBold', fontSize: 12)),
                 )),
@@ -472,19 +472,19 @@ class _HomePageState extends State<HomePage>
                   controller: tabcontroller,
                   tabs: [
                     Tab(
-                      text: 'Global',
+                      text: 'Futurology',
                     ),
                     Tab(
                       text: 'Business',
                     ),
                     Tab(
-                      text: 'Sports',
+                      text: 'Memes',
                     ),
                     Tab(
                       text: 'Health',
                     ),
                     Tab(
-                      text: 'Entertainment',
+                      text: 'TodayILearned',
                     ),
                     Tab(
                       text: 'Science',
