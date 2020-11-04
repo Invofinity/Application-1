@@ -7,7 +7,7 @@ class Data {
 
   Future<void> getData() async {
     var response = await get(
-        'https://fir-news-api-veokara.firebaseio.com/globalnews.json');
+        'https://fir-news-api-veokara.firebaseio.com/futurelogy.json');
     var jsonData = jsonDecode(response.body);
 
     jsonData.forEach((element) {
@@ -29,8 +29,8 @@ class Data1 {
   List<NewsArticles> articles1 = [];
 
   Future<void> getData() async {
-    var response = await get(
-        'https://fir-news-api-veokara.firebaseio.com/technology.json');
+    var response =
+        await get('https://fir-news-api-veokara.firebaseio.com/newsindia.json');
     var jsonData = jsonDecode(response.body);
     //if (jsonData['status'] == "ok") {
     jsonData.forEach((element) {
@@ -56,7 +56,7 @@ class Data2 {
 
   Future<void> getData() async {
     var response =
-        await get('https://fir-news-api-veokara.firebaseio.com/sports.json');
+        await get('https://fir-news-api-veokara.firebaseio.com/memes.json');
     var jsonData = jsonDecode(response.body);
     //if (jsonData['status'] == "ok") {
     jsonData.forEach((element) {
@@ -108,7 +108,7 @@ class Data4 {
 
   Future<void> getData() async {
     var response = await get(
-        'https://fir-news-api-veokara.firebaseio.com/entertainment.json');
+        'https://fir-news-api-veokara.firebaseio.com/todayilearned.json');
     var jsonData = jsonDecode(response.body);
     //if (jsonData['status'] == "ok") {
     jsonData.forEach((element) {

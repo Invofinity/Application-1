@@ -6,7 +6,7 @@ class News {
   List<ArticleModel> news = [];
 
   Future<void> getNews() async {
-    String url = "https://fir-news-api-veokara.firebaseio.com/cricket.json";
+    String url = "https://fir-news-api-veokara.firebaseio.com/futurelogy.json";
 
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
