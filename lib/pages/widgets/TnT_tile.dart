@@ -37,7 +37,7 @@ class _TNTTileState extends State<TNTTile> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ArticleView(
+                builder: (context) => ArticlesView2(
                       blogUrl: widget.des,
                     )));
       },
@@ -70,7 +70,7 @@ class _TNTTileState extends State<TNTTile> {
                             height: 10.0,
                           ),
                           Container(
-                            color: Color(0xFFc4c4c4),
+                            color: border1,
                             height: 1.2,
                             width: MediaQuery.of(context).size.width - 46,
                           ),
@@ -172,7 +172,7 @@ class _TNTTileState extends State<TNTTile> {
                             height: 10.0,
                           ),
                           Container(
-                            color: Color(0xFFc4c4c4),
+                            color: border1,
                             height: 1.2,
                             width: MediaQuery.of(context).size.width - 46,
                           ),
@@ -261,7 +261,7 @@ class _TNTTileState extends State<TNTTile> {
                             height: 8.0,
                           ),
                           Container(
-                            color: Color(0xFFc4c4c4),
+                            color: border1,
                             height: 1.2,
                             width: MediaQuery.of(context).size.width - 46,
                           ),
@@ -347,7 +347,7 @@ class _TNTTileState extends State<TNTTile> {
                             height: 8.0,
                           ),
                           Container(
-                            color: Color(0xFFc4c4c4),
+                            color: border1,
                             height: 1.2,
                             width: MediaQuery.of(context).size.width - 46,
                           ),
