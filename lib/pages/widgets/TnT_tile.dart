@@ -37,7 +37,7 @@ class _TNTTileState extends State<TNTTile> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ArticlesView2(
+                builder: (context) => ArticleView(
                       blogUrl: widget.des,
                     )));
       },

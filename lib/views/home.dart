@@ -1,6 +1,7 @@
 import 'package:News_App/helper/news.dart';
 import 'package:News_App/models/article_model.dart';
 import 'package:News_App/models/category_model.dart';
+import 'package:News_App/pages/article_screens/discover_homescreen.dart';
 import 'package:News_App/views/article_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
