@@ -47,7 +47,7 @@ class _AllState extends State<All> {
             itemCount: allarticles.length,
             itemBuilder: (context, index) {
               return Tile(
-                img: allarticles[index].img,
+                img: allarticles[index].img.toString(),
                 head: allarticles[index].head,
                 des: allarticles[index].url,
               );

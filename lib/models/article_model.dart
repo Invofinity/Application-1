@@ -42,3 +42,9 @@ class ImportantNews {
 
   ImportantNews({this.head, this.img, this.url});
 }
+
+class Challenges {
+  String day;
+  String task;
+  Challenges({this.day, this.task});
+}

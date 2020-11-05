@@ -9,8 +9,10 @@ class Tile extends StatefulWidget {
   final String img;
   final String head;
   final String des;
+  final String url;
+  final String source;
 
-  Tile({this.img, this.head, this.des});
+  Tile({this.img, this.head, this.des, this.url, this.source});
 
   @override
   _TileState createState() => _TileState();
@@ -32,6 +34,8 @@ class _TileState extends State<Tile> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -42,41 +46,18 @@ class _TileState extends State<Tile> {
                     )));
       },
       child: Container(
-        height: 100.0,
+        height: 100,
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        margin: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Color(0xFFf6f6f6),
-          //border: Border.all(color: border, width: 1.5),
-          //boxShadow: [
-          /*BoxShadow(
-                  color: txtColor.withOpacity(0.25),
-                  offset: Offset(0, 1),
-                  blurRadius: 0.5),
-            ]*/
         ),
         child: Padding(
-          padding: EdgeInsets.all(5.0),
+          padding: EdgeInsets.all(1.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              /*Stack(children: [
-                Positioned(
-                  left: 30.0,
-                  top: 200.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: bgColor,
-                      image: DecorationImage(
-                          image: NetworkImage(
-                            widget.img,
-                          ),
-                          fit: BoxFit.cover),
-                    ),
-                  ),
-                ),
-              ]),*/
               Container(
                 width: 90.0,
                 decoration: BoxDecoration(
@@ -84,41 +65,50 @@ class _TileState extends State<Tile> {
                   color: bgColor,
                   image: DecorationImage(
                       image: NetworkImage(
-                        widget.img,
+                        (widget.img != null || widget.img != "self"
+                            ? widget.img
+                            : Image.asset('assets/noimage.jpg',
+                                fit: BoxFit.cover)),
                       ),
                       fit: BoxFit.cover),
                 ),
               ),
               SizedBox(
-                width: 15.0,
+                width: 13.0,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    height: 50,
+                    height: MediaQuery.of(context).size.height -
+                        173 -
+                        306 -
+                        206.4 -
+                        139,
                     width: MediaQuery.of(context).size.width - 45 - 70 - 8 - 14,
                     child: Text(
-                      widget.head,
+                      widget.head != null ? widget.head : "",
                       maxLines: 3,
                       style: TextStyle(
                         fontFamily: 'PoppinsSemiBold',
                         fontWeight: FontWeight.bold,
-                        fontSize: 14.0,
+                        fontSize: 13.0,
                         color: txtColor,
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 16.0,
+                    height: 2,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 30,
-                        child: Text('Source',
+                        width: size.width * 0.10,
+                        child: Text(
+                            'Source' +
+                                (widget.source != null ? widget.source : ""),
                             style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 10,
@@ -126,7 +116,7 @@ class _TileState extends State<Tile> {
                       ),
                       SizedBox(width: MediaQuery.of(context).size.width - 190),
                       GestureDetector(
-                        onTap: () => _onShare(context, widget.des),
+                        onTap: () => _onShare(context, widget.url),
                         child: Container(
                           child: Icon(
                             Feather.share_2,

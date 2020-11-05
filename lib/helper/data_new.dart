@@ -7,7 +7,7 @@ class Data {
 
   Future<void> getData() async {
     var response = await get(
-        'https://fir-news-api-veokara.firebaseio.com/globalnews.json');
+        'https://fir-news-api-veokara.firebaseio.com/futurelogy.json');
     var jsonData = jsonDecode(response.body);
 
     jsonData.forEach((element) {
@@ -29,8 +29,8 @@ class Data1 {
   List<NewsArticles> articles1 = [];
 
   Future<void> getData() async {
-    var response = await get(
-        'https://fir-news-api-veokara.firebaseio.com/technology.json');
+    var response =
+        await get('https://fir-news-api-veokara.firebaseio.com/newsindia.json');
     var jsonData = jsonDecode(response.body);
     //if (jsonData['status'] == "ok") {
     jsonData.forEach((element) {
@@ -56,7 +56,7 @@ class Data2 {
 
   Future<void> getData() async {
     var response =
-        await get('https://fir-news-api-veokara.firebaseio.com/sports.json');
+        await get('https://fir-news-api-veokara.firebaseio.com/memes.json');
     var jsonData = jsonDecode(response.body);
     //if (jsonData['status'] == "ok") {
     jsonData.forEach((element) {
@@ -108,7 +108,7 @@ class Data4 {
 
   Future<void> getData() async {
     var response = await get(
-        'https://fir-news-api-veokara.firebaseio.com/entertainment.json');
+        'https://fir-news-api-veokara.firebaseio.com/todayilearned.json');
     var jsonData = jsonDecode(response.body);
     //if (jsonData['status'] == "ok") {
     jsonData.forEach((element) {
@@ -194,6 +194,51 @@ class Data6 {
         // time: element['publishedAt'],
       );
       articles6.add(newsarticles6);
+      // }
+    });
+    //}
+  }
+}
+
+class ChallengesCall {
+  List<Challenges> challengeslist = [];
+  Future<void> getData() async {
+    var response = await get(
+        'https://fir-news-api-veokara.firebaseio.com/challenges.json');
+    var jsonData = jsonDecode(response.body);
+    jsonData.forEach((element) {
+      Challenges challenges = Challenges(
+        day: element['day'],
+        task: element['task'],
+      );
+      challengeslist.add(challenges);
+    });
+  }
+}
+
+class FeedCall {
+  List<NewsArticles> feed = [];
+
+  Future<void> getData() async {
+    var response =
+        await get('https://fir-news-api-veokara.firebaseio.com/feed.json');
+    var jsonData = jsonDecode(response.body);
+    //if (jsonData['status'] == "ok") {
+    jsonData.forEach((element) {
+      //if (element['urlToImage'] != null && element['description'] != null) {
+      NewsArticles feed1 = NewsArticles(
+        head: element['title'],
+        source: element['source'],
+        tag: element['tag'],
+        des: element['selftext'],
+        // des: element['description'],
+        img: element['thumbnail'],
+        url: element['domain'],
+        //content: element['selftext'],
+        //source: element['source'].name,
+        // time: element['publishedAt'],
+      );
+      feed.add(feed1);
       // }
     });
     //}

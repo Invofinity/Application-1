@@ -1,8 +1,11 @@
 import 'package:News_App/helper/news.dart';
 import 'package:News_App/models/article_model.dart';
 import 'package:News_App/models/category_model.dart';
+import 'package:News_App/pages/article_screens/discover_homescreen.dart';
 import 'package:News_App/views/article_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:News_App/views/book_view.dart';
+import 'package:News_App/pages/widgets/TnT_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:News_App/models/lists.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -135,7 +138,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 title: RadiantGradientMask(
-                  child: Text('News',
+                  child: Text('Feeds',
                       style: TextStyle(
                           fontFamily: 'PoppinsSemiBold', fontSize: 12)),
                 )),
@@ -314,7 +317,9 @@ class _HomePageState extends State<HomePage>
   final down = const Color(0xFFff4b2b);
   TabController tabcontroller;
   var impList = [];
+  var feed2 = [];
   bool _loading;
+  bool _loading2;
 
   @override
   void initState() {
@@ -322,7 +327,9 @@ class _HomePageState extends State<HomePage>
     //categories = getCategories();
     //getNews();
     _loading = true;
+    _loading2 = true;
     fetchNews();
+    fetchNews2();
     tabcontroller = new TabController(vsync: this, length: 6);
   }
 
@@ -341,165 +348,225 @@ class _HomePageState extends State<HomePage>
     });
   }
 
+  Future<void> fetchNews2() async {
+    FeedCall feedcontent = FeedCall();
+    await feedcontent.getData();
+    feed2 = feedcontent.feed;
+    setState(() {
+      _loading2 = false;
+    });
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return SafeArea(
-      child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 1),
-          child: Column(
-            children: <Widget>[
-              //categories
-              _loading
-                  ? Container(
-                      height: 160,
-                      child: Center(
-                        child: Container(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            valueColor: new AlwaysStoppedAnimation<Color>(down),
+      child:
+          LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
+        return SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          primary: true,
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                //categories
+                _loading
+                    ? Container(
+                        height: 160,
+                        child: Center(
+                          child: Container(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor:
+                                  new AlwaysStoppedAnimation<Color>(down),
+                            ),
                           ),
                         ),
-                      ),
-                    )
-                  : CarouselSlider(
-                      height: 160.0,
-                      aspectRatio: 9 / 16,
-                      autoPlay: true,
-                      autoPlayAnimationDuration: Duration(seconds: 1),
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      enableInfiniteScroll: true,
-                      onPageChanged: ((index) {
-                        setState(() {
-                          current = index;
-                        });
-                      }),
-                      items: impList
-                          .map((e) => Builder(builder: (BuildContext context) {
-                                return Stack(children: [
-                                  Container(
-                                    margin: EdgeInsets.all(5.0),
-                                    decoration: BoxDecoration(
-                                        color: txtColor,
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        image: DecorationImage(
-                                          image: NetworkImage(e.img),
-                                          fit: BoxFit.cover,
-                                        )),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.all(5.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(width: 510),
-                                        Container(
-                                          width: 200,
-                                          child: Text(
-                                            //imgInf[imgList.indexOf(e)],
-                                            e.head,
-                                            maxLines: 2,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontFamily: 'PoppinsSemiBold',
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14.0,
-                                              color: bgColor,
+                      )
+                    : CarouselSlider(
+                        height: 160.0,
+                        aspectRatio: 9 / 16,
+                        autoPlay: true,
+                        autoPlayAnimationDuration: Duration(seconds: 1),
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        enableInfiniteScroll: true,
+                        onPageChanged: ((index) {
+                          setState(() {
+                            current = index;
+                          });
+                        }),
+                        items: impList
+                            .map((e) =>
+                                Builder(builder: (BuildContext context) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.pop(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => BookView(
+                                                    blogUrl: e.url,
+                                                  )));
+                                    },
+                                    child: Stack(children: [
+                                      Container(
+                                        margin: EdgeInsets.all(5.0),
+                                        decoration: BoxDecoration(
+                                            color: txtColor,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            image: DecorationImage(
+                                              image: NetworkImage(e.img),
+                                              fit: BoxFit.cover,
+                                            )),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.all(5.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            SizedBox(width: 510),
+                                            Container(
+                                              width: 200,
+                                              child: Text(
+                                                //imgInf[imgList.indexOf(e)],
+                                                e.head,
+                                                maxLines: 2,
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontFamily: 'PoppinsSemiBold',
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14.0,
+                                                  color: bgColor,
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: txtColor.withOpacity(0.18),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                  )
-                                ]);
-                              }))
-                          .toList(),
-                    ),
-              SizedBox(
-                height: 5,
-              ),
-              SelectedImage(noOfDots: imgList.length, index: current),
-              SizedBox(
-                height: 10,
-              ),
+                                        decoration: BoxDecoration(
+                                          color: txtColor.withOpacity(0.18),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                      )
+                                    ]),
+                                  );
+                                }))
+                            .toList(),
+                      ),
+                SizedBox(
+                  height: 5,
+                ),
+                SelectedImage(noOfDots: 3, index: current),
+                SizedBox(
+                  height: 10,
+                ),
 
-              /*Container(
-                height: 70,
-                child: ListView.builder(
-                    itemCount: categories.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return CategoryTile(
-                        imageURL: categories[index].imageURL,
-                        categoryName: categories[index].categoryName,
-                      );
-                    }),
-              ),
-
-              //blogs
-              Container(
-                padding: EdgeInsets.only(top: 16),
-                child: ListView.builder(
-                    itemCount: articles.length,
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Tile(
-                        img: articles[index].urlToImage,
-                        head: articles[index].title,
-                        des: articles[index].url,
-                      );
-                    }),
-              )*/
-              TabBar(
-                  labelColor: txtColor,
-                  isScrollable: true,
-                  labelStyle: TextStyle(
-                    fontFamily: 'PoppinsSemiBold',
-                    fontSize: 12,
+                /*Container(
+                    height: 70,
+                    child: ListView.builder(
+                        itemCount: categories.length,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return CategoryTile(
+                            imageURL: categories[index].imageURL,
+                            categoryName: categories[index].categoryName,
+                          );
+                        }),
                   ),
-                  indicator: CircleTabIndicator(color: txtColor, radius: 2),
-                  indicatorWeight: 4,
-                  controller: tabcontroller,
-                  tabs: [
-                    Tab(
-                      text: 'Global',
-                    ),
-                    Tab(
-                      text: 'Business',
-                    ),
-                    Tab(
-                      text: 'Sports',
-                    ),
-                    Tab(
-                      text: 'Health',
-                    ),
-                    Tab(
-                      text: 'Entertainment',
-                    ),
-                    Tab(
-                      text: 'Science',
-                    )
-                  ]),
-              Expanded(
-                  child: TabBarView(controller: tabcontroller, children: [
-                All(),
-                Business(),
-                Sports(),
-                Health(),
-                Entertainment(),
-                Science()
-              ]))
-            ],
-          )),
+
+                  //blogs
+                  Container(
+                    padding: EdgeInsets.only(top: 16),
+                    child: ListView.builder(
+                        itemCount: articles.length,
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return Tile(
+                            img: articles[index].urlToImage,
+                            head: articles[index].title,
+                            des: articles[index].url,
+                          );
+                        }),
+                  )*/
+                /*TabBar(
+                      labelColor: txtColor,
+                      isScrollable: true,
+                      labelStyle: TextStyle(
+                        fontFamily: 'PoppinsSemiBold',
+                        fontSize: 12,
+                      ),
+                      indicator: CircleTabIndicator(color: txtColor, radius: 2),
+                      indicatorWeight: 4,
+                      controller: tabcontroller,
+                      tabs: [
+                        Tab(
+                          text: 'Futurology',
+                        ),
+                        Tab(
+                          text: 'Business',
+                        ),
+                        Tab(
+                          text: 'Memes',
+                        ),
+                        Tab(
+                          text: 'Health',
+                        ),
+                        Tab(
+                          text: 'TodayILearned',
+                        ),
+                        Tab(
+                          text: 'Science',
+                        )
+                      ]),*/
+                /*Expanded(
+                      child: TabBarView(controller: tabcontroller, children: [
+                    All(),
+                    Business(),
+                    Sports(),
+                    Health(),
+                    Entertainment(),
+                    Science()
+                  ]))*/
+                _loading2
+                    ? Container(
+                        height: 500,
+                        child: Center(
+                          child: Container(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor:
+                                  new AlwaysStoppedAnimation<Color>(down),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            primary: false,
+                            shrinkWrap: true,
+                            itemCount: feed2.length,
+                            itemBuilder: (context, index) {
+                              return TNTTile2(
+                                img: feed2[index].img,
+                                head: feed2[index].head,
+                                des: feed2[index].url,
+                                source: feed2[index].source,
+                                tag: feed2[index].tag,
+                                content: feed2[index].des,
+                              );
+                            }))
+              ],
+            ),
+          ),
+        );
+      }),
     );
   }
 }
