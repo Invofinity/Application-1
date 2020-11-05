@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
         title: 'My Application',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Colors.white,
+          primaryColor: Colors.black,
         ),
         home: WelcomeScreen());
   }

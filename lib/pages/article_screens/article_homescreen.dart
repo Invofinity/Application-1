@@ -5,6 +5,7 @@ import 'package:News_App/helper/books.dart';
 import 'package:News_App/views/book_view.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:share/share.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class ArticlesHomeScreen extends StatefulWidget {
   @override
@@ -69,14 +70,16 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
                   height: 40,
                   width: MediaQuery.of(context).size.width - 16,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      //color: Color(0xFFf6f6f6),
-                      gradient: LinearGradient(
+                    borderRadius: BorderRadius.circular(8),
+                    //color: Color(0xFFf6f6f6),
+                    color: down,
+                    /*gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [up, down],
                         tileMode: TileMode.mirror,
-                      )),
+                      )*/
+                  ),
                   child: Center(
                     child: Text(
                       "What are you reading today?",
@@ -85,7 +88,7 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
                           fontFamily: 'PoppinsSemiBold',
                           fontWeight: FontWeight.bold,
                           fontSize: 14.0,
-                          color: Colors.white),
+                          color: txtColor),
                     ),
                   ),
                 ),
@@ -167,7 +170,7 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
               ),
             ),
           )
-        : ListWheelScrollView(
+        : /*ListWheelScrollView(
             itemExtent: 480,
             controller: scrollController,
             squeeze: 0.4,
@@ -175,6 +178,22 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
             diameterRatio: 7,
             magnification: 2,
             children: bookss
+                .map((e) => Builder(builder: (BuildContext context) {
+                      return ArticleTile(
+                        domain: e.domain,
+                        title: e.title,
+                        thumbnail: e.thumbnail,
+                        source: e.source,
+                      );
+                    }))
+                .toList(),
+          ),*/
+        CarouselSlider(
+            height: double.maxFinite,
+            scrollDirection: Axis.vertical,
+            enableInfiniteScroll: false,
+            autoPlay: false,
+            items: bookss
                 .map((e) => Builder(builder: (BuildContext context) {
                       return ArticleTile(
                         domain: e.domain,
