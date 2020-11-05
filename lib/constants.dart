@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const kPrimaryColor = Color(0xFFff416c); //change color according to scheme
+const kPrimaryColor = Color(0xFFe8505b); //change color according to scheme
 const kPrimaryLightColor = Color(0xFFFFA7BB); //change color...
 const bgColor = Color(0xFFffffff);
 const txtColor = Color(0xFF171717);

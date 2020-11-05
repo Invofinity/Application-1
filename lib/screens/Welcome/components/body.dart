@@ -1,5 +1,4 @@
 import 'package:News_App/components/rounded_button.dart';
-import 'package:News_App/constants.dart';
 import 'package:News_App/screens/Welcome/components/background.dart';
 import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
@@ -7,27 +6,29 @@ import 'package:flutter/material.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
-    //this provides us total height and width of our screen
     return Background(
       child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Text(
-              "WELCOME TO INVOFINITY",
+            /*Text(
+              "Welcome to DAILY \n",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: 'PoppinsBold',
-                  fontSize: 18),
+                  fontSize: 25),
             ),
-            SizedBox(height: size.height * 0.02),
+            Text(
+              "by Invofinity",
+              style: TextStyle(fontFamily: 'Poppins', fontSize: 20),
+            ),
+            SizedBox(height: size.height * 0.15),*/
             Image.asset(
-              "assets/chat.png",
-              height: size.height * 0.5,
+              "assets/welcome.png",
+              height: size.height * 0.6,
             ),
-            SizedBox(height: size.height * 0.04),
+            SizedBox(height: size.height * 0.0),
             Container(
               child: RoundedButton(
                 text: "Get Started...", //add fontfamily
