@@ -12,9 +12,11 @@ class ArticleTile extends StatefulWidget {
 }
 
 class _ArticleTileState extends State<ArticleTile> {
-  final bgColor = const Color(0xFFffffff);
+  //final bgColor = const Color(0xFFffffff);
   final cardColor = const Color(0xFFf8f8f8);
-  final txtColor = const Color(0xFF171717);
+  //final txtColor = const Color(0xFF171717);
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
   final border = Colors.grey[300];
   final border1 = Colors.grey[400];
 
@@ -44,7 +46,8 @@ class _ArticleTileState extends State<ArticleTile> {
         margin: EdgeInsets.symmetric(horizontal: 2, vertical: 6),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Color(0xFFf6f6f6),
+          //color: Color(0xFFf6f6f6),
+          color: Colors.grey[850].withOpacity(0.4),
         ),
         alignment: Alignment.bottomLeft,
         child: Padding(

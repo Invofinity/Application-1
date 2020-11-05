@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:News_App/components/gradient.dart';
 import 'package:share/share.dart';
+import 'package:optimized_cached_image/optimized_cached_image.dart';
 
 class TNTTile extends StatefulWidget {
   final String img;
@@ -25,16 +26,18 @@ _onShare(BuildContext context, String url) async {
 }
 
 class _TNTTileState extends State<TNTTile> {
-  final bgColor = const Color(0xFFffffff);
+  //final bgColor = const Color(0xFFffffff);
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
   final cardColor = const Color(0xFFf8f8f8);
-  final txtColor = const Color(0xFF171717);
+  //final txtColor = const Color(0xFF171717);
   final border = Colors.grey[300];
   final border1 = Colors.grey[400];
   final up = const Color(0xFFff416c);
   final down = const Color(0xFFff4b2b);
   final Shader lineargradient = LinearGradient(
     colors: <Color>[Color(0xFFff416c), Color(0xFFff4b2b)],
-  ).createShader(Rect.fromLTWH(0.0, 0.0, 50.0, 50.0));
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 0.0, 0.0));
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -48,20 +51,277 @@ class _TNTTileState extends State<TNTTile> {
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        //margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Color(0xFFf6f6f6),
-        ),
-        child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-            child: widget.img != null
-                ? widget.content != ""
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: RadiantGradientMask(
+            borderRadius: BorderRadius.circular(10),
+            //color: Color(0xFFf6f6f6),
+            color: bgColor),
+        child: Center(
+          child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              child: widget.img != null
+                  ? widget.content != ""
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: RadiantGradientMask(
+                                child: Text(
+                                  widget.tag,
+                                  style: TextStyle(
+                                    fontFamily: 'PoppinsSemiBold',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.0,
+                                    foreground: Paint()
+                                      ..shader = lineargradient,
+                                    //color: txtColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.0,
+                            ),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image(
+                                width: MediaQuery.of(context).size.width - 32,
+                                image: NetworkImage(widget.img),
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                            /*Container(
+                              width: MediaQuery.of(context).size.width - 46,
+                              height: 160,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: bgColor,
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                      widget.img,
+                                    ),
+                                    fit: BoxFit.scaleDown),
+                              ),
+                            ),*/
+                            /*OptimizedCacheImage(imageUrl: widget.img,
+                            cacheHeight
+                            imageBuilder: (context,imageProvider)=>Container(
+                              
+                              decoration: BoxDecoration(
+                                image: DecorationImage(image:imageProvider,fit: BoxFit.cover)
+                              ),
+                            ),
+                            ),*/
+                            /*Container(
+                              width: MediaQuery.of(context).size.width - 46,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: bgColor,
+                                image: DecorationImage(
+                                    image: OptimizedCacheImageProvider(widget.img,
+                                        cacheHeight: 100),
+                                    fit: BoxFit.scaleDown),
+                              ),
+                            ),*/
+                            /*Container(
+                              width: MediaQuery.of(context).size.width - 46,
+                              child: LayoutBuilder(builder: (_, constraints) {
+                                return Image(
+                                    image: OptimizedCacheImageProvider(widget.img,
+                                        cacheHeight:
+                                            (constraints.maxHeight).toInt()));
+                              }),
+                            ),*/
+                            SizedBox(
+                              height: 15.0,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.head,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  color: txtColor,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 4.0,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.content,
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 14.0,
+                                  color: txtColor,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 120,
+                                  child: Text(widget.source,
+                                      style: TextStyle(
+                                          fontFamily: 'PoppinsSemiBold',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          color: border1)),
+                                ),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width -
+                                        174),
+                                GestureDetector(
+                                  onTap: () => _onShare(context, widget.des),
+                                  child: Container(
+                                    child: Icon(
+                                      Feather.share_2,
+                                      size: 15,
+                                      color: border1,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),
+                          ],
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Text(
+                                widget.tag,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  //color: txtColor,
+                                  foreground: Paint()..shader = lineargradient,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.0,
+                            ),
+                            /*Container(
+                              width: MediaQuery.of(context).size.width - 46,
+                              height: 160,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: bgColor,
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                      widget.img,
+                                    ),
+                                    fit: BoxFit.cover),
+                              ),
+                            ),*/
+                            /*Container(
+                              width: MediaQuery.of(context).size.width - 46,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: bgColor,
+                                image: DecorationImage(
+                                    image: OptimizedCacheImageProvider(widget.img,
+                                        cacheHeight: constraints.maxHeight),
+                                    fit: BoxFit.scaleDown),
+                              ),
+                            ),*/
+                            /*Container(
+                              width: MediaQuery.of(context).size.width - 46,
+                              child: LayoutBuilder(builder: (_, constraints) {
+                                return Image(
+                                    image: OptimizedCacheImageProvider(widget.img,
+                                        cacheHeight:
+                                            (constraints.maxHeight).toInt()));
+                              }),
+                            ),*/
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image(
+                                width: MediaQuery.of(context).size.width - 32,
+                                image: NetworkImage(widget.img),
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.0,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.head,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  color: txtColor,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 120,
+                                  child: Text(widget.source,
+                                      style: TextStyle(
+                                          fontFamily: 'PoppinsSemiBold',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          color: border1)),
+                                ),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width -
+                                        174),
+                                GestureDetector(
+                                  onTap: () => _onShare(context, widget.des),
+                                  child: Container(
+                                    child: Icon(
+                                      Feather.share_2,
+                                      size: 15,
+                                      color: border1,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),
+                          ],
+                        )
+                  : widget.content != ""
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
                               child: Text(
                                 widget.tag,
                                 style: TextStyle(
@@ -73,343 +333,148 @@ class _TNTTileState extends State<TNTTile> {
                                 ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Container(
-                            color: border1,
-                            height: 1.2,
-                            width: MediaQuery.of(context).size.width - 46,
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            height: 160,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              color: bgColor,
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    widget.img,
-                                  ),
-                                  fit: BoxFit.scaleDown),
+                            SizedBox(
+                              height: 15.0,
                             ),
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.head,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.content,
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(widget.source,
-                                    style: TextStyle(
-                                        fontFamily: 'PoppinsSemiBold',
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 10,
-                                        color: border1)),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 190),
-                              GestureDetector(
-                                onTap: () => _onShare(context, widget.des),
-                                child: Container(
-                                  child: Icon(
-                                    Feather.share_2,
-                                    size: 15,
-                                    color: border1,
-                                  ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.head,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  color: txtColor,
                                 ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                        ],
-                      )
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Text(
-                              widget.tag,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Container(
-                            color: border1,
-                            height: 1.2,
-                            width: MediaQuery.of(context).size.width - 46,
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            height: 160,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              color: bgColor,
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    widget.img,
-                                  ),
-                                  fit: BoxFit.cover),
+                            SizedBox(
+                              height: 4.0,
                             ),
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.head,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(widget.source,
-                                    style: TextStyle(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 10,
-                                        color: border1)),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 190),
-                              GestureDetector(
-                                onTap: () => _onShare(context, widget.des),
-                                child: Container(
-                                  child: Icon(
-                                    Feather.share_2,
-                                    size: 15,
-                                    color: border1,
-                                  ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.content,
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 14.0,
+                                  color: txtColor,
                                 ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                        ],
-                      )
-                : widget.content != ""
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Text(
-                              widget.tag,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 8.0,
-                          ),
-                          Container(
-                            color: border1,
-                            height: 1.2,
-                            width: MediaQuery.of(context).size.width - 46,
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.head,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
+                            SizedBox(
+                              height: 4,
                             ),
-                          ),
-                          SizedBox(
-                            height: 4.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.content,
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(widget.source,
-                                    style: TextStyle(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 10,
-                                        color: border1)),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 190),
-                              GestureDetector(
-                                onTap: () => _onShare(context, widget.des),
-                                child: Container(
-                                  child: Icon(
-                                    Feather.share_2,
-                                    size: 15,
-                                    color: border1,
-                                  ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 120,
+                                  child: Text(widget.source,
+                                      style: TextStyle(
+                                          fontFamily: 'PoppinsSemiBold',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          color: border1)),
                                 ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                        ],
-                      )
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Text(
-                              widget.tag,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8.0,
-                          ),
-                          Container(
-                            color: border1,
-                            height: 1.2,
-                            width: MediaQuery.of(context).size.width - 46,
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.head,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(widget.source,
-                                    style: TextStyle(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 10,
-                                        color: border1)),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 190),
-                              GestureDetector(
-                                onTap: () => _onShare(context, widget.des),
-                                child: Container(
-                                  child: Icon(
-                                    Feather.share_2,
-                                    size: 15,
-                                    color: border1,
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width -
+                                        174),
+                                GestureDetector(
+                                  onTap: () => _onShare(context, widget.des),
+                                  child: Container(
+                                    child: Icon(
+                                      Feather.share_2,
+                                      size: 15,
+                                      color: border1,
+                                    ),
                                   ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),
+                          ],
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Text(
+                                widget.tag,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  foreground: Paint()..shader = lineargradient,
+                                  //color: txtColor,
                                 ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                        ],
-                      )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.0,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.head,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  color: txtColor,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 120,
+                                  child: Text(widget.source,
+                                      style: TextStyle(
+                                          fontFamily: 'PoppinsSemiBold',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          color: border1)),
+                                ),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width -
+                                        174),
+                                GestureDetector(
+                                  onTap: () => _onShare(context, widget.des),
+                                  child: Container(
+                                    child: Icon(
+                                      Feather.share_2,
+                                      size: 15,
+                                      color: border1,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),
+                          ],
+                        )),
+        ),
       ),
     );
   }
@@ -430,16 +495,18 @@ class TNTTile2 extends StatefulWidget {
 }
 
 class _TNTTile2State extends State<TNTTile2> {
-  final bgColor = const Color(0xFFffffff);
+  //final bgColor = const Color(0xFFffffff);
   final cardColor = const Color(0xFFf8f8f8);
-  final txtColor = const Color(0xFF171717);
+  //final txtColor = const Color(0xFF171717);
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
   final border = Colors.grey[300];
   final border1 = Colors.grey[400];
   final up = const Color(0xFFff416c);
   final down = const Color(0xFFff4b2b);
   final Shader lineargradient = LinearGradient(
     colors: <Color>[Color(0xFFff416c), Color(0xFFff4b2b)],
-  ).createShader(Rect.fromLTWH(0.0, 0.0, 50.0, 50.0));
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 0, 0));
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -453,22 +520,72 @@ class _TNTTile2State extends State<TNTTile2> {
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        //margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Color(0xFFf6f6f6),
+          //color: Color(0xFFf6f6f6),
+          color: bgColor,
         ),
-        child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-            child: widget.content != null
-                ? widget.img != null && widget.img != ""
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: RadiantGradientMask(
+        child: Center(
+          child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              child: widget.content != null
+                  ? widget.img != null && widget.img != ""
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
                               child: Text(
                                 widget.tag,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  /*foreground: Paint()
+                                    ..shader = lineargradient,*/
+                                  color: down,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.0,
+                            ),
+                            /*Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              //height: 160,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: bgColor,
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                      widget.img,
+                                    ),
+                                    fit: BoxFit.fitWidth),
+                              ),
+                            ),*/
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image(
+                                width: MediaQuery.of(context).size.width - 32,
+                                image: NetworkImage(widget.img),
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.0,
+                            ),
+                            /*Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),
+                            SizedBox(
+                              height: 15.0,
+                            ),*/
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.head,
                                 style: TextStyle(
                                   fontFamily: 'PoppinsSemiBold',
                                   fontWeight: FontWeight.bold,
@@ -477,190 +594,91 @@ class _TNTTile2State extends State<TNTTile2> {
                                 ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Container(
-                            color: border1,
-                            height: 1.2,
-                            width: MediaQuery.of(context).size.width - 46,
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            height: 160,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              color: bgColor,
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    widget.img,
-                                  ),
-                                  fit: BoxFit.cover),
+                            SizedBox(
+                              height: 4.0,
                             ),
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.head,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.content,
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(widget.source,
-                                    style: TextStyle(
-                                        fontFamily: 'PoppinsSemiBold',
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 10,
-                                        color: border1)),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 190),
-                              GestureDetector(
-                                onTap: () => _onShare(context, widget.des),
-                                child: Container(
-                                  child: Icon(
-                                    Feather.share_2,
-                                    size: 15,
-                                    color: border1,
-                                  ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.content,
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 14.0,
+                                  color: txtColor,
                                 ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                        ],
-                      )
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Text(
-                              widget.tag,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 8.0,
-                          ),
-                          Container(
-                            color: border1,
-                            height: 1.2,
-                            width: MediaQuery.of(context).size.width - 46,
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.head,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
+                            SizedBox(
+                              height: 4,
                             ),
-                          ),
-                          SizedBox(
-                            height: 4.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.content,
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(widget.source,
-                                    style: TextStyle(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 10,
-                                        color: border1)),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 190),
-                              GestureDetector(
-                                onTap: () => _onShare(context, widget.des),
-                                child: Container(
-                                  child: Icon(
-                                    Feather.share_2,
-                                    size: 15,
-                                    color: border1,
-                                  ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 120,
+                                  child: Text(widget.source,
+                                      style: TextStyle(
+                                          fontFamily: 'PoppinsSemiBold',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          color: border1)),
                                 ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                        ],
-                      )
-                : widget.img != null && widget.img != ""
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: RadiantGradientMask(
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width -
+                                        174),
+                                GestureDetector(
+                                  onTap: () => _onShare(context, widget.des),
+                                  child: Container(
+                                    child: Icon(
+                                      Feather.share_2,
+                                      size: 15,
+                                      color: border1,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),
+                          ],
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
                               child: Text(
                                 widget.tag,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  //foreground: Paint()..shader = lineargradient,
+                                  color: down,
+                                ),
+                              ),
+                            ),
+                            /*SizedBox(
+                              height: 8.0,
+                            ),
+                            Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),*/
+                            SizedBox(
+                              height: 15.0,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.head,
                                 style: TextStyle(
                                   fontFamily: 'PoppinsSemiBold',
                                   fontWeight: FontWeight.bold,
@@ -669,154 +687,246 @@ class _TNTTile2State extends State<TNTTile2> {
                                 ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Container(
-                            color: border1,
-                            height: 1.2,
-                            width: MediaQuery.of(context).size.width - 46,
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            height: 160,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              color: bgColor,
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    widget.img,
-                                  ),
-                                  fit: BoxFit.cover),
+                            SizedBox(
+                              height: 4.0,
                             ),
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.head,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(widget.source,
-                                    style: TextStyle(
-                                        fontFamily: 'PoppinsSemiBold',
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 10,
-                                        color: border1)),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 190),
-                              GestureDetector(
-                                onTap: () => _onShare(context, widget.des),
-                                child: Container(
-                                  child: Icon(
-                                    Feather.share_2,
-                                    size: 15,
-                                    color: border1,
-                                  ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.content,
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 14.0,
+                                  color: txtColor,
                                 ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                        ],
-                      )
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Text(
-                              widget.tag,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 8.0,
-                          ),
-                          Container(
-                            color: border1,
-                            height: 1.2,
-                            width: MediaQuery.of(context).size.width - 46,
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 46,
-                            child: Text(
-                              widget.head,
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                                color: txtColor,
-                              ),
+                            SizedBox(
+                              height: 8,
                             ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(widget.source,
-                                    style: TextStyle(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 10,
-                                        color: border1)),
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 190),
-                              GestureDetector(
-                                onTap: () => _onShare(context, widget.des),
-                                child: Container(
-                                  child: Icon(
-                                    Feather.share_2,
-                                    size: 15,
-                                    color: border1,
-                                  ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 120,
+                                  child: Text(widget.source,
+                                      style: TextStyle(
+                                          fontFamily: 'PoppinsSemiBold',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          color: border1)),
                                 ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                        ],
-                      )),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width -
+                                        174),
+                                GestureDetector(
+                                  onTap: () => _onShare(context, widget.des),
+                                  child: Container(
+                                    child: Icon(
+                                      Feather.share_2,
+                                      size: 15,
+                                      color: border1,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),
+                          ],
+                        )
+                  : widget.img != null && widget.img != ""
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Text(
+                                widget.tag,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  /*foreground: Paint()
+                                    ..shader = lineargradient,*/
+                                  color: down,
+                                ),
+                              ),
+                            ),
+                            /*SizedBox(
+                              height: 10.0,
+                            ),
+                            Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),*/
+                            SizedBox(
+                              height: 15.0,
+                            ),
+                            /*Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              //height: 160,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: bgColor,
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                      widget.img,
+                                    ),
+                                    fit: BoxFit.fitWidth),
+                              ),
+                            ),*/
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image(
+                                width: MediaQuery.of(context).size.width - 32,
+                                image: NetworkImage(widget.img),
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.0,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.head,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  color: txtColor,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 120,
+                                  child: Text(widget.source,
+                                      style: TextStyle(
+                                          fontFamily: 'PoppinsSemiBold',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          color: border1)),
+                                ),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width -
+                                        174),
+                                GestureDetector(
+                                  onTap: () => _onShare(context, widget.des),
+                                  child: Container(
+                                    child: Icon(
+                                      Feather.share_2,
+                                      size: 15,
+                                      color: border1,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),
+                          ],
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Text(
+                                widget.tag,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  //foreground: Paint()..shader = lineargradient,
+                                  color: down,
+                                ),
+                              ),
+                            ),
+                            /*SizedBox(
+                              height: 8.0,
+                            ),
+                            Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),*/
+                            SizedBox(
+                              height: 15.0,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 32,
+                              child: Text(
+                                widget.head,
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  color: txtColor,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 120,
+                                  child: Text(widget.source,
+                                      style: TextStyle(
+                                          fontFamily: 'PoppinsSemiBold',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                          color: border1)),
+                                ),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width -
+                                        174),
+                                GestureDetector(
+                                  onTap: () => _onShare(context, widget.des),
+                                  child: Container(
+                                    child: Icon(
+                                      Feather.share_2,
+                                      size: 15,
+                                      color: border1,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              color: border1,
+                              height: 1.2,
+                              width: MediaQuery.of(context).size.width - 32,
+                            ),
+                          ],
+                        )),
+        ),
       ),
     );
   }

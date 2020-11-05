@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:News_App/components/gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -15,27 +16,35 @@ class _ArticleViewState extends State<ArticleView> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
   bool isLoading = true;
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
   final down = const Color(0xFFff4b2b);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: bgColor,
         appBar: AppBar(
+          backgroundColor: bgColor,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text(
-                "Daily",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  fontFamily: 'PoppinsBold',
+              RadiantGradientMask(
+                child: Text(
+                  "Daily",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      fontFamily: 'PoppinsBold',
+                      color: txtColor),
                 ),
               ),
             ],
           ),
-          actions: <Widget>[
+          centerTitle: true,
+          elevation: 0.0,
+          /*actions: <Widget>[
             Opacity(
               opacity: 0,
               child: Container(
@@ -44,8 +53,8 @@ class _ArticleViewState extends State<ArticleView> {
               ),
             )
           ],
-          centerTitle: true,
-          elevation: 0.0,
+          
+        ),*/
         ),
         body: Stack(children: [
           Container(

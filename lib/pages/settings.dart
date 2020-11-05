@@ -104,7 +104,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart';
 import 'package:share/share.dart';
-import 'package:dynamic_theme/dynamic_theme.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -139,8 +138,10 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    final bgColor = const Color(0xFFffffff);
-    final txtColor = const Color(0xFF171717);
+    //final bgColor = const Color(0xFFffffff);
+    //final txtColor = const Color(0xFF171717);
+    final bgColor = Colors.black;
+    final txtColor = Colors.white;
     final up = const Color(0xFFff416c);
     final cardColor = const Color(0xFFf8f8f8);
     final down = const Color(0xFFff4b2b);
@@ -173,7 +174,10 @@ class _SettingsState extends State<Settings> {
                         SizedBox(
                           width: size.width * 0.03,
                         ),
-                        Icon(Feather.bell),
+                        Icon(
+                          Feather.bell,
+                          color: txtColor,
+                        ),
                         SizedBox(
                           width: size.width * 0.04,
                         ),
@@ -184,6 +188,7 @@ class _SettingsState extends State<Settings> {
                             style: TextStyle(
                               fontFamily: 'PoppinsSemiBold',
                               fontSize: 15,
+                              color: txtColor,
                             ),
                           ),
                         ),
@@ -211,7 +216,8 @@ class _SettingsState extends State<Settings> {
                   //height: 394,
                   height: (MediaQuery.of(context).size.height) - 212,
                   width: MediaQuery.of(context).size.width,
-                  color: cardColor,
+                  //color: cardColor,
+                  color: Colors.grey[850].withOpacity(0.4),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -228,9 +234,9 @@ class _SettingsState extends State<Settings> {
                               Text(
                                 'Share',
                                 style: TextStyle(
-                                  fontFamily: 'PoppinsSemiBold',
-                                  fontSize: 13,
-                                ),
+                                    fontFamily: 'PoppinsSemiBold',
+                                    fontSize: 13,
+                                    color: txtColor),
                               ),
                             ],
                           ),
@@ -251,9 +257,9 @@ class _SettingsState extends State<Settings> {
                               Text(
                                 'Rate Us',
                                 style: TextStyle(
-                                  fontFamily: 'PoppinsSemiBold',
-                                  fontSize: 13,
-                                ),
+                                    fontFamily: 'PoppinsSemiBold',
+                                    fontSize: 13,
+                                    color: txtColor),
                               ),
                             ],
                           ),
@@ -271,9 +277,9 @@ class _SettingsState extends State<Settings> {
                               Text(
                                 'Help & FAQ',
                                 style: TextStyle(
-                                  fontFamily: 'PoppinsSemiBold',
-                                  fontSize: 13,
-                                ),
+                                    fontFamily: 'PoppinsSemiBold',
+                                    fontSize: 13,
+                                    color: txtColor),
                               ),
                             ],
                           ),
@@ -291,9 +297,9 @@ class _SettingsState extends State<Settings> {
                               Text(
                                 'About Us',
                                 style: TextStyle(
-                                  fontFamily: 'PoppinsSemiBold',
-                                  fontSize: 13,
-                                ),
+                                    fontFamily: 'PoppinsSemiBold',
+                                    fontSize: 13,
+                                    color: txtColor),
                               ),
                             ],
                           ),
