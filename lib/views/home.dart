@@ -1,6 +1,7 @@
 import 'package:News_App/helper/news.dart';
 import 'package:News_App/models/article_model.dart';
 import 'package:News_App/models/category_model.dart';
+import 'package:News_App/pages/article_screens/article_homescreen.dart';
 import 'package:News_App/pages/article_screens/discover_homescreen.dart';
 import 'package:News_App/views/article_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -53,152 +54,164 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final bgColor = const Color(0xFFffffff);
+    //final bgColor = const Color(0xFFffffff);
+    final bgColor = Colors.black;
+    final txtColor = Colors.white;
     final up = const Color(0xFFff416c);
     final down = const Color(0xFFff4b2b);
 
-    return Scaffold(
-        backgroundColor: bgColor,
-        appBar: AppBar(
-          centerTitle: true,
+    return SafeArea(
+      child: Scaffold(
           backgroundColor: bgColor,
-          elevation: 0,
-          title: RadiantGradientMask(
-            child: Text(
-              'Daily',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-                fontFamily: 'PoppinsBold',
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: bgColor,
+            elevation: 0,
+            title: RadiantGradientMask(
+              child: Text(
+                'Daily',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  fontFamily: 'PoppinsBold',
+                  color: txtColor,
+                ),
               ),
             ),
           ),
-        ),
-        body: //_loading
-            /*? Center(
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RadiantGradientMask(
-                          child: Text(
-                        'Please Wait....',
-                        style: TextStyle(
-                          fontFamily: 'PoppinsSemiBold',
-                          fontSize: 16,
-                          foreground: Paint()..shader = linearGradient,
+          body: //_loading
+              /*? Center(
+                  child: Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RadiantGradientMask(
+                            child: Text(
+                          'Please Wait....',
+                          style: TextStyle(
+                            fontFamily: 'PoppinsSemiBold',
+                            fontSize: 16,
+                            foreground: Paint()..shader = linearGradient,
+                          ),
+                        )),
+                        SizedBox(
+                          height: 60,
                         ),
-                      )),
-                      SizedBox(
-                        height: 60,
-                      ),
-                      CircularProgressIndicator(
-                        strokeWidth: 2,
-                        valueColor: new AlwaysStoppedAnimation<Color>(down),
-                      ),
-                    ],
+                        CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor: new AlwaysStoppedAnimation<Color>(down),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              )
-            :*/
-            PageView(
-          children: [HomePage(), Discover(), Articles(), Settings()],
-          onPageChanged: (index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-          controller: pageController,
-        ),
-        bottomNavigationBar: BubbleBottomBar(
-          opacity: 0.12,
-          backgroundColor: bgColor,
-          currentIndex: currentIndex,
-          onTap: (index) {
-            setState(() {
-              currentIndex = index;
-              pageController.animateToPage(currentIndex,
-                  duration: Duration(milliseconds: 100),
-                  curve: Curves.slowMiddle);
-            });
-          },
-          items: <BubbleBottomBarItem>[
-            BubbleBottomBarItem(
-                backgroundColor: up,
-                icon: RadiantGradientMask(
-                  child: Icon(
-                    Entypo.news,
-                    size: 20.0,
+                )
+              :*/
+              SafeArea(
+            child: PageView(
+              children: [
+                HomePage(),
+                DiscoverHome(),
+                ArticlesHomeScreen(),
+                Settings()
+              ],
+              onPageChanged: (index) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+              controller: pageController,
+            ),
+          ),
+          bottomNavigationBar: BubbleBottomBar(
+            opacity: 0.12,
+            backgroundColor: bgColor,
+            currentIndex: currentIndex,
+            onTap: (index) {
+              setState(() {
+                currentIndex = index;
+                pageController.animateToPage(currentIndex,
+                    duration: Duration(milliseconds: 100),
+                    curve: Curves.slowMiddle);
+              });
+            },
+            items: <BubbleBottomBarItem>[
+              BubbleBottomBarItem(
+                  backgroundColor: up,
+                  icon: RadiantGradientMask(
+                    child: Icon(
+                      Entypo.news,
+                      size: 20.0,
+                    ),
                   ),
-                ),
-                activeIcon: RadiantGradientMask(
-                  child: Icon(
-                    Entypo.news,
-                    size: 20.0,
+                  activeIcon: RadiantGradientMask(
+                    child: Icon(
+                      Entypo.news,
+                      size: 20.0,
+                    ),
                   ),
-                ),
-                title: RadiantGradientMask(
-                  child: Text('Feeds',
-                      style: TextStyle(
-                          fontFamily: 'PoppinsSemiBold', fontSize: 12)),
-                )),
-            BubbleBottomBarItem(
-                backgroundColor: up,
-                icon: RadiantGradientMask(
-                  child: Icon(
+                  title: RadiantGradientMask(
+                    child: Text('Feed',
+                        style: TextStyle(
+                            fontFamily: 'PoppinsSemiBold', fontSize: 12)),
+                  )),
+              BubbleBottomBarItem(
+                  backgroundColor: up,
+                  icon: RadiantGradientMask(
+                    child: Icon(
+                      Feather.compass,
+                      size: 20.0,
+                    ),
+                  ),
+                  activeIcon: RadiantGradientMask(
+                      child: Icon(
                     Feather.compass,
                     size: 20.0,
-                  ),
-                ),
-                activeIcon: RadiantGradientMask(
+                  )),
+                  title: RadiantGradientMask(
+                    child: Text('Discover',
+                        style: TextStyle(
+                            fontFamily: 'PoppinsSemiBold', fontSize: 12)),
+                  )),
+              BubbleBottomBarItem(
+                  backgroundColor: up,
+                  icon: RadiantGradientMask(
                     child: Icon(
-                  Feather.compass,
-                  size: 20.0,
-                )),
-                title: RadiantGradientMask(
-                  child: Text('Discover',
-                      style: TextStyle(
-                          fontFamily: 'PoppinsSemiBold', fontSize: 12)),
-                )),
-            BubbleBottomBarItem(
-                backgroundColor: up,
-                icon: RadiantGradientMask(
-                  child: Icon(
-                    Feather.book_open,
-                    size: 20.0,
+                      Feather.book_open,
+                      size: 20.0,
+                    ),
                   ),
-                ),
-                activeIcon: RadiantGradientMask(
-                  child: Icon(
-                    Feather.book_open,
-                    size: 20.0,
+                  activeIcon: RadiantGradientMask(
+                    child: Icon(
+                      Feather.book_open,
+                      size: 20.0,
+                    ),
                   ),
-                ),
-                title: RadiantGradientMask(
-                  child: Text('Articles',
-                      style: TextStyle(
-                          fontFamily: 'PoppinsSemiBold', fontSize: 12)),
-                )),
-            BubbleBottomBarItem(
-                backgroundColor: up,
-                icon: RadiantGradientMask(
-                  child: Icon(
+                  title: RadiantGradientMask(
+                    child: Text('Articles',
+                        style: TextStyle(
+                            fontFamily: 'PoppinsSemiBold', fontSize: 12)),
+                  )),
+              BubbleBottomBarItem(
+                  backgroundColor: up,
+                  icon: RadiantGradientMask(
+                    child: Icon(
+                      Feather.settings,
+                      size: 17.0,
+                    ),
+                  ),
+                  activeIcon: RadiantGradientMask(
+                      child: Icon(
                     Feather.settings,
                     size: 20.0,
-                  ),
-                ),
-                activeIcon: RadiantGradientMask(
-                    child: Icon(
-                  Feather.settings,
-                  size: 20.0,
-                )),
-                title: RadiantGradientMask(
-                  child: Text('Settings',
-                      style: TextStyle(
-                          fontFamily: 'PoppinsSemiBold', fontSize: 12)),
-                )),
-          ],
-        ));
+                  )),
+                  title: RadiantGradientMask(
+                    child: Text('Settings',
+                        style: TextStyle(
+                            fontFamily: 'PoppinsSemiBold', fontSize: 12)),
+                  )),
+            ],
+          )),
+    );
   }
 }
 
@@ -311,8 +324,10 @@ class _HomePageState extends State<HomePage>
   List<ArticleModel> articles = new List<ArticleModel>();
 
   int current = 0;
-  final bgColor = const Color(0xFFffffff);
-  final txtColor = const Color(0xFF171717);
+  //final bgColor = const Color(0xFFffffff);
+  //final txtColor = const Color(0xFF171717);
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
   final up = const Color(0xFFff416c);
   final down = const Color(0xFFff4b2b);
   TabController tabcontroller;
@@ -401,7 +416,7 @@ class _HomePageState extends State<HomePage>
                                 Builder(builder: (BuildContext context) {
                                   return GestureDetector(
                                     onTap: () {
-                                      Navigator.pop(
+                                      Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => BookView(
@@ -412,7 +427,7 @@ class _HomePageState extends State<HomePage>
                                       Container(
                                         margin: EdgeInsets.all(5.0),
                                         decoration: BoxDecoration(
-                                            color: txtColor,
+                                            color: bgColor,
                                             borderRadius:
                                                 BorderRadius.circular(10.0),
                                             image: DecorationImage(
@@ -440,14 +455,14 @@ class _HomePageState extends State<HomePage>
                                                   fontFamily: 'PoppinsSemiBold',
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 14.0,
-                                                  color: bgColor,
+                                                  color: txtColor,
                                                 ),
                                               ),
                                             ),
                                           ],
                                         ),
                                         decoration: BoxDecoration(
-                                          color: txtColor.withOpacity(0.18),
+                                          color: bgColor.withOpacity(0.18),
                                           borderRadius:
                                               BorderRadius.circular(10.0),
                                         ),

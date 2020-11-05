@@ -15,8 +15,10 @@ class DiscoverHome extends StatefulWidget {
 
 class _DiscoverHomeState extends State<DiscoverHome>
     with SingleTickerProviderStateMixin {
-  final bgColor = const Color(0xFFffffff);
-  final txtColor = const Color(0xFF171717);
+  //final bgColor = const Color(0xFFffffff);
+  //final txtColor = const Color(0xFF171717);
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
   final up = const Color(0xFFff416c);
   final down = const Color(0xFFff4b2b);
   TabController tabcontroller;
@@ -31,6 +33,7 @@ class _DiscoverHomeState extends State<DiscoverHome>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgColor,
       body: Column(
         children: [
           TabBar(
@@ -69,8 +72,10 @@ class TipsAndTricks extends StatefulWidget {
 }
 
 class _TipsAndTricksState extends State<TipsAndTricks> {
-  final bgColor = const Color(0xFFffffff);
-  final txtColor = const Color(0xFF171717);
+  //final bgColor = const Color(0xFFffffff);
+  //final txtColor = const Color(0xFF171717);
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
   final up = const Color(0xFFff416c);
   final down = const Color(0xFFff4b2b);
   var allarticles6 = [];
@@ -127,8 +132,10 @@ class Challenges1 extends StatefulWidget {
 }
 
 class _Challenges1State extends State<Challenges1> {
-  final bgColor = const Color(0xFFffffff);
-  final txtColor = const Color(0xFF171717);
+  //final bgColor = const Color(0xFFffffff);
+  //final txtColor = const Color(0xFF171717);
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
   final up = const Color(0xFFff416c);
   final down = const Color(0xFFff4b2b);
   final border = Colors.grey[300];
@@ -202,7 +209,8 @@ class _Challenges1State extends State<Challenges1> {
                     width: 160,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color(0xFFf6f6f6),
+                      //color: Color(0xFFf6f6f6),
+                      color: Colors.grey[850],
                     ),
                     child: Center(
                       child: Text(
@@ -270,7 +278,7 @@ class _Challenges1State extends State<Challenges1> {
                   child: Center(
                     child: Container(
                         height: 60,
-                        child: Image.asset('assets/challenges.png')),
+                        child: Image.asset('assets/challenges1.svg')),
                   ),
                 ),
                 Padding(

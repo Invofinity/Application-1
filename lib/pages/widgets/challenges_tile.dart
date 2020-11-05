@@ -13,9 +13,11 @@ class ChallengesTile extends StatefulWidget {
 }
 
 class _ChallengesTileState extends State<ChallengesTile> {
-  final bgColor = const Color(0xFFffffff);
+  //final bgColor = const Color(0xFFffffff);
   final cardColor = const Color(0xFFf8f8f8);
-  final txtColor = const Color(0xFF171717);
+  //final txtColor = const Color(0xFF171717);
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
   final border = Colors.grey[300];
   final border1 = Colors.grey[400];
   @override
@@ -68,7 +70,7 @@ class _ChallengesTileState extends State<ChallengesTile> {
                               fontFamily: 'PoppinsSemiBold',
                               fontWeight: FontWeight.bold,
                               fontSize: 14.0,
-                              color: bgColor,
+                              color: txtColor,
                             ),
                           ))),
                       SizedBox(
@@ -88,7 +90,7 @@ class _ChallengesTileState extends State<ChallengesTile> {
                             fontFamily: 'PoppinsSemiBold',
                             fontWeight: FontWeight.bold,
                             fontSize: 14.0,
-                            color: bgColor,
+                            color: txtColor,
                           ),
                         ),
                       )
@@ -101,16 +103,17 @@ class _ChallengesTileState extends State<ChallengesTile> {
             width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Color(0xFFf6f6f6),
-              //border: Border.all(color: border, width: 1.5),
-              //boxShadow: [
-              /*BoxShadow(
+                borderRadius: BorderRadius.circular(10),
+                //color: Color(0xFFf6f6f6),
+                color: Colors.grey[850]
+                //border: Border.all(color: border, width: 1.5),
+                //boxShadow: [
+                /*BoxShadow(
                   color: txtColor.withOpacity(0.25),
                   offset: Offset(0, 1),
                   blurRadius: 0.5),
             ]*/
-            ),
+                ),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
@@ -139,7 +142,7 @@ class _ChallengesTileState extends State<ChallengesTile> {
                               fontFamily: 'PoppinsSemiBold',
                               fontWeight: FontWeight.bold,
                               fontSize: 14.0,
-                              color: bgColor,
+                              color: txtColor.withOpacity(0.4),
                             ),
                           ))),
                       SizedBox(

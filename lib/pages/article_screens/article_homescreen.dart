@@ -15,7 +15,9 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
   var pageController = PageController();
 
   bool _loading;
-  final txtColor = const Color(0xFF171717);
+  //final txtColor = const Color(0xFF171717);
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
   final up = const Color(0xFFff416c);
   final down = const Color(0xFFff4b2b);
   @override
@@ -28,6 +30,7 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: bgColor,
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 16),
         width: double.infinity,
@@ -120,8 +123,10 @@ class ArticlesHomePage extends StatefulWidget {
 }
 
 class _ArticlesHomePageState extends State<ArticlesHomePage> {
-  final bgColor = const Color(0xFFffffff);
-  final txtColor = const Color(0xFF171717);
+  //final bgColor = const Color(0xFFffffff);
+  //final txtColor = const Color(0xFF171717);
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
   final up = const Color(0xFFff416c);
   final down = const Color(0xFFff4b2b);
   var bookss = [];
