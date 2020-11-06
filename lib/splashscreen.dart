@@ -27,8 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) => WelcomeScreen()));
+    Navigator.of(context).pushReplacementNamed('/screen3');
+    //and
+    Navigator.popAndPushNamed(context, '/screen3');
   }
 
   @override

@@ -17,6 +17,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    routes:
+    <String, WidgetBuilder>{
+      '/screen1': (BuildContext context) => new SplashScreen(),
+      '/screen2': (BuildContext context) => new WelcomeScreen(),
+      '/screen3': (BuildContext context) => new homie(),
+    };
     var i = 0;
     return new MaterialApp(
       title: 'My Application',
