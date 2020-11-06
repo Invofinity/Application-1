@@ -32,88 +32,89 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: bgColor,
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(height: size.height * 0.02),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
-              child:
-                  /*RichText(
-                text: TextSpan(
-                  // ignore: deprecated_member_use
-                  style: Theme.of(context).textTheme.display1,
-                  children: [
-                    TextSpan(
-                      text: "What are you \nreading ",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 30,
+      body: Expanded(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: size.height * 0.02),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+                child:
+                    /*RichText(
+                  text: TextSpan(
+                    // ignore: deprecated_member_use
+                    style: Theme.of(context).textTheme.display1,
+                    children: [
+                      TextSpan(
+                        text: "What are you \nreading ",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                        ),
                       ),
-                    ),
-                    TextSpan(
-                      text: "today?",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 30,
-                      ),
-                    )
-                  ],
-                ),
-              ),*/
-                  Center(
-                child: Container(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width - 16,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    //color: Color(0xFFf6f6f6),
-                    color: down,
-                    /*gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [up, down],
-                        tileMode: TileMode.mirror,
-                      )*/
+                      TextSpan(
+                        text: "today?",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 30,
+                        ),
+                      )
+                    ],
                   ),
-                  child: Center(
-                    child: Text(
-                      "What are you reading today?",
+                ),*/
+                    Center(
+                  child: Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width - 16,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      //color: Color(0xFFf6f6f6),
+                      color: down,
+                      /*gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [up, down],
+                          tileMode: TileMode.mirror,
+                        )*/
+                    ),
+                    child: Center(
+                      child: Text("What are you reading today?",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontFamily: 'PoppinsSemiBold',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14.0,
+                              color: txtColor),
+                          overflow: TextOverflow.visible),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: ArticlesHomePage(),
+              ),
+              Container(
+                height: 20,
+                width: double.infinity,
+                child: Center(
+                  child: Text("Scroll for content",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontFamily: 'PoppinsSemiBold',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14.0,
-                          color: txtColor),
-                    ),
-                  ),
+                        fontFamily: 'PoppinsSemiBold',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10.0,
+                        color: txtColor.withOpacity(0.4),
+                      ),
+                      overflow: TextOverflow.visible),
                 ),
-              ),
-            ),
-            Expanded(
-              child: ArticlesHomePage(),
-            ),
-            Container(
-              height: 20,
-              width: double.infinity,
-              child: Center(
-                child: Text(
-                  "Scroll for content",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'PoppinsSemiBold',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 10.0,
-                    color: txtColor.withOpacity(0.4),
-                  ),
-                ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -134,14 +135,21 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
   final down = const Color(0xFFff4b2b);
   var bookss = [];
   bool _loading;
+  var incc = 0;
+  var call = 1;
+  var vad;
   FixedExtentScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
     _loading = true;
+    if (_loading == true) vad = 1;
+
     scrollController = FixedExtentScrollController();
-    getBooks();
+    getBooks().then((_loading) => setState(() {
+          _loading = false;
+        }));
   }
 
   @override
@@ -151,6 +159,7 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
   }
 
   Future<void> getBooks() async {
+    //loadstudent
     Articles newsClass = Articles();
     await newsClass.getArticles();
     bookss = newsClass.books;

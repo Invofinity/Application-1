@@ -39,7 +39,8 @@ dependencies:
   firebase_messaging: ^7.0.0
   share: 
   optimized_cached_image: ^1.0.0
-
+  connectivity: ^0.4.2
+  rflutter_alert: ^1.0.3
 
 
   # cloud_firestore_web: ^0.2.0+1
@@ -96,6 +97,12 @@ flutter:
     - family: PoppinsBlack
       fonts:
         - asset: fonts/Poppins-Black.ttf
+    - family: Neon
+      fonts:
+        - asset: fonts/Neon-Regular.ttf
+    - family: NeonBold
+      fonts:
+        - asset: fonts/Neon-Bold.ttf
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

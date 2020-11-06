@@ -98,6 +98,7 @@ class _SettingsState extends State<Settings> {
   }
 }*/
 
+import 'package:News_App/pages/widgets/extra_settings.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -274,6 +275,10 @@ class _SettingsState extends State<Settings> {
                         height: size.height * 0.03,
                       ),
                       GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Help()));
+                        },
                         child: Container(
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -294,6 +299,12 @@ class _SettingsState extends State<Settings> {
                         height: size.height * 0.03,
                       ),
                       GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AboutUs()));
+                        },
                         child: Container(
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -301,6 +312,56 @@ class _SettingsState extends State<Settings> {
                               SizedBox(width: 20),
                               Text(
                                 'About Us',
+                                style: TextStyle(
+                                    fontFamily: 'PoppinsSemiBold',
+                                    fontSize: 13,
+                                    color: txtColor),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Terms()));
+                        },
+                        child: Container(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20),
+                              Text(
+                                'Terms & Conditions',
+                                style: TextStyle(
+                                    fontFamily: 'PoppinsSemiBold',
+                                    fontSize: 13,
+                                    color: txtColor),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PrivacyPolicy()));
+                        },
+                        child: Container(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20),
+                              Text(
+                                'Privacy Policy',
                                 style: TextStyle(
                                     fontFamily: 'PoppinsSemiBold',
                                     fontSize: 13,
