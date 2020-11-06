@@ -165,47 +165,53 @@ class _SettingsState extends State<Settings> {
                     receive ? receive = false : receive = true,
                   },
                   child: Container(
-                    height: size.height * 0.02,
+                    height: 24,
                     width: MediaQuery.of(context).size.width,
                     color: bgColor,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: size.width * 0.03,
-                        ),
-                        Icon(
-                          Feather.bell,
-                          color: txtColor,
-                        ),
-                        SizedBox(
-                          width: size.width * 0.04,
-                        ),
-                        Container(
-                          width: 250,
-                          child: Text(
-                            'Notifications',
-                            style: TextStyle(
-                              fontFamily: 'PoppinsSemiBold',
-                              fontSize: 15,
-                              color: txtColor,
+                    child: Center(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: size.width * 0.03,
+                          ),
+                          Icon(
+                            Feather.bell,
+                            color: txtColor,
+                          ),
+                          SizedBox(
+                            width: size.width * 0.04,
+                          ),
+                          Container(
+                            width: 250,
+                            child: Text(
+                              'Notifications',
+                              style: TextStyle(
+                                fontFamily: 'PoppinsSemiBold',
+                                fontSize: 15,
+                                color: txtColor,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: size.width * 0.08),
-                        Switch(
-                          value: receive,
-                          activeColor: switchColor,
-                          onChanged: (value) {
-                            setState(() {
-                              value
-                                  ? _fcm.subscribeToTopic('Invofinity')
-                                  : _fcm.unsubscribeFromTopic('Invofinity');
-                              receive = value;
-                            });
-                          },
-                        ),
-                      ],
+                          SizedBox(width: size.width * 0.08),
+                          Switch(
+                            value: receive,
+                            activeColor: down,
+                            inactiveThumbColor: Colors.grey[600],
+                            activeTrackColor: Colors.grey[850].withOpacity(0.4),
+                            inactiveTrackColor:
+                                Colors.grey[850].withOpacity(0.4),
+                            onChanged: (value) {
+                              setState(() {
+                                value
+                                    ? _fcm.subscribeToTopic('Invofinity')
+                                    : _fcm.unsubscribeFromTopic('Invofinity');
+                                receive = value;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

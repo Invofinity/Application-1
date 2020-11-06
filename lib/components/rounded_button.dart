@@ -23,12 +23,17 @@ class RoundedButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(29),
         child: FlatButton(
           padding: EdgeInsets.symmetric(
-              vertical: 20, horizontal: 45), //dimensions of button
+              vertical: 13, horizontal: 45), //dimensions of button
           color: color,
           onPressed: press,
           child: Text(
             text,
-            style: TextStyle(color: textColor),
+            style: TextStyle(
+                color: textColor,
+                fontFamily: 'Poppins',
+                fontSize: 18,
+                wordSpacing: 7,
+                letterSpacing: 1),
           ),
         ),
       ),

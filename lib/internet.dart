@@ -84,6 +84,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:News_App/pages/discover.dart';
 import 'package:News_App/views/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -127,9 +128,19 @@ class _imageuiState extends State<imageui> {
             backgroundColor: Colors.black,
             title: Text(
               "Error",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  fontFamily: 'PoppinsBold',
+                  color: Colors.white),
             ),
             content: Text(
               "No Data Connection Available.",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  fontFamily: 'PoppinsBold',
+                  color: Colors.white),
             ),
             actions: <Widget>[
               FlatButton(

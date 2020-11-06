@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.black,
       ),
-      home: homie(),
+      home: WelcomeScreen(),
     );
   }
 }
@@ -74,8 +74,20 @@ class _homieState extends State<homie> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.black,
-        title: Text('ERROR'),
-        content: Text("No Internet Detected."),
+        title: Text(
+          'ERROR',
+          style: TextStyle(
+              fontWeight: FontWeight.normal,
+              fontSize: 20,
+              fontFamily: 'Poppins',
+              color: Colors.white),
+        ),
+        content: Text("No Internet Detected.",
+            style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 17,
+                fontFamily: 'PoppinsBold',
+                color: Colors.white)),
         actions: <Widget>[
           FlatButton(
             color: Colors.black,
@@ -92,7 +104,7 @@ class _homieState extends State<homie> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

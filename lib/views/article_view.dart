@@ -74,7 +74,7 @@ class _ArticleViewState extends State<ArticleView> {
           ),
           isLoading
               ? LinearProgressIndicator(
-                  backgroundColor: Colors.white,
+                  backgroundColor: bgColor,
                   minHeight: 1.5,
                   valueColor: new AlwaysStoppedAnimation<Color>(down),
                 )
