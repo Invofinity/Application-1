@@ -58,7 +58,8 @@ class _ArticleTileState extends State<ArticleTile> {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width - 46,
-                  height: size.height * 0.20,
+                  //height: size.height * 0.20,
+                  height: 172,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     color: bgColor,
