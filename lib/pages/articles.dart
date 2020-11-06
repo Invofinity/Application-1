@@ -1,5 +1,4 @@
 import 'package:News_App/pages/article_screens/article_homescreen.dart';
-import 'package:News_App/pages/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 
 class Articles extends StatelessWidget {

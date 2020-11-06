@@ -1,10 +1,6 @@
-import 'package:News_App/models/book_model.dart';
 import 'package:News_App/pages/widgets/article-tiless.dart';
 import 'package:flutter/material.dart';
 import 'package:News_App/helper/books.dart';
-import 'package:News_App/views/book_view.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:share/share.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class ArticlesHomeScreen extends StatefulWidget {

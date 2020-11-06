@@ -1,13 +1,9 @@
-import 'package:News_App/screens/Welcome/welcome_screen.dart';
-import 'package:News_App/views/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:News_App/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-
-import 'internet.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,12 +25,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class homie extends StatefulWidget {
+class Homie extends StatefulWidget {
   @override
-  _homieState createState() => _homieState();
+  _HomieState createState() => _HomieState();
 }
 
-class _homieState extends State<homie> {
+class _HomieState extends State<Homie> {
   ConnectivityResult previous;
   @override
   void initState() {

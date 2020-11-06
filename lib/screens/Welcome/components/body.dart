@@ -1,7 +1,4 @@
-import 'package:News_App/components/rounded_button.dart';
-import 'package:News_App/main.dart';
 import 'package:News_App/screens/Welcome/components/background.dart';
-import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
