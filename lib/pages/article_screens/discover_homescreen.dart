@@ -56,10 +56,11 @@ class _DiscoverHomeState extends State<DiscoverHome>
             ],
           ),
           Expanded(
-              child: TabBarView(controller: tabcontroller, children: [
-            TipsAndTricks(),
-            Challenges1(),
-          ]))
+            child: TabBarView(controller: tabcontroller, children: [
+              TipsAndTricks(),
+              Challenges1(),
+            ]),
+          ),
         ],
       ),
     );

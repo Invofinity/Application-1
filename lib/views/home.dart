@@ -1,3 +1,4 @@
+import 'package:News_App/constants.dart';
 import 'package:News_App/helper/news.dart';
 import 'package:News_App/models/article_model.dart';
 import 'package:News_App/models/category_model.dart';
@@ -123,7 +124,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           bottomNavigationBar: BubbleBottomBar(
-            opacity: 0.12,
+            opacity: 1.0,
             backgroundColor: bgColor,
             currentIndex: currentIndex,
             onTap: (index) {
@@ -136,79 +137,73 @@ class _HomeState extends State<Home> {
             },
             items: <BubbleBottomBarItem>[
               BubbleBottomBarItem(
-                  backgroundColor: up,
-                  icon: RadiantGradientMask(
-                    child: Icon(
-                      Entypo.news,
-                      size: 20.0,
-                    ),
+                  backgroundColor: down,
+                  icon: Icon(
+                    Entypo.news,
+                    size: 15.0,
+                    color: down,
                   ),
-                  activeIcon: RadiantGradientMask(
-                    child: Icon(
-                      Entypo.news,
-                      size: 20.0,
-                    ),
+                  activeIcon: Icon(
+                    Entypo.news,
+                    size: 20.0,
+                    color: bgColor,
                   ),
-                  title: RadiantGradientMask(
-                    child: Text('Feed',
-                        style: TextStyle(
-                            fontFamily: 'PoppinsSemiBold', fontSize: 12)),
-                  )),
+                  title: Text('Feed',
+                      style: TextStyle(
+                          fontFamily: 'PoppinsSemiBold',
+                          fontSize: 12,
+                          color: bgColor))),
               BubbleBottomBarItem(
-                  backgroundColor: up,
-                  icon: RadiantGradientMask(
-                    child: Icon(
-                      Feather.compass,
-                      size: 20.0,
-                    ),
+                  backgroundColor: down,
+                  icon: Icon(
+                    Feather.compass,
+                    size: 15.0,
+                    color: down,
                   ),
-                  activeIcon: RadiantGradientMask(
-                      child: Icon(
+                  activeIcon: Icon(
                     Feather.compass,
                     size: 20.0,
-                  )),
-                  title: RadiantGradientMask(
-                    child: Text('Discover',
-                        style: TextStyle(
-                            fontFamily: 'PoppinsSemiBold', fontSize: 12)),
-                  )),
+                    color: bgColor,
+                  ),
+                  title: Text('Discover',
+                      style: TextStyle(
+                          fontFamily: 'PoppinsSemiBold',
+                          fontSize: 12,
+                          color: bgColor))),
               BubbleBottomBarItem(
-                  backgroundColor: up,
-                  icon: RadiantGradientMask(
-                    child: Icon(
-                      Feather.book_open,
-                      size: 20.0,
-                    ),
+                  backgroundColor: down,
+                  icon: Icon(
+                    Feather.book_open,
+                    size: 15.0,
+                    color: down,
                   ),
-                  activeIcon: RadiantGradientMask(
-                    child: Icon(
-                      Feather.book_open,
-                      size: 20.0,
-                    ),
+                  activeIcon: Icon(
+                    Feather.book_open,
+                    size: 20.0,
+                    color: bgColor,
                   ),
-                  title: RadiantGradientMask(
-                    child: Text('Articles',
-                        style: TextStyle(
-                            fontFamily: 'PoppinsSemiBold', fontSize: 12)),
-                  )),
+                  title: Text('Articles',
+                      style: TextStyle(
+                          fontFamily: 'PoppinsSemiBold',
+                          fontSize: 12,
+                          color: bgColor))),
               BubbleBottomBarItem(
-                  backgroundColor: up,
-                  icon: RadiantGradientMask(
-                    child: Icon(
-                      Feather.settings,
-                      size: 17.0,
-                    ),
+                  backgroundColor: down,
+                  icon: Icon(
+                    Feather.settings,
+                    size: 15.0,
+                    color: down,
                   ),
-                  activeIcon: RadiantGradientMask(
-                      child: Icon(
+                  activeIcon: Icon(
                     Feather.settings,
                     size: 20.0,
-                  )),
-                  title: RadiantGradientMask(
-                    child: Text('Settings',
-                        style: TextStyle(
-                            fontFamily: 'PoppinsSemiBold', fontSize: 12)),
-                  )),
+                    color: bgColor,
+                  ),
+                  title: Text('Settings',
+                      style: TextStyle(
+                          fontFamily: 'PoppinsSemiBold',
+                          fontSize: 12,
+                          color: bgColor))),
             ],
           )),
     );
@@ -217,9 +212,7 @@ class _HomeState extends State<Home> {
 
 /*class CategoryTile extends StatelessWidget {
   final String imageURL, categoryName;
-
   CategoryTile({this.imageURL, this.categoryName});
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -269,7 +262,6 @@ class _HomeState extends State<Home> {
 
 /*class BlogTile extends StatelessWidget {
   final String imageURL, title, url;
-
   BlogTile({@required this.imageURL, @required this.title, @required this.url});
   @override
   Widget build(BuildContext context) {
@@ -401,6 +393,7 @@ class _HomePageState extends State<HomePage>
                       )
                     : CarouselSlider(
                         height: 160.0,
+                        enlargeCenterPage: true,
                         aspectRatio: 9 / 16,
                         autoPlay: true,
                         autoPlayAnimationDuration: Duration(seconds: 1),
@@ -419,7 +412,7 @@ class _HomePageState extends State<HomePage>
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => BookView(
+                                              builder: (context) => ArticleView(
                                                     blogUrl: e.url,
                                                   )));
                                     },
@@ -429,7 +422,7 @@ class _HomePageState extends State<HomePage>
                                         decoration: BoxDecoration(
                                             color: bgColor,
                                             borderRadius:
-                                                BorderRadius.circular(10.0),
+                                                BorderRadius.circular(8.0),
                                             image: DecorationImage(
                                               image: NetworkImage(e.img),
                                               fit: BoxFit.cover,
@@ -464,7 +457,7 @@ class _HomePageState extends State<HomePage>
                                         decoration: BoxDecoration(
                                           color: bgColor.withOpacity(0.18),
                                           borderRadius:
-                                              BorderRadius.circular(10.0),
+                                              BorderRadius.circular(8.0),
                                         ),
                                       )
                                     ]),
@@ -480,74 +473,6 @@ class _HomePageState extends State<HomePage>
                   height: 10,
                 ),
 
-                /*Container(
-                    height: 70,
-                    child: ListView.builder(
-                        itemCount: categories.length,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return CategoryTile(
-                            imageURL: categories[index].imageURL,
-                            categoryName: categories[index].categoryName,
-                          );
-                        }),
-                  ),
-
-                  //blogs
-                  Container(
-                    padding: EdgeInsets.only(top: 16),
-                    child: ListView.builder(
-                        itemCount: articles.length,
-                        shrinkWrap: true,
-                        physics: ClampingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return Tile(
-                            img: articles[index].urlToImage,
-                            head: articles[index].title,
-                            des: articles[index].url,
-                          );
-                        }),
-                  )*/
-                /*TabBar(
-                      labelColor: txtColor,
-                      isScrollable: true,
-                      labelStyle: TextStyle(
-                        fontFamily: 'PoppinsSemiBold',
-                        fontSize: 12,
-                      ),
-                      indicator: CircleTabIndicator(color: txtColor, radius: 2),
-                      indicatorWeight: 4,
-                      controller: tabcontroller,
-                      tabs: [
-                        Tab(
-                          text: 'Futurology',
-                        ),
-                        Tab(
-                          text: 'Business',
-                        ),
-                        Tab(
-                          text: 'Memes',
-                        ),
-                        Tab(
-                          text: 'Health',
-                        ),
-                        Tab(
-                          text: 'TodayILearned',
-                        ),
-                        Tab(
-                          text: 'Science',
-                        )
-                      ]),*/
-                /*Expanded(
-                      child: TabBarView(controller: tabcontroller, children: [
-                    All(),
-                    Business(),
-                    Sports(),
-                    Health(),
-                    Entertainment(),
-                    Science()
-                  ]))*/
                 _loading2
                     ? Container(
                         height: 500,

@@ -131,14 +131,21 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
   final down = const Color(0xFFff4b2b);
   var bookss = [];
   bool _loading;
+  var incc = 0;
+  var call = 1;
+  var vad;
   FixedExtentScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
     _loading = true;
+    if (_loading == true) vad = 1;
+
     scrollController = FixedExtentScrollController();
-    getBooks();
+    getBooks().then((_loading) => setState(() {
+          _loading = false;
+        }));
   }
 
   @override
@@ -148,6 +155,7 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
   }
 
   Future<void> getBooks() async {
+    //loadstudent
     Articles newsClass = Articles();
     await newsClass.getArticles();
     bookss = newsClass.books;
