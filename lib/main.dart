@@ -1,4 +1,5 @@
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
+import 'package:News_App/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,6 +16,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.black,
         ),
-        home: WelcomeScreen());
+        home: SplashScreen());
   }
 }
