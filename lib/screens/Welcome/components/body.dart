@@ -1,9 +1,12 @@
 import 'package:News_App/components/rounded_button.dart';
 import 'package:News_App/main.dart';
 import 'package:News_App/screens/Welcome/components/background.dart';
+import 'package:News_App/screens/Welcome/welcome_screen.dart';
 import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+
+var incc = 0;
 
 class Body extends StatelessWidget {
   final bgColor = Colors.black;
@@ -52,7 +55,7 @@ class Body extends StatelessWidget {
             ),*/
             Center(
               child: Text(
-                "Happy to see you!",
+                "Welcome",
                 style: TextStyle(
                     fontFamily: 'PoppinsBold', fontSize: 38.0, color: txtColor),
               ),
@@ -75,6 +78,8 @@ class Body extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
+                incc += 1;
+                value = false;
                 Navigator.push(
                   context,
                   MaterialPageRoute(
