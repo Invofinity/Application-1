@@ -138,6 +138,8 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    resizeToAvoidBottomInset:
+    false;
     //final bgColor = const Color(0xFFffffff);
     //final txtColor = const Color(0xFF171717);
     final bgColor = Colors.black;
@@ -148,7 +150,7 @@ class _SettingsState extends State<Settings> {
     final switchColor = const Color(0xFFFF483C);
     Size size = MediaQuery.of(context).size;
 
-    return Expanded(
+    return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
