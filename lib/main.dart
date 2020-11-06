@@ -13,6 +13,8 @@ void main() {
   runApp(MyApp());
 }
 
+final bool debugShowCheckedModeBanner = false;
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -109,7 +111,7 @@ class _homieState extends State<homie> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             CircularProgressIndicator(),
             Padding(
               padding: EdgeInsets.only(top: 20.0),

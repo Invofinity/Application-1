@@ -148,8 +148,7 @@ class _SettingsState extends State<Settings> {
     final switchColor = const Color(0xFFFF483C);
     Size size = MediaQuery.of(context).size;
 
-    return ClipRect(
-        child: Expanded(
+    return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -184,14 +183,13 @@ class _SettingsState extends State<Settings> {
                           ),
                           Container(
                             width: 250,
-                            child: Text(
-                              'Notifications',
-                              style: TextStyle(
-                                fontFamily: 'PoppinsSemiBold',
-                                fontSize: 15,
-                                color: txtColor,
-                              ),
-                            ),
+                            child: Text('Notifications',
+                                style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontSize: 15,
+                                  color: txtColor,
+                                ),
+                                overflow: TextOverflow.visible),
                           ),
                           SizedBox(width: size.width * 0.08),
                           Switch(
@@ -237,13 +235,12 @@ class _SettingsState extends State<Settings> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(width: 20),
-                              Text(
-                                'Share',
-                                style: TextStyle(
-                                    fontFamily: 'PoppinsSemiBold',
-                                    fontSize: 13,
-                                    color: txtColor),
-                              ),
+                              Text('Share',
+                                  style: TextStyle(
+                                      fontFamily: 'PoppinsSemiBold',
+                                      fontSize: 13,
+                                      color: txtColor),
+                                  overflow: TextOverflow.visible),
                             ],
                           ),
                         ),
@@ -260,13 +257,12 @@ class _SettingsState extends State<Settings> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(width: 20),
-                              Text(
-                                'Rate Us',
-                                style: TextStyle(
-                                    fontFamily: 'PoppinsSemiBold',
-                                    fontSize: 13,
-                                    color: txtColor),
-                              ),
+                              Text('Rate Us',
+                                  style: TextStyle(
+                                      fontFamily: 'PoppinsSemiBold',
+                                      fontSize: 13,
+                                      color: txtColor),
+                                  overflow: TextOverflow.visible),
                             ],
                           ),
                         ),
@@ -284,13 +280,12 @@ class _SettingsState extends State<Settings> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(width: 20),
-                              Text(
-                                'Help & FAQ',
-                                style: TextStyle(
-                                    fontFamily: 'PoppinsSemiBold',
-                                    fontSize: 13,
-                                    color: txtColor),
-                              ),
+                              Text('Help & FAQ',
+                                  style: TextStyle(
+                                      fontFamily: 'PoppinsSemiBold',
+                                      fontSize: 13,
+                                      color: txtColor),
+                                  overflow: TextOverflow.visible),
                             ],
                           ),
                         ),
@@ -310,13 +305,12 @@ class _SettingsState extends State<Settings> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(width: 20),
-                              Text(
-                                'About Us',
-                                style: TextStyle(
-                                    fontFamily: 'PoppinsSemiBold',
-                                    fontSize: 13,
-                                    color: txtColor),
-                              ),
+                              Text('About Us',
+                                  style: TextStyle(
+                                      fontFamily: 'PoppinsSemiBold',
+                                      fontSize: 13,
+                                      color: txtColor),
+                                  overflow: TextOverflow.visible),
                             ],
                           ),
                         ),
@@ -334,13 +328,12 @@ class _SettingsState extends State<Settings> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(width: 20),
-                              Text(
-                                'Terms & Conditions',
-                                style: TextStyle(
-                                    fontFamily: 'PoppinsSemiBold',
-                                    fontSize: 13,
-                                    color: txtColor),
-                              ),
+                              Text('Terms & Conditions',
+                                  style: TextStyle(
+                                      fontFamily: 'PoppinsSemiBold',
+                                      fontSize: 13,
+                                      color: txtColor),
+                                  overflow: TextOverflow.visible),
                             ],
                           ),
                         ),
@@ -360,13 +353,12 @@ class _SettingsState extends State<Settings> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(width: 20),
-                              Text(
-                                'Privacy Policy',
-                                style: TextStyle(
-                                    fontFamily: 'PoppinsSemiBold',
-                                    fontSize: 13,
-                                    color: txtColor),
-                              ),
+                              Text('Privacy Policy',
+                                  style: TextStyle(
+                                      fontFamily: 'PoppinsSemiBold',
+                                      fontSize: 13,
+                                      color: txtColor),
+                                  overflow: TextOverflow.visible),
                             ],
                           ),
                         ),
@@ -379,6 +371,6 @@ class _SettingsState extends State<Settings> {
           ),
         ],
       ),
-    ));
+    );
   }
 }

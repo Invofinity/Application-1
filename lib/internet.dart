@@ -96,6 +96,9 @@ class _imageuiState extends State<imageui> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(home: Home());
+    return MaterialApp(
+      home: Home(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
