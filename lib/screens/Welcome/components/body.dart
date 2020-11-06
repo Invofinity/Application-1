@@ -51,7 +51,7 @@ class Body extends StatelessWidget {
             ),*/
             Center(
               child: Text(
-                "Welcome",
+                "Happy to see you!",
                 style: TextStyle(
                     fontFamily: 'PoppinsBold', fontSize: 38.0, color: txtColor),
               ),
