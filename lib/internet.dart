@@ -85,6 +85,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:News_App/pages/discover.dart';
+import 'package:News_App/screens/Welcome/components/body.dart';
+import 'package:News_App/screens/Welcome/welcome_screen.dart';
 import 'package:News_App/views/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
