@@ -212,9 +212,7 @@ class _HomeState extends State<Home> {
 
 /*class CategoryTile extends StatelessWidget {
   final String imageURL, categoryName;
-
   CategoryTile({this.imageURL, this.categoryName});
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -264,7 +262,6 @@ class _HomeState extends State<Home> {
 
 /*class BlogTile extends StatelessWidget {
   final String imageURL, title, url;
-
   BlogTile({@required this.imageURL, @required this.title, @required this.url});
   @override
   Widget build(BuildContext context) {
@@ -476,74 +473,6 @@ class _HomePageState extends State<HomePage>
                   height: 10,
                 ),
 
-                /*Container(
-                    height: 70,
-                    child: ListView.builder(
-                        itemCount: categories.length,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return CategoryTile(
-                            imageURL: categories[index].imageURL,
-                            categoryName: categories[index].categoryName,
-                          );
-                        }),
-                  ),
-
-                  //blogs
-                  Container(
-                    padding: EdgeInsets.only(top: 16),
-                    child: ListView.builder(
-                        itemCount: articles.length,
-                        shrinkWrap: true,
-                        physics: ClampingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return Tile(
-                            img: articles[index].urlToImage,
-                            head: articles[index].title,
-                            des: articles[index].url,
-                          );
-                        }),
-                  )*/
-                /*TabBar(
-                      labelColor: txtColor,
-                      isScrollable: true,
-                      labelStyle: TextStyle(
-                        fontFamily: 'PoppinsSemiBold',
-                        fontSize: 12,
-                      ),
-                      indicator: CircleTabIndicator(color: txtColor, radius: 2),
-                      indicatorWeight: 4,
-                      controller: tabcontroller,
-                      tabs: [
-                        Tab(
-                          text: 'Futurology',
-                        ),
-                        Tab(
-                          text: 'Business',
-                        ),
-                        Tab(
-                          text: 'Memes',
-                        ),
-                        Tab(
-                          text: 'Health',
-                        ),
-                        Tab(
-                          text: 'TodayILearned',
-                        ),
-                        Tab(
-                          text: 'Science',
-                        )
-                      ]),*/
-                /*Expanded(
-                      child: TabBarView(controller: tabcontroller, children: [
-                    All(),
-                    Business(),
-                    Sports(),
-                    Health(),
-                    Entertainment(),
-                    Science()
-                  ]))*/
                 _loading2
                     ? Container(
                         height: 500,

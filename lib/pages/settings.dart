@@ -103,7 +103,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:http/http.dart';
 import 'package:share/share.dart';
 
 class Settings extends StatefulWidget {
@@ -198,10 +197,10 @@ class _SettingsState extends State<Settings> {
                           Switch(
                             value: receive,
                             activeColor: down,
-                            inactiveThumbColor: Colors.grey[600],
-                            activeTrackColor: Colors.grey[850].withOpacity(0.4),
+                            inactiveThumbColor: Colors.grey[200],
+                            activeTrackColor: Colors.grey[400].withOpacity(0.4),
                             inactiveTrackColor:
-                                Colors.grey[850].withOpacity(0.4),
+                                Colors.grey[200].withOpacity(0.4),
                             onChanged: (value) {
                               setState(() {
                                 value

@@ -1,3 +1,4 @@
+import 'package:News_App/main.dart';
 import 'package:News_App/screens/Welcome/components/body.dart';
 import 'package:flutter/material.dart';
 

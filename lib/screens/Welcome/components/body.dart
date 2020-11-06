@@ -1,4 +1,5 @@
 import 'package:News_App/components/rounded_button.dart';
+import 'package:News_App/main.dart';
 import 'package:News_App/screens/Welcome/components/background.dart';
 import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,7 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return Home();
+                      return homie();
                     },
                   ),
                 );

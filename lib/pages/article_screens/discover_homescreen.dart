@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:News_App/components/circle_indicator.dart';
 import 'package:News_App/helper/data_new.dart';
 import 'package:News_App/pages/widgets/TnT_tile.dart';
-import 'package:News_App/components/gradient.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:News_App/pages/widgets/challenges_tile.dart';
 
 class DiscoverHome extends StatefulWidget {
   @override
@@ -25,7 +22,6 @@ class _DiscoverHomeState extends State<DiscoverHome>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     tabcontroller = new TabController(vsync: this, length: 2);
   }
@@ -56,10 +52,11 @@ class _DiscoverHomeState extends State<DiscoverHome>
             ],
           ),
           Expanded(
-              child: TabBarView(controller: tabcontroller, children: [
-            TipsAndTricks(),
-            Challenges1(),
-          ]))
+            child: TabBarView(controller: tabcontroller, children: [
+              TipsAndTricks(),
+              Challenges1(),
+            ]),
+          ),
         ],
       ),
     );

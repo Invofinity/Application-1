@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:News_App/models/article_model.dart';
 
@@ -6,22 +8,27 @@ class Data {
   List<NewsArticles> articles = [];
 
   Future<void> getData() async {
-    var response = await get(
-        'https://fir-news-api-veokara.firebaseio.com/futurelogy.json');
-    var jsonData = jsonDecode(response.body);
+    try {
+      var response = await get(
+          'https://fir-news-api-veokara.firebaseio.com/futurelogy.json');
 
-    jsonData.forEach((element) {
-      NewsArticles newsarticles = NewsArticles(
-        head: element['title'],
-        //des: element['description'],
-        img: element['thumbnail'],
-        url: element['domain'],
-        //content: element['content'],
-        //source: element['source[name]'],
-        //time: element['publishedAt'],
-      );
-      articles.add(newsarticles);
-    });
+      var jsonData = jsonDecode(response.body);
+
+      jsonData.forEach((element) {
+        NewsArticles newsarticles = NewsArticles(
+          head: element['title'],
+          //des: element['description'],
+          img: element['thumbnail'],
+          url: element['domain'],
+          //content: element['content'],
+          //source: element['source[name]'],
+          //time: element['publishedAt'],
+        );
+        articles.add(newsarticles);
+      });
+    } on SocketException catch (_) {
+      print('not connected');
+    }
   }
 }
 
@@ -158,16 +165,21 @@ class Data5 {
 class ImpNews {
   List<ImportantNews> news = [];
   Future<void> getData() async {
-    var response = await get(
-        'https://fir-news-api-veokara.firebaseio.com/importantnews.json');
-    var jsonData = jsonDecode(response.body);
-    jsonData.forEach((element) {
-      ImportantNews importantnews = ImportantNews(
-          head: element['title'],
-          img: element['thumbnail'],
-          url: element['domain']);
-      news.add(importantnews);
-    });
+    try {
+      var response = await get(
+          'https://fir-news-api-veokara.firebaseio.com/importantnews.json');
+      var jsonData = jsonDecode(response.body);
+      jsonData.forEach((element) {
+        ImportantNews importantnews = ImportantNews(
+            head: element['title'],
+            img: element['thumbnail'],
+            url: element['domain']);
+        news.add(importantnews);
+      });
+    } catch (e) {
+      print(e);
+      return null;
+    }
   }
 }
 
@@ -175,72 +187,98 @@ class Data6 {
   List<NewsArticles> articles6 = [];
 
   Future<void> getData() async {
-    var response =
-        await get('https://fir-news-api-veokara.firebaseio.com/discover.json');
-    var jsonData = jsonDecode(response.body);
-    //if (jsonData['status'] == "ok") {
-    jsonData.forEach((element) {
-      //if (element['urlToImage'] != null && element['description'] != null) {
-      NewsArticles newsarticles6 = NewsArticles(
-        head: element['title'],
-        source: element['source'],
-        tag: element['tag'],
-        des: element['selftext'],
-        // des: element['description'],
-        img: element['thumbnail'],
-        url: element['domain'],
-        // content: element['content'],
-        //source: element['source'].name,
-        // time: element['publishedAt'],
-      );
-      articles6.add(newsarticles6);
-      // }
-    });
-    //}
+    try {
+      var response = await get(
+          'https://fir-news-api-veokara.firebaseio.com/discover.json');
+      var jsonData = jsonDecode(response.body);
+      //if (jsonData['status'] == "ok") {
+      jsonData.forEach((element) {
+        //if (element['urlToImage'] != null && element['description'] != null) {
+        NewsArticles newsarticles6 = NewsArticles(
+          head: element['title'],
+          source: element['source'],
+          tag: element['tag'],
+          des: element['selftext'],
+          // des: element['description'],
+          img: element['thumbnail'],
+          url: element['domain'],
+          // content: element['content'],
+          //source: element['source'].name,
+          // time: element['publishedAt'],
+        );
+        articles6.add(newsarticles6);
+        // }
+      });
+      //}
+    } catch (e) {
+      print(e);
+      return null;
+    }
   }
 }
 
 class ChallengesCall {
+  var jsonData;
   List<Challenges> challengeslist = [];
   Future<void> getData() async {
     var response = await get(
         'https://fir-news-api-veokara.firebaseio.com/challenges.json');
-    var jsonData = jsonDecode(response.body);
-    jsonData.forEach((element) {
-      Challenges challenges = Challenges(
-        day: element['day'],
-        task: element['task'],
-      );
-      challengeslist.add(challenges);
-    });
+
+    try {
+      jsonData = await jsonDecode(response.body);
+    } on SocketException {
+      throw Failure("no Internet connection");
+    }
+    if (response.statusCode == 200) {
+      jsonData.forEach((element) {
+        Challenges challenges = Challenges(
+          day: element['day'],
+          task: element['task'],
+        );
+        challengeslist.add(challenges);
+      });
+    }
   }
+}
+
+class Failure {
+  final String message;
+
+  Failure(this.message);
+
+  @override
+  String toString() => message;
 }
 
 class FeedCall {
   List<NewsArticles> feed = [];
 
   Future<void> getData() async {
-    var response =
-        await get('https://fir-news-api-veokara.firebaseio.com/feed.json');
-    var jsonData = jsonDecode(response.body);
-    //if (jsonData['status'] == "ok") {
-    jsonData.forEach((element) {
-      //if (element['urlToImage'] != null && element['description'] != null) {
-      NewsArticles feed1 = NewsArticles(
-        head: element['title'],
-        source: element['source'],
-        tag: element['tag'],
-        des: element['selftext'],
-        // des: element['description'],
-        img: element['thumbnail'],
-        url: element['domain'],
-        //content: element['selftext'],
-        //source: element['source'].name,
-        // time: element['publishedAt'],
-      );
-      feed.add(feed1);
-      // }
-    });
-    //}
+    try {
+      var response =
+          await get('https://fir-news-api-veokara.firebaseio.com/feed.json');
+      var jsonData = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        //if (jsonData['status'] == "ok") {
+        jsonData.forEach((element) {
+          //if (element['urlToImage'] != null && element['description'] != null) {
+          NewsArticles feed1 = NewsArticles(
+            head: element['title'],
+            source: element['source'],
+            tag: element['tag'],
+            des: element['selftext'],
+            // des: element['description'],
+            img: element['thumbnail'],
+            url: element['domain'],
+            //content: element['selftext'],
+            //source: element['source'].name,
+            // time: element['publishedAt'],
+          );
+          feed.add(feed1);
+          // }
+        });
+      }
+      //}
+    } catch (e) {}
   }
 }
