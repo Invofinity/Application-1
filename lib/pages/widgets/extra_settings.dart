@@ -535,33 +535,35 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           SizedBox(
             height: 20,
           ),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "by",
-                  style: TextStyle(
-                    fontFamily: "PoppinsSemiBold",
-                    fontSize: 12,
-                    color: Colors.grey[600],
+          SingleChildScrollView(
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "by",
+                    style: TextStyle(
+                      fontFamily: "PoppinsSemiBold",
+                      fontSize: 12,
+                      color: Colors.grey[600],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 16,
-                ),
-                Text(
-                  "I N V O F I N I T Y",
-                  style: TextStyle(
-                    fontFamily: "NeonBold",
-                    fontSize: 18,
-                    color: txtColor,
+                  SizedBox(
+                    width: 16,
                   ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-              ],
+                  Text(
+                    "I N V O F I N I T Y",
+                    style: TextStyle(
+                      fontFamily: "NeonBold",
+                      fontSize: 18,
+                      color: txtColor,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                ],
+              ),
             ),
           )
         ]),
