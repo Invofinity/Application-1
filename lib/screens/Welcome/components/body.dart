@@ -1,6 +1,7 @@
 import 'package:News_App/screens/Welcome/components/background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:News_App/main.dart';
 
 class Body extends StatelessWidget {
   final bgColor = Colors.black;
@@ -76,7 +77,7 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return homie();
+                      return Homie();
                     },
                   ),
                 );
