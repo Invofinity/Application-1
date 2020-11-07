@@ -99,6 +99,10 @@ flutter:
     - family: PoppinsBlack
       fonts:
         - asset: fonts/Poppins-Black.ttf
+    - family: NeonBold
+      fonts:
+        - asset: fonts/Neon-Bold.ttf
+    
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
