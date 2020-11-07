@@ -75,15 +75,17 @@ class _HomieState extends State<Homie> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.black,
-        title: Text(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        /*title: Text(
           'ERROR',
           style: TextStyle(
               fontWeight: FontWeight.normal,
               fontSize: 20,
               fontFamily: 'Poppins',
               color: Colors.white),
-        ),
-        content: Text("No Internet Detected.",
+        ),*/
+        content: Text("\n\nNo Internet Detected",
             style: TextStyle(
                 fontWeight: FontWeight.normal,
                 fontSize: 17,
@@ -95,7 +97,9 @@ class _HomieState extends State<Homie> {
             // method to exit application programitacally
             onPressed: () =>
                 SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
-            child: Text("Exit"),
+            child: Text("Exit",
+                style: TextStyle(
+                    fontSize: 14, fontFamily: 'Poppins', color: Colors.red)),
           ),
         ],
       ),
@@ -110,7 +114,6 @@ class _HomieState extends State<Homie> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(),
             Padding(
               padding: EdgeInsets.only(top: 20.0),
               child: Text("Checking Your Internet Connection."),
