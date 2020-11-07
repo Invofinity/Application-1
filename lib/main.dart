@@ -34,11 +34,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.black,
       ),
+<<<<<<< HEAD
       home: counter == 0 ? WelcomeScreen() : SplashScreen(),
       routes: <String, WidgetBuilder>{
         // Set routes for using the Navigator.
         '/home': (BuildContext context) => new Home(),
       },
+=======
+      home: SplashScreen(),
+>>>>>>> 864a235b96a23ee49bc532c2b10cd691b93d7852
     );
   }
 }

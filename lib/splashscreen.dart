@@ -26,8 +26,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    new Timer(new Duration(seconds: 2), () {
-      checkFirstSeen();
+    new Timer(new Duration(milliseconds: 800), () async {
+      await checkFirstSeen();
     });
   }
 
@@ -35,13 +35,16 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool _seen = (prefs.getBool('seen') ?? false);
 
-<<<<<<< HEAD
     if (_seen) {
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new WelcomeScreen()));
+          new MaterialPageRoute(builder: (context) => new Homie()));
+      print(_seen);
     } else {
+      print("2nd seen");
+      print(_seen);
       prefs.setBool('seen', true);
       Navigator.of(context).pushReplacement(
+<<<<<<< HEAD
           new MaterialPageRoute(builder: (context) => new Home()));
 =======
   void navigationPage() {
@@ -66,6 +69,9 @@ class _SplashScreenState extends State<SplashScreen> {
         context, MaterialPageRoute(builder: (BuildContext context) => homie()));
 =======
 >>>>>>> 3d2e9c053f66c5b68ff4b6c50214ce1088456b6b
+=======
+          new MaterialPageRoute(builder: (context) => new WelcomeScreen()));
+>>>>>>> 864a235b96a23ee49bc532c2b10cd691b93d7852
     }
 >>>>>>> d72968409f48caf28405075e154a5a06f8862cb5
   }
@@ -101,7 +107,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 Expanded(
                   child: Column(
                     children: <Widget>[
-                      CircularProgressIndicator(),
                       Container(
                         height: 10,
                       ),

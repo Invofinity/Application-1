@@ -26,7 +26,7 @@ class _AskPermissions extends State<AskPermissions> {
     } else {
       _updateStatus(status);
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new WelcomeScreen()));
+          new MaterialPageRoute(builder: (context) => new Home()));
     }
   }
 
