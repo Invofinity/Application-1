@@ -47,7 +47,7 @@ class _HomieState extends State<Homie> {
       InternetAddress.lookup('google.com').then((result) {
         if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => imageui(),
+            builder: (context) => Imageui(),
           ));
         } else {
           _showdialog();
@@ -66,7 +66,7 @@ class _HomieState extends State<Homie> {
       } else if (previous == ConnectivityResult.none) {
         // internet conn
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => imageui(),
+          builder: (context) => Imageui(),
         ));
       }
 

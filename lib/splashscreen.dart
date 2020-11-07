@@ -35,6 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool _seen = (prefs.getBool('seen') ?? false);
 
+<<<<<<< HEAD
     if (_seen) {
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => new WelcomeScreen()));
@@ -42,6 +43,24 @@ class _SplashScreenState extends State<SplashScreen> {
       prefs.setBool('seen', true);
       Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => new Home()));
+=======
+  void navigationPage() {
+    if (incc == 0) {
+      valuee = true;
+      if (valuee == true) {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => WelcomeScreen()));
+        print("value of welcome screen");
+        print(valuee);
+      } else {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => Homie()));
+        print("value of home screen");
+        print(valuee);
+      }
+>>>>>>> 3d2e9c053f66c5b68ff4b6c50214ce1088456b6b
     }
   }
 

@@ -1,25 +1,17 @@
-import 'package:News_App/constants.dart';
 import 'package:News_App/helper/news.dart';
 import 'package:News_App/models/article_model.dart';
 import 'package:News_App/models/category_model.dart';
 import 'package:News_App/pages/article_screens/article_homescreen.dart';
 import 'package:News_App/pages/article_screens/discover_homescreen.dart';
 import 'package:News_App/views/article_view.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:News_App/views/book_view.dart';
 import 'package:News_App/pages/widgets/TnT_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:News_App/models/lists.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:News_App/pages/articles.dart';
-import 'package:News_App/pages/discover.dart';
 import 'package:News_App/pages/settings.dart';
 import 'package:News_App/components/gradient.dart';
-import 'package:News_App/components/circle_indicator.dart';
-import 'package:News_App/pages/widgets/news_tile.dart';
-import 'package:News_App/models/sections.dart';
 import 'package:News_App/helper/data_new.dart';
 
 class Home extends StatefulWidget {
@@ -28,7 +20,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool _loading;
   List<ArticleModel> articles = new List<ArticleModel>();
   int currentIndex = 0;
   var pageController = PageController();
@@ -37,16 +28,13 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getNews();
-    _loading = true;
   }
 
   void getNews() async {
     News newsClass = News();
     await newsClass.getNews();
     articles = newsClass.news;
-    setState(() {
-      _loading = false;
-    });
+    setState(() {});
   }
 
   final Shader linearGradient = LinearGradient(
@@ -58,7 +46,6 @@ class _HomeState extends State<Home> {
     //final bgColor = const Color(0xFFffffff);
     final bgColor = Colors.black;
     final txtColor = Colors.white;
-    final up = const Color(0xFFff416c);
     final down = const Color(0xFFff4b2b);
 
     return SafeArea(
