@@ -210,101 +210,6 @@ class _HomeState extends State<Home> {
   }
 }
 
-/*class CategoryTile extends StatelessWidget {
-  final String imageURL, categoryName;
-  CategoryTile({this.imageURL, this.categoryName});
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CategoryNews(
-                category: categoryName.toLowerCase(),
-              ),
-            ));
-      },
-      child: Container(
-        margin: EdgeInsets.only(right: 16),
-        child: Stack(
-          children: <Widget>[
-            ClipRRect(
-                borderRadius: BorderRadius.circular(6),
-                child: CachedNetworkImage(
-                    imageUrl: imageURL,
-                    width: 120,
-                    height: 60,
-                    fit: BoxFit.cover)),
-            Container(
-              alignment: Alignment.center,
-              width: 120,
-              height: 60,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                color: Colors.black26,
-              ),
-              child: Text(
-                categoryName,
-                style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'PoppinsSemiBold',
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}*/
-
-/*class BlogTile extends StatelessWidget {
-  final String imageURL, title, url;
-  BlogTile({@required this.imageURL, @required this.title, @required this.url});
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ArticleView(
-                      blogUrl: url,
-                    )));
-      },
-      child: Container(
-        margin: EdgeInsets.only(bottom: 16),
-        child: Column(children: <Widget>[
-          ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Image.network(imageURL)),
-          SizedBox(
-            height: 8,
-          ),
-          Text(
-            title,
-            style: TextStyle(
-                fontSize: 20,
-                color: Colors.black87,
-                fontWeight: FontWeight.w500,
-                fontFamily: 'PoppinsSemiBold'),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          /*Text(description,
-              style: TextStyle(
-                color: Colors.black54,
-                fontFamily: 'Poppins',
-              ))*/
-        ]),
-      ),
-    );
-  }
-}*/
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -392,7 +297,7 @@ class _HomePageState extends State<HomePage>
                         ),
                       )
                     : CarouselSlider(
-                        height: 160.0,
+                        height: 170.0,
                         enlargeCenterPage: true,
                         aspectRatio: 9 / 16,
                         autoPlay: true,
@@ -472,74 +377,6 @@ class _HomePageState extends State<HomePage>
                 SizedBox(
                   height: 10,
                 ),
-
-                /*Container(
-                    height: 70,
-                    child: ListView.builder(
-                        itemCount: categories.length,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return CategoryTile(
-                            imageURL: categories[index].imageURL,
-                            categoryName: categories[index].categoryName,
-                          );
-                        }),
-                  ),
-                  //blogs
-                  Container(
-                    padding: EdgeInsets.only(top: 16),
-                    child: ListView.builder(
-                        itemCount: articles.length,
-                        shrinkWrap: true,
-                        physics: ClampingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return Tile(
-                            img: articles[index].urlToImage,
-                            head: articles[index].title,
-                            des: articles[index].url,
-                          );
-                        }),
-                  )*/
-                /*TabBar(
-                      labelColor: txtColor,
-                      isScrollable: true,
-                      labelStyle: TextStyle(
-                        fontFamily: 'PoppinsSemiBold',
-                        fontSize: 12,
-                      ),
-                      indicator: CircleTabIndicator(color: txtColor, radius: 2),
-                      indicatorWeight: 4,
-                      controller: tabcontroller,
-                      tabs: [
-                        Tab(
-                          text: 'Futurology',
-                        ),
-                        Tab(
-                          text: 'Business',
-                        ),
-                        Tab(
-                          text: 'Memes',
-                        ),
-                        Tab(
-                          text: 'Health',
-                        ),
-                        Tab(
-                          text: 'TodayILearned',
-                        ),
-                        Tab(
-                          text: 'Science',
-                        )
-                      ]),*/
-                /*Expanded(
-                      child: TabBarView(controller: tabcontroller, children: [
-                    All(),
-                    Business(),
-                    Sports(),
-                    Health(),
-                    Entertainment(),
-                    Science()
-                  ]))*/
                 _loading2
                     ? Container(
                         height: 500,

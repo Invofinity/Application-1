@@ -1,13 +1,12 @@
-import 'package:News_App/screens/Welcome/welcome_screen.dart';
+import 'package:News_App/internet.dart';
 import 'package:News_App/views/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:News_App/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/services.dart';
-
-import 'internet.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +18,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var i = 0;
     return new MaterialApp(
       title: 'My Application',
       debugShowCheckedModeBanner: false,
@@ -35,12 +33,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class homie extends StatefulWidget {
+class Homie extends StatefulWidget {
   @override
-  _homieState createState() => _homieState();
+  _HomieState createState() => _HomieState();
 }
 
-class _homieState extends State<homie> {
+class _HomieState extends State<Homie> {
   ConnectivityResult previous;
   @override
   void initState() {

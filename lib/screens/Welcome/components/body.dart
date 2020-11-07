@@ -1,7 +1,7 @@
-import 'package:News_App/components/rounded_button.dart';
 import 'package:News_App/main.dart';
 import 'package:News_App/screens/Welcome/components/background.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
+
 import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -18,6 +18,7 @@ class Body extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -84,7 +85,7 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return homie();
+                      return Homie();
                     },
                   ),
                 );
