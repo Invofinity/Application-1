@@ -1,5 +1,4 @@
 import 'package:News_App/views/article_view.dart';
-import 'package:News_App/views/book_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:share/share.dart';
@@ -31,8 +30,6 @@ class _ArticleTileState extends State<ArticleTile> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
     return GestureDetector(
       onTap: () {
         Navigator.push(

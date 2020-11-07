@@ -1,25 +1,22 @@
 import 'dart:async';
 import 'dart:io';
-
-import 'package:News_App/pages/discover.dart';
-import 'package:News_App/screens/Welcome/components/body.dart';
-import 'package:News_App/screens/Welcome/welcome_screen.dart';
 import 'package:News_App/views/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class imageui extends StatefulWidget {
+class Imageui extends StatefulWidget {
   @override
-  _imageuiState createState() => _imageuiState();
+  _ImageuiState createState() => _ImageuiState();
 }
 
-class _imageuiState extends State<imageui> {
+class _ImageuiState extends State<Imageui> {
   StreamSubscription connectivitySubscription;
 
   ConnectivityResult _previousResult;
 
   bool dialogshown = false;
+  // ignore: missing_return
   Future<bool> checkinternet() async {
     try {
       final result = await InternetAddress.lookup('google.com');
@@ -95,10 +92,6 @@ class _imageuiState extends State<imageui> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-      home: Home(),
-      debugShowCheckedModeBanner: false,
-    );
+    return MaterialApp(home: Home());
   }
 }

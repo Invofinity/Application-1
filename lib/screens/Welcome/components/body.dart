@@ -1,12 +1,25 @@
+<<<<<<< HEAD
 import 'package:News_App/components/rounded_button.dart';
 import 'package:News_App/constants.dart';
 import 'package:News_App/main.dart';
 import 'package:News_App/screens/Welcome/components/background.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
 import 'package:News_App/splashscreen.dart';
+=======
+<<<<<<< HEAD
+import 'package:News_App/main.dart';
+import 'package:News_App/screens/Welcome/components/background.dart';
+import 'package:News_App/screens/Welcome/welcome_screen.dart';
+
+>>>>>>> d72968409f48caf28405075e154a5a06f8862cb5
 import 'package:News_App/views/home.dart';
+=======
+import 'package:News_App/screens/Welcome/components/background.dart';
+import 'package:News_App/screens/Welcome/welcome_screen.dart';
+>>>>>>> 3d2e9c053f66c5b68ff4b6c50214ce1088456b6b
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:News_App/main.dart';
 
 var incc = 0;
 
@@ -35,6 +48,7 @@ class _BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -103,7 +117,11 @@ class _BodyState extends State<Body> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
+<<<<<<< HEAD
                       return SplashScreen();
+=======
+                      return Homie();
+>>>>>>> d72968409f48caf28405075e154a5a06f8862cb5
                     },
                   ),
                 );

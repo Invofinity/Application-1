@@ -157,16 +157,13 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    resizeToAvoidBottomInset:
+    // ignore: unnecessary_statements
     false;
     //final bgColor = const Color(0xFFffffff);
     //final txtColor = const Color(0xFF171717);
     final bgColor = Colors.black;
     final txtColor = Colors.white;
-    final up = const Color(0xFFff416c);
-    final cardColor = const Color(0xFFf8f8f8);
     final down = const Color(0xFFff4b2b);
-    final switchColor = const Color(0xFFFF483C);
     Size size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(

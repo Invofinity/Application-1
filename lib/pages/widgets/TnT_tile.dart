@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:News_App/components/gradient.dart';
 import 'package:share/share.dart';
-import 'package:optimized_cached_image/optimized_cached_image.dart';
 
 class TNTTile extends StatefulWidget {
   final String img;

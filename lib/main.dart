@@ -1,14 +1,21 @@
+<<<<<<< HEAD
 import 'package:News_App/constants.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
+=======
+import 'package:News_App/internet.dart';
+>>>>>>> d72968409f48caf28405075e154a5a06f8862cb5
 import 'package:News_App/views/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:News_App/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
+<<<<<<< HEAD
 import 'constants.dart';
+=======
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:permission_handler/permission_handler.dart';
+>>>>>>> d72968409f48caf28405075e154a5a06f8862cb5
 import 'package:flutter/services.dart';
-
-import 'internet.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,12 +43,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class homie extends StatefulWidget {
+class Homie extends StatefulWidget {
   @override
-  _homieState createState() => _homieState();
+  _HomieState createState() => _HomieState();
 }
 
-class _homieState extends State<homie> {
+class _HomieState extends State<Homie> {
   ConnectivityResult previous;
   @override
   void initState() {
@@ -50,7 +57,7 @@ class _homieState extends State<homie> {
       InternetAddress.lookup('google.com').then((result) {
         if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => imageui(),
+            builder: (context) => Imageui(),
           ));
         } else {
           _showdialog();
@@ -69,7 +76,7 @@ class _homieState extends State<homie> {
       } else if (previous == ConnectivityResult.none) {
         // internet conn
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => imageui(),
+          builder: (context) => Imageui(),
         ));
       }
 

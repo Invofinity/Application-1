@@ -1,5 +1,4 @@
 import 'package:News_App/pages/article_screens/discover_homescreen.dart';
-import 'package:News_App/pages/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 
 class Discover extends StatelessWidget {

@@ -1,8 +1,12 @@
 import 'dart:async';
 import 'package:News_App/main.dart';
+
+import 'package:News_App/permission.dart';
 import 'package:News_App/screens/Welcome/components/body.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
+import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 bool valuee;
 bool value2;
@@ -22,15 +26,24 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
-    _loadWidget();
+    new Timer(new Duration(seconds: 2), () {
+      checkFirstSeen();
+    });
   }
 
-  _loadWidget() async {
-    var _duration = Duration(seconds: splashDelay);
-    return Timer(_duration, navigationPage);
-  }
+  Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs.getBool('seen') ?? false);
 
+<<<<<<< HEAD
+    if (_seen) {
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new WelcomeScreen()));
+    } else {
+      prefs.setBool('seen', true);
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new Home()));
+=======
   void navigationPage() {
     /*if (incc == 0) {
       valuee = true;
@@ -43,13 +56,18 @@ class _SplashScreenState extends State<SplashScreen> {
         print(valuee);
       } else {
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => homie()));
+            MaterialPageRoute(builder: (BuildContext context) => Homie()));
         print("value of home screen");
         print(valuee);
       }
+<<<<<<< HEAD
     }*/
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (BuildContext context) => homie()));
+=======
+>>>>>>> 3d2e9c053f66c5b68ff4b6c50214ce1088456b6b
+    }
+>>>>>>> d72968409f48caf28405075e154a5a06f8862cb5
   }
 
   @override
