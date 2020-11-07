@@ -1,6 +1,11 @@
 import 'dart:async';
+import 'package:News_App/main.dart';
+import 'package:News_App/screens/Welcome/components/body.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
+
+bool valuee;
+bool value2;
 
 class SplashScreen extends StatefulWidget {
   final Color backgroundColor = Colors.black;
@@ -27,8 +32,22 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) => WelcomeScreen()));
+    if (incc == 0) {
+      valuee = true;
+      if (valuee == true) {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => WelcomeScreen()));
+        print("value of welcome screen");
+        print(valuee);
+      } else {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => Homie()));
+        print("value of home screen");
+        print(valuee);
+      }
+    }
   }
 
   @override

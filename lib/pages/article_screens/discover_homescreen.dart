@@ -169,22 +169,51 @@ class _Challenges1State extends State<Challenges1> {
               ),
             ),
           )
-        : Container(
-            child: Column(
-              children: [
-                /*Container(
-                  child: Row(
-                    children: [
-                      Container(
-                        child: Icon(
-                          Feather.archive,
-                          size: 15,
-                          color: up,
+        : SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  /*Container(
+                    child: Row(
+                      children: [
+                        Container(
+                          child: Icon(
+                            Feather.archive,
+                            size: 15,
+                            color: up,
+                          ),
                         ),
+                        Container(
+                          child: Text(
+                            "Challenges",
+                            style: TextStyle(
+                              fontFamily: 'PoppinsSemiBold',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14.0,
+                              color: txtColor,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),*/
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      height: 40,
+                      width: 160,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        //color: Color(0xFFf6f6f6),
+                        color: Colors.grey[850],
                       ),
-                      Container(
+                      child: Center(
                         child: Text(
-                          "Challenges",
+                          "Mental Health",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'PoppinsSemiBold',
                             fontWeight: FontWeight.bold,
@@ -192,112 +221,85 @@ class _Challenges1State extends State<Challenges1> {
                             color: txtColor,
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                ),*/
-                SizedBox(
-                  height: 5,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    height: 40,
-                    width: 160,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      //color: Color(0xFFf6f6f6),
-                      color: Colors.grey[850],
+                      ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    height: 20,
+                    width: double.infinity,
                     child: Center(
                       child: Text(
-                        "Mental Health",
+                        "Scroll for content",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'PoppinsSemiBold',
                           fontWeight: FontWeight.bold,
-                          fontSize: 14.0,
-                          color: txtColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  height: 20,
-                  width: double.infinity,
-                  child: Center(
-                    child: Text(
-                      "Scroll for content",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'PoppinsSemiBold',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10.0,
-                        color: txtColor.withOpacity(0.4),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    height: 400,
-                    child: ListWheelScrollView.useDelegate(
-                      itemExtent: 120,
-                      squeeze: 0.2,
-                      physics: FixedExtentScrollPhysics(),
-                      diameterRatio: 4,
-                      magnification: 1.5,
-                      childDelegate: ListWheelChildBuilderDelegate(
-                          builder: (context, index) {
-                        if (index < 0 || index > (allchallenges.length - 1)) {
-                          return null;
-                        }
-                        return ChallengesTile(
-                          day: allchallenges[index].day,
-                          task: allchallenges[index].task,
-                          index: index,
-                          length: allchallenges.length,
-                        );
-                      }),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 7,
-                ),
-                Container(
-                  height: 60,
-                  child: Center(
-                    child: Container(
-                        height: 60,
-                        child: Image.asset('assets/challenges1.svg')),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    height: 40,
-                    child: Center(
-                      child: Text(
-                        "More challenges coming soon....",
-                        maxLines: 2,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'PoppinsSemiBold',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14.0,
+                          fontSize: 10.0,
                           color: txtColor.withOpacity(0.4),
                         ),
                       ),
                     ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      height: 400,
+                      child: ListWheelScrollView.useDelegate(
+                        itemExtent: 120,
+                        squeeze: 0.2,
+                        physics: FixedExtentScrollPhysics(),
+                        diameterRatio: 4,
+                        magnification: 1.5,
+                        childDelegate: ListWheelChildBuilderDelegate(
+                            builder: (context, index) {
+                          if (index < 0 || index > (allchallenges.length - 1)) {
+                            return null;
+                          }
+                          return ChallengesTile(
+                            day: allchallenges[index].day,
+                            task: allchallenges[index].task,
+                            index: index,
+                            length: allchallenges.length,
+                          );
+                        }),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 7,
+                  ),
+                  Container(
+                    height: 60,
+                    child: Center(
+                      child: Container(
+                          height: 60,
+                          child: Image.asset('assets/challenges1.png')),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      height: 40,
+                      child: Center(
+                        child: Text(
+                          "More challenges coming soon....",
+                          maxLines: 2,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'PoppinsSemiBold',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.0,
+                            color: txtColor.withOpacity(0.4),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           );
   }

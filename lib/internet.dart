@@ -16,6 +16,7 @@ class _ImageuiState extends State<Imageui> {
   ConnectivityResult _previousResult;
 
   bool dialogshown = false;
+  // ignore: missing_return
   Future<bool> checkinternet() async {
     try {
       final result = await InternetAddress.lookup('google.com');

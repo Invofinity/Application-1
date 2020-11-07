@@ -29,8 +29,6 @@ class _ArticleTileState extends State<ArticleTile> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
     return GestureDetector(
       onTap: () {
         Navigator.push(

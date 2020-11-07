@@ -1,4 +1,5 @@
 import 'package:News_App/internet.dart';
+import 'package:News_App/views/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:News_App/splashscreen.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,8 @@ import 'package:flutter/services.dart';
 void main() {
   runApp(MyApp());
 }
+
+final bool debugShowCheckedModeBanner = false;
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -21,6 +24,10 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
       ),
       home: SplashScreen(),
+      routes: <String, WidgetBuilder>{
+        // Set routes for using the Navigator.
+        '/home': (BuildContext context) => new Home(),
+      },
     );
   }
 }
@@ -105,7 +112,7 @@ class _HomieState extends State<Homie> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             CircularProgressIndicator(),
             Padding(
               padding: EdgeInsets.only(top: 20.0),

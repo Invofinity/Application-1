@@ -11,7 +11,6 @@ class ArticlesHomeScreen extends StatefulWidget {
 class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
   var pageController = PageController();
 
-  bool _loading;
   //final txtColor = const Color(0xFF171717);
   final bgColor = Colors.black;
   final txtColor = Colors.white;
@@ -20,7 +19,6 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
   @override
   void initState() {
     super.initState();
-    _loading = true;
   }
 
   @override
@@ -28,90 +26,94 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: bgColor,
-      body: Expanded(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: size.height * 0.02),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
-                child:
-                    /*RichText(
-                  text: TextSpan(
-                    // ignore: deprecated_member_use
-                    style: Theme.of(context).textTheme.display1,
-                    children: [
-                      TextSpan(
-                        text: "What are you \nreading ",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
+      body: Stack(
+        children: [
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: size.height * 0.02),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 13, vertical: 10),
+                    child:
+                        /*RichText(
+                    text: TextSpan(
+                      // ignore: deprecated_member_use
+                      style: Theme.of(context).textTheme.display1,
+                      children: [
+                        TextSpan(
+                          text: "What are you \nreading ",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 30,
+                          ),
+                        ),
+                        TextSpan(
+                          text: "today?",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 30,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),*/
+                        Center(
+                      child: Container(
+                        height: 40,
+                        width: MediaQuery.of(context).size.width - 16,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          //color: Color(0xFFf6f6f6),
+                          color: down,
+                          /*gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [up, down],
+                            tileMode: TileMode.mirror,
+                          )*/
+                        ),
+                        child: Center(
+                          child: Text("What are you reading today?",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  color: txtColor),
+                              overflow: TextOverflow.visible),
                         ),
                       ),
-                      TextSpan(
-                        text: "today?",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          fontSize: 30,
-                        ),
-                      )
-                    ],
-                  ),
-                ),*/
-                    Center(
-                  child: Container(
-                    height: 40,
-                    width: MediaQuery.of(context).size.width - 16,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      //color: Color(0xFFf6f6f6),
-                      color: down,
-                      /*gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [up, down],
-                          tileMode: TileMode.mirror,
-                        )*/
                     ),
+                  ),
+                  Expanded(
+                    child: ArticlesHomePage(),
+                  ),
+                  Container(
+                    height: 20,
+                    width: double.infinity,
                     child: Center(
-                      child: Text("What are you reading today?",
+                      child: Text("Scroll for content",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontFamily: 'PoppinsSemiBold',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14.0,
-                              color: txtColor),
+                            fontFamily: 'PoppinsSemiBold',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10.0,
+                            color: txtColor.withOpacity(0.4),
+                          ),
                           overflow: TextOverflow.visible),
                     ),
-                  ),
-                ),
+                  )
+                ],
               ),
-              Expanded(
-                child: ArticlesHomePage(),
-              ),
-              Container(
-                height: 20,
-                width: double.infinity,
-                child: Center(
-                  child: Text("Scroll for content",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'PoppinsSemiBold',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10.0,
-                        color: txtColor.withOpacity(0.4),
-                      ),
-                      overflow: TextOverflow.visible),
-                ),
-              )
-            ],
-          ),
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

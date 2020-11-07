@@ -20,7 +20,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool _loading;
   List<ArticleModel> articles = new List<ArticleModel>();
   int currentIndex = 0;
   var pageController = PageController();
@@ -29,16 +28,13 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getNews();
-    _loading = true;
   }
 
   void getNews() async {
     News newsClass = News();
     await newsClass.getNews();
     articles = newsClass.news;
-    setState(() {
-      _loading = false;
-    });
+    setState(() {});
   }
 
   final Shader linearGradient = LinearGradient(
@@ -50,7 +46,6 @@ class _HomeState extends State<Home> {
     //final bgColor = const Color(0xFFffffff);
     final bgColor = Colors.black;
     final txtColor = Colors.white;
-    final up = const Color(0xFFff416c);
     final down = const Color(0xFFff4b2b);
 
     return SafeArea(
