@@ -94,19 +94,21 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
                   Expanded(
                     child: ArticlesHomePage(),
                   ),
-                  Container(
-                    height: 20,
-                    width: double.infinity,
-                    child: Center(
-                      child: Text("Scroll for content",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'PoppinsSemiBold',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 10.0,
-                            color: txtColor.withOpacity(0.4),
-                          ),
-                          overflow: TextOverflow.visible),
+                  SingleChildScrollView(
+                    child: Container(
+                      height: 20,
+                      width: double.infinity,
+                      child: Center(
+                        child: Text("Scroll for content",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'PoppinsSemiBold',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10.0,
+                              color: txtColor.withOpacity(0.4),
+                            ),
+                            overflow: TextOverflow.ellipsis),
+                      ),
                     ),
                   )
                 ],

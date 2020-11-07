@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 import 'package:News_App/main.dart';
 import 'package:News_App/screens/Welcome/components/background.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
 
 import 'package:News_App/views/home.dart';
-=======
-import 'package:News_App/screens/Welcome/components/background.dart';
-import 'package:News_App/screens/Welcome/welcome_screen.dart';
->>>>>>> 3d2e9c053f66c5b68ff4b6c50214ce1088456b6b
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:News_App/main.dart';
@@ -87,7 +82,7 @@ class Body extends StatelessWidget {
               onTap: () {
                 incc += 1;
                 value = false;
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) {

@@ -25,10 +25,6 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
       ),
       home: SplashScreen(),
-      routes: <String, WidgetBuilder>{
-        // Set routes for using the Navigator.
-        '/home': (BuildContext context) => new Home(),
-      },
     );
   }
 }
