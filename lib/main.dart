@@ -1,10 +1,11 @@
+import 'package:News_App/constants.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
 import 'package:News_App/views/home.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:News_App/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-
+import 'constants.dart';
 import 'package:flutter/services.dart';
 
 import 'internet.dart';
@@ -17,16 +18,16 @@ final bool debugShowCheckedModeBanner = false;
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
-    var i = 0;
     return new MaterialApp(
       title: 'My Application',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.black,
       ),
-      home: SplashScreen(),
+      home: counter == 0 ? WelcomeScreen() : SplashScreen(),
       routes: <String, WidgetBuilder>{
         // Set routes for using the Navigator.
         '/home': (BuildContext context) => new Home(),

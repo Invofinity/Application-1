@@ -104,6 +104,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
+import 'package:News_App/helper/data_new.dart';
+import 'dart:convert';
+import 'package:http/http.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -113,17 +116,32 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   int currentIndex;
   bool receive = true;
+  var linkk = [];
+  var linkkk;
   final FirebaseMessaging _fcm = FirebaseMessaging();
 
+  Future<void> fetchNews() async {
+    RateUs newsClass4 = RateUs();
+    await newsClass4.getData();
+    linkk = newsClass4.link;
+  }
+
+  Future getLink() async {
+    var response = await get(
+        'https://fir-news-api-veokara.firebaseio.com/settingsLink.json');
+    var jsonData = jsonDecode(response.body);
+    jsonData.forEach((element) {
+      linkkk = element['Link1'];
+    });
+  }
+
   Future<void> _launch() async {
-    await launch(
-        'https://play.google.com/store/apps/details?id=com.whatsapp&hl=en_IN&gl=US');
+    await launch(linkk[0].url);
   }
 
   _onShare(BuildContext context) async {
     final RenderBox box = context.findRenderObject();
-    await Share.share(
-        'Download https://play.google.com/store/apps?hl=en_IN&gl=US',
+    await Share.share('Download the Daily App-' + linkk[0].url,
         subject: 'Invofinity',
         sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
   }
@@ -131,6 +149,7 @@ class _SettingsState extends State<Settings> {
   @override
   void initState() {
     super.initState();
+    fetchNews();
     receive
         ? _fcm.subscribeToTopic('Invofinity')
         : _fcm.unsubscribeFromTopic('Invofinity');

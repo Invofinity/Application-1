@@ -1,18 +1,35 @@
 import 'package:News_App/components/rounded_button.dart';
+import 'package:News_App/constants.dart';
 import 'package:News_App/main.dart';
 import 'package:News_App/screens/Welcome/components/background.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
+import 'package:News_App/splashscreen.dart';
 import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 var incc = 0;
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   final bgColor = Colors.black;
+
   final txtColor = Colors.white;
+
   final up = const Color(0xFFff416c);
+
   final down = const Color(0xFFff4b2b);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -34,7 +51,7 @@ class Body extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.15),*/
             Image.asset(
-              "assets/welcome.png",
+              "assets/welcome1.png",
               height: size.height * 0.5,
             ),
             SizedBox(height: size.height * 0.0),
@@ -78,13 +95,15 @@ class Body extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                incc += 1;
+                setState(() {
+                  counter += 1;
+                });
                 value = false;
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return homie();
+                      return SplashScreen();
                     },
                   ),
                 );

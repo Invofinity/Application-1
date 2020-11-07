@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() {
-    if (incc == 0) {
+    /*if (incc == 0) {
       valuee = true;
       if (valuee == true) {
         Navigator.pushReplacement(
@@ -47,7 +47,9 @@ class _SplashScreenState extends State<SplashScreen> {
         print("value of home screen");
         print(valuee);
       }
-    }
+    }*/
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (BuildContext context) => homie()));
   }
 
   @override
@@ -68,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Image.asset(
-                        'assets/daily_icon.png',
+                        'assets/Untitled-2-[Recovered].png',
                         height: 300,
                         width: 300,
                       ),

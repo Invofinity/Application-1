@@ -282,3 +282,23 @@ class FeedCall {
     } catch (e) {}
   }
 }
+
+class RateUs {
+  List<Rate> link = [];
+  Future<void> getData() async {
+    try {
+      var response = await get(
+          'https://fir-news-api-veokara.firebaseio.com/settingsLink.json');
+      var jsonData = jsonDecode(response.body);
+      jsonData.forEach((element) {
+        Rate rateus = Rate(
+          url: element['Link1'],
+        );
+        link.add(rateus);
+      });
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+}
