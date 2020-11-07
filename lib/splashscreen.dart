@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    new Timer(new Duration(seconds: 2), () async {
+    new Timer(new Duration(milliseconds: 800), () async {
       await checkFirstSeen();
     });
   }
