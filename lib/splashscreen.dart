@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:News_App/main.dart';
-
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

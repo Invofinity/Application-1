@@ -1,4 +1,5 @@
 import 'package:News_App/views/article_view.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:share/share.dart';
@@ -57,7 +58,7 @@ class _ArticleTileState extends State<ArticleTile> {
                 Container(
                   width: MediaQuery.of(context).size.width - 46,
                   //height: size.height * 0.20,
-                  height: 172,
+                  height: MediaQuery.of(context).size.height * 0.20,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     color: bgColor,
@@ -76,7 +77,7 @@ class _ArticleTileState extends State<ArticleTile> {
                 Container(
                   height: 124,
                   width: MediaQuery.of(context).size.width - 46,
-                  child: Text(
+                  child: AutoSizeText(
                     widget.title /*!= null ? widget.title.toString() : ""*/,
                     maxLines: 6,
                     overflow: TextOverflow.ellipsis,
@@ -100,13 +101,8 @@ class _ArticleTileState extends State<ArticleTile> {
                     ),
                     Container(
                       width: 200,
-                      child: Text(
-                          "Author : " +
-                              (widget
-                                  .source /*!= null
-                                  ? widget.source.toString()
-                                  : ""*/
-                              ),
+                      child: AutoSizeText("Author : " + (widget.source),
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontFamily: 'PoppinsSemiBold',
                               fontWeight: FontWeight.bold,
