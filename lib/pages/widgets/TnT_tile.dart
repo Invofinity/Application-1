@@ -50,11 +50,8 @@ class _TNTTileState extends State<TNTTile> {
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
-        //margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            //color: Color(0xFFf6f6f6),
-            color: bgColor),
+            borderRadius: BorderRadius.circular(10), color: bgColor),
         child: Center(
           child: Padding(
               padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -89,48 +86,6 @@ class _TNTTileState extends State<TNTTile> {
                                 fit: BoxFit.fitWidth,
                               ),
                             ),
-                            /*Container(
-                              width: MediaQuery.of(context).size.width - 46,
-                              height: 160,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: bgColor,
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                      widget.img,
-                                    ),
-                                    fit: BoxFit.scaleDown),
-                              ),
-                            ),*/
-                            /*OptimizedCacheImage(imageUrl: widget.img,
-                            cacheHeight
-                            imageBuilder: (context,imageProvider)=>Container(
-                              
-                              decoration: BoxDecoration(
-                                image: DecorationImage(image:imageProvider,fit: BoxFit.cover)
-                              ),
-                            ),
-                            ),*/
-                            /*Container(
-                              width: MediaQuery.of(context).size.width - 46,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: bgColor,
-                                image: DecorationImage(
-                                    image: OptimizedCacheImageProvider(widget.img,
-                                        cacheHeight: 100),
-                                    fit: BoxFit.scaleDown),
-                              ),
-                            ),*/
-                            /*Container(
-                              width: MediaQuery.of(context).size.width - 46,
-                              child: LayoutBuilder(builder: (_, constraints) {
-                                return Image(
-                                    image: OptimizedCacheImageProvider(widget.img,
-                                        cacheHeight:
-                                            (constraints.maxHeight).toInt()));
-                              }),
-                            ),*/
                             SizedBox(
                               height: 15.0,
                             ),
@@ -219,39 +174,6 @@ class _TNTTileState extends State<TNTTile> {
                             SizedBox(
                               height: 15.0,
                             ),
-                            /*Container(
-                              width: MediaQuery.of(context).size.width - 46,
-                              height: 160,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: bgColor,
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                      widget.img,
-                                    ),
-                                    fit: BoxFit.cover),
-                              ),
-                            ),*/
-                            /*Container(
-                              width: MediaQuery.of(context).size.width - 46,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: bgColor,
-                                image: DecorationImage(
-                                    image: OptimizedCacheImageProvider(widget.img,
-                                        cacheHeight: constraints.maxHeight),
-                                    fit: BoxFit.scaleDown),
-                              ),
-                            ),*/
-                            /*Container(
-                              width: MediaQuery.of(context).size.width - 46,
-                              child: LayoutBuilder(builder: (_, constraints) {
-                                return Image(
-                                    image: OptimizedCacheImageProvider(widget.img,
-                                        cacheHeight:
-                                            (constraints.maxHeight).toInt()));
-                              }),
-                            ),*/
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image(
@@ -549,19 +471,6 @@ class _TNTTile2State extends State<TNTTile2> {
                             SizedBox(
                               height: 15.0,
                             ),
-                            /*Container(
-                              width: MediaQuery.of(context).size.width - 32,
-                              //height: 160,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: bgColor,
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                      widget.img,
-                                    ),
-                                    fit: BoxFit.fitWidth),
-                              ),
-                            ),*/
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image(
@@ -573,14 +482,6 @@ class _TNTTile2State extends State<TNTTile2> {
                             SizedBox(
                               height: 10.0,
                             ),
-                            /*Container(
-                              color: border1,
-                              height: 1.2,
-                              width: MediaQuery.of(context).size.width - 32,
-                            ),
-                            SizedBox(
-                              height: 15.0,
-                            ),*/
                             Container(
                               width: MediaQuery.of(context).size.width - 32,
                               child: Text(
@@ -663,14 +564,6 @@ class _TNTTile2State extends State<TNTTile2> {
                                 ),
                               ),
                             ),
-                            /*SizedBox(
-                              height: 8.0,
-                            ),
-                            Container(
-                              color: border1,
-                              height: 1.2,
-                              width: MediaQuery.of(context).size.width - 32,
-                            ),*/
                             SizedBox(
                               height: 15.0,
                             ),
@@ -758,30 +651,9 @@ class _TNTTile2State extends State<TNTTile2> {
                                 ),
                               ),
                             ),
-                            /*SizedBox(
-                              height: 10.0,
-                            ),
-                            Container(
-                              color: border1,
-                              height: 1.2,
-                              width: MediaQuery.of(context).size.width - 32,
-                            ),*/
                             SizedBox(
                               height: 15.0,
                             ),
-                            /*Container(
-                              width: MediaQuery.of(context).size.width - 32,
-                              //height: 160,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: bgColor,
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                      widget.img,
-                                    ),
-                                    fit: BoxFit.fitWidth),
-                              ),
-                            ),*/
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image(
@@ -861,14 +733,6 @@ class _TNTTile2State extends State<TNTTile2> {
                                 ),
                               ),
                             ),
-                            /*SizedBox(
-                              height: 8.0,
-                            ),
-                            Container(
-                              color: border1,
-                              height: 1.2,
-                              width: MediaQuery.of(context).size.width - 32,
-                            ),*/
                             SizedBox(
                               height: 15.0,
                             ),
