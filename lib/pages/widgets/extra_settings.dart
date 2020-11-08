@@ -203,7 +203,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "Kindly check your internet connection. If the problem continues feel free to report.",
+                    "Kindly check your internet connection. If the problem continues feel free to report.\n\n",
                     style: TextStyle(
                       fontFamily: "Poppins",
                       color: txtColor,
@@ -219,7 +219,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "The Feed section keeps you updated with the on-goings in different sectors all around the globe.",
+                    "The Feed section keeps you updated with the on-goings in different sectors all around the globe.\n\n",
                     style: TextStyle(
                       fontFamily: "Poppins",
                       color: txtColor,
@@ -235,7 +235,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "We include different challenges to make small changes- both physically and mentally- to create gains for your overall health and well-being. Fight hard the battle of life and take the challenges with courage, determination and perseverance.",
+                    "We include different challenges to make small changes- both physically and mentally- to create gains for your overall health and well-being. Fight hard the battle of life and take the challenges with courage, determination and perseverance.\n\n",
                     style: TextStyle(
                       fontFamily: "Poppins",
                       color: txtColor,
@@ -251,7 +251,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "Tips & Tricks section includes simple life hacks, technical tips and various other tricks to ease your life. They are effective if practised properly.",
+                    "Tips & Tricks section includes simple life hacks, technical tips and various other tricks to ease your life. They are effective if practised properly.\n\n",
                     style: TextStyle(
                       fontFamily: "Poppins",
                       color: txtColor,
@@ -267,7 +267,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "The Articles section has varieties to topics like Business, Health, Science & Technology, General, Finanace, etc. All articles help you enhance your knowledge.",
+                    "The Articles section has varieties to topics like Business, Health, Science & Technology, General, Finanace, etc. All articles help you enhance your knowledge.\n\n",
                     style: TextStyle(
                       fontFamily: "Poppins",
                       color: txtColor,
@@ -283,7 +283,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "The quotes notifications will be received twice daily. We push positive notifications to boost your motivation and inspire you everyday.",
+                    "The quotes notifications will be received twice daily. We push positive notifications to boost your motivation and inspire you everyday.\n\n",
                     style: TextStyle(
                       fontFamily: "Poppins",
                       color: txtColor,
@@ -299,7 +299,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "Yes, you ca turn off the notifications in the Settings. Although we recommend you to keep the notifications on to receive amazing quotes to kick start your day with positivity and motivation & also end your day peacefully.",
+                    "Yes, you ca turn off the notifications in the Settings. Although we recommend you to keep the notifications on to receive amazing quotes to kick start your day with positivity and motivation & also end your day peacefully.\n\n",
                     style: TextStyle(
                       fontFamily: "Poppins",
                       color: txtColor,

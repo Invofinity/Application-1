@@ -234,6 +234,29 @@ class _SettingsState extends State<Settings> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Help()));
+                        },
+                        child: Container(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20),
+                              Text('Help & FAQ',
+                                  style: TextStyle(
+                                      fontFamily: 'PoppinsSemiBold',
+                                      fontSize: 13,
+                                      color: txtColor),
+                                  overflow: TextOverflow.visible),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
+                      GestureDetector(
+                        onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
