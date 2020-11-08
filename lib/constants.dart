@@ -4,6 +4,7 @@ const kPrimaryColor = Color(0xFFe8505b); //change color according to scheme
 const kPrimaryLightColor = Color(0xFFFFA7BB); //change color...
 //const bgColor = Color(0xFFffffff);
 //const txtColor = Color(0xFF171717);
+int counter = 0;
 final bgColor = Colors.black;
 final txtColor = Colors.white;
 const up = Color(0xFFff416c);

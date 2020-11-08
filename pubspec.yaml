@@ -40,7 +40,7 @@ dependencies:
   share: 
   optimized_cached_image: ^1.0.0
   connectivity: ^2.0.1
-  
+  introduction_screen: ^1.0.7
 
 
   # cloud_firestore_web: ^0.2.0+1
@@ -50,6 +50,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
+  shared_preferences: ^0.5.12+4
+  permission_handler: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -97,6 +99,10 @@ flutter:
     - family: PoppinsBlack
       fonts:
         - asset: fonts/Poppins-Black.ttf
+    - family: NeonBold
+      fonts:
+        - asset: fonts/Neon-Bold.ttf
+    
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

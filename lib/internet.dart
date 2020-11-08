@@ -41,20 +41,22 @@ class _ImageuiState extends State<Imageui> {
           context: context,
           barrierDismissible: false,
           child: AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0))),
             backgroundColor: Colors.black,
-            title: Text(
+            /*title: Text(
               "Error",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
                   fontFamily: 'PoppinsBold',
                   color: Colors.white),
-            ),
+            ),*/
             content: Text(
-              "No Data Connection Available.",
+              "\nNo Data Connection available.\nPlease exit and retry",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 22,
+                  fontSize: 14,
                   fontFamily: 'PoppinsBold',
                   color: Colors.white),
             ),
@@ -63,7 +65,12 @@ class _ImageuiState extends State<Imageui> {
                 color: Colors.black,
                 onPressed: () =>
                     SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
-                child: Text("Exit."),
+                child: Text("Exit",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 16,
+                      color: Colors.red,
+                    )),
               ),
             ],
           ),
@@ -86,12 +93,14 @@ class _ImageuiState extends State<Imageui> {
   @override
   void dispose() {
     super.dispose();
-
     connectivitySubscription.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Home());
+    return MaterialApp(
+      home: Home(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

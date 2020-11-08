@@ -48,3 +48,8 @@ class Challenges {
   String task;
   Challenges({this.day, this.task});
 }
+
+class Rate {
+  String url;
+  Rate({this.url});
+}

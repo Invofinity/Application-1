@@ -19,7 +19,7 @@ class TNTTile extends StatefulWidget {
 
 _onShare(BuildContext context, String url) async {
   final RenderBox box = context.findRenderObject();
-  await Share.share(url,
+  await Share.share("For more Posts like this Download the Daily App.\n" + url,
       subject: 'Invofinity',
       sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
 }

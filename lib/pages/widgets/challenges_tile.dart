@@ -23,80 +23,82 @@ class _ChallengesTileState extends State<ChallengesTile> {
   @override
   Widget build(BuildContext context) {
     return widget.index == 0
-        ? Container(
-            height: 100,
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: down,
-              /*gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [up, down])*/
-              //color: Color(0xFFf6f6f6),
-              //border: Border.all(color: border, width: 1.5),
-              //boxShadow: [
-              /*BoxShadow(
-                  color: txtColor.withOpacity(0.25),
-                  offset: Offset(0, 1),
-                  blurRadius: 0.5),
-            ]*/
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                  height: 80,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Container(
-                          width: 60,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(8.0)),
-                          child: Center(
-                              child: Text(
-                            "Day " +
-                                widget
-                                    .day /*!= null
-                            ? widget.day.toString()
-                            : ''*/
+        ? SingleChildScrollView(
+            child: Container(
+              height: 100,
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: down,
+                /*gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [up, down])*/
+                //color: Color(0xFFf6f6f6),
+                //border: Border.all(color: border, width: 1.5),
+                //boxShadow: [
+                /*BoxShadow(
+                    color: txtColor.withOpacity(0.25),
+                    offset: Offset(0, 1),
+                    blurRadius: 0.5),
+              ]*/
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                    height: 80,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Container(
+                            width: 60,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(8.0)),
+                            child: Center(
+                                child: Text(
+                              "Day " +
+                                  widget
+                                      .day /*!= null
+                              ? widget.day.toString()
+                              : ''*/
+                              ,
+                              style: TextStyle(
+                                fontFamily: 'PoppinsSemiBold',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14.0,
+                                color: txtColor,
+                              ),
+                            ))),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                          width: 235,
+                          child: Text(
+                            widget
+                                .task /*!= null
+                              ? widget.day.toString()
+                              : ''*/
                             ,
+                            maxLines: 2,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'PoppinsSemiBold',
                               fontWeight: FontWeight.bold,
                               fontSize: 14.0,
                               color: txtColor,
                             ),
-                          ))),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                        width: 235,
-                        child: Text(
-                          widget
-                              .task /*!= null
-                            ? widget.day.toString()
-                            : ''*/
-                          ,
-                          maxLines: 2,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'PoppinsSemiBold',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14.0,
-                            color: txtColor,
                           ),
-                        ),
-                      )
-                    ],
-                  )),
+                        )
+                      ],
+                    )),
+              ),
             ),
           )
         : Container(

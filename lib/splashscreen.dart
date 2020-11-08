@@ -1,8 +1,12 @@
 import 'dart:async';
 import 'package:News_App/main.dart';
+
+import 'package:News_App/permission.dart';
 import 'package:News_App/screens/Welcome/components/body.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
+import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 bool valuee;
 bool value2;
@@ -22,31 +26,25 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
-    _loadWidget();
+    new Timer(new Duration(milliseconds: 800), () async {
+      await checkFirstSeen();
+    });
   }
 
-  _loadWidget() async {
-    var _duration = Duration(seconds: splashDelay);
-    return Timer(_duration, navigationPage);
-  }
+  Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs.getBool('seen') ?? false);
 
-  void navigationPage() {
-    if (incc == 0) {
-      valuee = true;
-      if (valuee == true) {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => WelcomeScreen()));
-        print("value of welcome screen");
-        print(valuee);
-      } else {
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => Homie()));
-        print("value of home screen");
-        print(valuee);
-      }
+    if (_seen) {
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new Homie()));
+      print(_seen);
+    } else {
+      print("2nd seen");
+      print(_seen);
+      prefs.setBool('seen', true);
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new WelcomeScreen()));
     }
   }
 
@@ -64,35 +62,49 @@ class _SplashScreenState extends State<SplashScreen> {
                 Expanded(
                   flex: 7,
                   child: Container(
-                      child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset(
-                        'assets/daily_icon.png',
-                        height: 300,
-                        width: 300,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                      ),
-                    ],
+                      child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset(
+                          'assets/Untitled-2-[Recovered].png',
+                          height: 300,
+                          width: 300,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                        ),
+                        SizedBox(height: 220),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "by",
+                              style: TextStyle(
+                                fontFamily: "PoppinsSemiBold",
+                                fontSize: 12,
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            Text(
+                              "I N V O F I N I T Y",
+                              style: TextStyle(
+                                fontFamily: "NeonBold",
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   )),
-                ),
-                Expanded(
-                  child: Column(
-                    children: <Widget>[
-                      CircularProgressIndicator(),
-                      Container(
-                        height: 10,
-                      ),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            Spacer(),
-                            Text('by Invofinity'),
-                          ])
-                    ],
-                  ),
                 ),
               ],
             ),

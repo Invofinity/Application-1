@@ -4,7 +4,8 @@ import 'package:connectivity/connectivity.dart';
 import 'package:News_App/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/services.dart';
 
 void main() {
@@ -23,10 +24,6 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
       ),
       home: SplashScreen(),
-      routes: <String, WidgetBuilder>{
-        // Set routes for using the Navigator.
-        '/home': (BuildContext context) => new Home(),
-      },
     );
   }
 }
@@ -77,15 +74,17 @@ class _HomieState extends State<Homie> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.black,
-        title: Text(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        /*title: Text(
           'ERROR',
           style: TextStyle(
               fontWeight: FontWeight.normal,
               fontSize: 20,
               fontFamily: 'Poppins',
               color: Colors.white),
-        ),
-        content: Text("No Internet Detected.",
+        ),*/
+        content: Text("\n\nNo Internet Detected",
             style: TextStyle(
                 fontWeight: FontWeight.normal,
                 fontSize: 17,
@@ -97,7 +96,9 @@ class _HomieState extends State<Homie> {
             // method to exit application programitacally
             onPressed: () =>
                 SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
-            child: Text("Exit"),
+            child: Text("Exit",
+                style: TextStyle(
+                    fontSize: 14, fontFamily: 'Poppins', color: Colors.red)),
           ),
         ],
       ),
@@ -107,12 +108,11 @@ class _HomieState extends State<Homie> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(),
             Padding(
               padding: EdgeInsets.only(top: 20.0),
               child: Text("Checking Your Internet Connection."),

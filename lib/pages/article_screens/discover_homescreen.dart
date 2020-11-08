@@ -276,7 +276,7 @@ class _Challenges1State extends State<Challenges1> {
                     child: Center(
                       child: Container(
                           height: 60,
-                          child: Image.asset('assets/challenges1.png')),
+                          child: Image.asset('assets/challenges.png')),
                     ),
                   ),
                   Padding(
