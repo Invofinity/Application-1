@@ -7,6 +7,7 @@ import 'package:share/share.dart';
 import 'package:News_App/helper/data_new.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -15,9 +16,11 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   int currentIndex;
-  bool receive = true;
+  //bool receive = true;
   var linkk = [];
   var linkkk;
+  bool receive = true;
+  SharedPreferences sharedPreferences;
   final FirebaseMessaging _fcm = FirebaseMessaging();
 
   Future<void> fetchNews() async {
@@ -50,17 +53,48 @@ class _SettingsState extends State<Settings> {
 
   @override
   void initState() {
+    loadSharedPreferencesAndSwitchState();
     super.initState();
+    getSwitchValues();
     fetchNews();
-    /* receive
+    /*receive
         ? _fcm.subscribeToTopic('Invofinity')
         : _fcm.unsubscribeFromTopic('Invofinity');*/
+  }
+
+  /*getSwitchValues() async {
+    receive = await getSwitchState();
+    setState(() {});
+  }
+*/
+  void loadSharedPreferencesAndSwitchState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    receive = prefs.getBool("switchState");
+  }
+
+  getSwitchValues() async {
+    receive = await getSwitchState();
+    setState(() {});
+  }
+
+  Future<bool> saveSwitchState(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("switchState", value);
+    print('Switch Value saved $value');
+    return prefs.setBool("switchState", value);
+  }
+
+  Future<bool> getSwitchState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool receive = prefs.getBool("switchState");
+    print(receive);
+    return receive;
   }
 
   @override
   Widget build(BuildContext context) {
     // ignore: unnecessary_statements
-    false;
+
     //final bgColor = const Color(0xFFffffff);
     //final txtColor = const Color(0xFF171717);
     final bgColor = Colors.black;
@@ -120,6 +154,7 @@ class _SettingsState extends State<Settings> {
                                   ? _fcm.subscribeToTopic('Invofinity')
                                   : _fcm.unsubscribeFromTopic('Invofinity');
                               receive = value;
+                              saveSwitchState(value);
                             });
                           },
                         ),
@@ -197,29 +232,6 @@ class _SettingsState extends State<Settings> {
                             children: [
                               SizedBox(width: 20),
                               Text('About Us',
-                                  style: TextStyle(
-                                      fontFamily: 'PoppinsSemiBold',
-                                      fontSize: 13,
-                                      color: txtColor),
-                                  overflow: TextOverflow.visible),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.03,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Help()));
-                        },
-                        child: Container(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(width: 20),
-                              Text('HELP & FAQ',
                                   style: TextStyle(
                                       fontFamily: 'PoppinsSemiBold',
                                       fontSize: 13,

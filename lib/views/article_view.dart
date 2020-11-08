@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:News_App/components/gradient.dart';
+import 'package:News_App/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 

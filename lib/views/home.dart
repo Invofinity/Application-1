@@ -1,6 +1,5 @@
 import 'package:News_App/helper/news.dart';
-import 'package:News_App/models/article_model.dart';
-import 'package:News_App/models/category_model.dart';
+import 'package:News_App/models/models.dart';
 import 'package:News_App/pages/article_screens/article_homescreen.dart';
 import 'package:News_App/pages/article_screens/discover_homescreen.dart';
 import 'package:News_App/views/article_view.dart';
@@ -11,7 +10,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:News_App/pages/settings.dart';
-import 'package:News_App/components/gradient.dart';
+import 'package:News_App/components/components.dart';
 import 'package:News_App/helper/data_new.dart';
 
 class Home extends StatefulWidget {
@@ -265,6 +264,7 @@ class _HomePageState extends State<HomePage>
           LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
         return SingleChildScrollView(
           scrollDirection: Axis.vertical,
+          physics: BouncingScrollPhysics(),
           primary: true,
           child: Container(
             child: Column(

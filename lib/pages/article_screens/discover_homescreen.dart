@@ -1,7 +1,7 @@
 import 'package:News_App/pages/widgets/challenges_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:News_App/components/circle_indicator.dart';
+import 'package:News_App/components/components.dart';
 import 'package:News_App/helper/data_new.dart';
 import 'package:News_App/pages/widgets/TnT_tile.dart';
 
@@ -108,6 +108,7 @@ class _TipsAndTricksState extends State<TipsAndTricks> {
       );
     } else {
       return ListView.builder(
+          physics: BouncingScrollPhysics(),
           itemCount: allarticles6.length,
           itemBuilder: (context, index) {
             return TNTTile(

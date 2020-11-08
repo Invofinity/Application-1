@@ -1,7 +1,7 @@
 import 'package:News_App/views/article_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:News_App/components/gradient.dart';
+import 'package:News_App/components/components.dart';
 import 'package:share/share.dart';
 
 class TNTTile extends StatefulWidget {
@@ -151,7 +151,7 @@ class _TNTTileState extends State<TNTTile> {
                             ),
                             Container(
                               color: border1,
-                              height: 1.2,
+                              height: 1,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],
@@ -233,7 +233,7 @@ class _TNTTileState extends State<TNTTile> {
                             ),
                             Container(
                               color: border1,
-                              height: 1.2,
+                              height: 1,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],
@@ -319,7 +319,7 @@ class _TNTTileState extends State<TNTTile> {
                             ),
                             Container(
                               color: border1,
-                              height: 1.2,
+                              height: 1,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],
@@ -390,7 +390,7 @@ class _TNTTileState extends State<TNTTile> {
                             ),
                             Container(
                               color: border1,
-                              height: 1.2,
+                              height: 1,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],
@@ -544,7 +544,7 @@ class _TNTTile2State extends State<TNTTile2> {
                             ),
                             Container(
                               color: border1,
-                              height: 1.2,
+                              height: 1,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],
@@ -629,7 +629,7 @@ class _TNTTile2State extends State<TNTTile2> {
                             ),
                             Container(
                               color: border1,
-                              height: 1.2,
+                              height: 1,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],
@@ -713,7 +713,7 @@ class _TNTTile2State extends State<TNTTile2> {
                             ),
                             Container(
                               color: border1,
-                              height: 1.2,
+                              height: 1,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],
@@ -784,7 +784,7 @@ class _TNTTile2State extends State<TNTTile2> {
                             ),
                             Container(
                               color: border1,
-                              height: 1.2,
+                              height: 1,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],

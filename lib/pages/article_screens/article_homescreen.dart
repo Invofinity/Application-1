@@ -198,7 +198,7 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
                 .toList(),
           ),*/
         CarouselSlider(
-            height: double.maxFinite,
+            height: 357,
             scrollDirection: Axis.vertical,
             enableInfiniteScroll: false,
             autoPlay: false,

@@ -1,6 +1,6 @@
 import 'package:News_App/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:News_App/components/gradient.dart';
+import 'package:News_App/components/components.dart';
 import 'package:News_App/views/article_view.dart';
 
 class AboutUs extends StatefulWidget {
@@ -35,6 +35,7 @@ class _AboutUsState extends State<AboutUs> {
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           SizedBox(
             height: 15,
@@ -170,6 +171,7 @@ class _HelpState extends State<Help> {
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           SizedBox(
             height: 15,
@@ -380,6 +382,7 @@ class _TermsState extends State<Terms> {
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           SizedBox(
             height: 15,
@@ -525,6 +528,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           SizedBox(
             height: 15,
