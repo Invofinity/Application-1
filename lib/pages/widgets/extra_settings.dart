@@ -211,7 +211,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "2. What is the content of Feed section? \n",
+                    "\n\n2. What is the content of Feed section? \n",
                     style: TextStyle(
                       fontFamily: "PoppinsBold",
                       color: txtColor,
@@ -227,7 +227,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "3. What are the challenges? \n",
+                    "\n\n3. What are the challenges? \n",
                     style: TextStyle(
                       fontFamily: "PoppinsBold",
                       color: txtColor,
@@ -243,7 +243,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "4. Are the Tips & Tricks effective? \n",
+                    "\n\n4. Are the Tips & Tricks effective? \n",
                     style: TextStyle(
                       fontFamily: "PoppinsBold",
                       color: txtColor,
@@ -259,7 +259,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "5. What topics are included in the Articles section? \n",
+                    "\n\n5. What topics are included in the Articles section? \n",
                     style: TextStyle(
                       fontFamily: "PoppinsBold",
                       color: txtColor,
@@ -275,7 +275,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "6. When will I get quotes notification? \n",
+                    "\n\n6. When will I get quotes notification? \n",
                     style: TextStyle(
                       fontFamily: "PoppinsBold",
                       color: txtColor,
@@ -291,7 +291,7 @@ class _HelpState extends State<Help> {
                     ),
                   ),
                   Text(
-                    "7. Can I turn off the notifications? \n",
+                    "\n\n7. Can I turn off the notifications? \n",
                     style: TextStyle(
                       fontFamily: "PoppinsBold",
                       color: txtColor,
