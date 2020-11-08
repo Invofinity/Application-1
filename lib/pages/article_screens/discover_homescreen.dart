@@ -12,8 +12,6 @@ class DiscoverHome extends StatefulWidget {
 
 class _DiscoverHomeState extends State<DiscoverHome>
     with SingleTickerProviderStateMixin {
-  //final bgColor = const Color(0xFFffffff);
-  //final txtColor = const Color(0xFF171717);
   final bgColor = Colors.black;
   final txtColor = Colors.white;
   final up = const Color(0xFFff416c);
@@ -69,8 +67,6 @@ class TipsAndTricks extends StatefulWidget {
 }
 
 class _TipsAndTricksState extends State<TipsAndTricks> {
-  //final bgColor = const Color(0xFFffffff);
-  //final txtColor = const Color(0xFF171717);
   final bgColor = Colors.black;
   final txtColor = Colors.white;
   final up = const Color(0xFFff416c);
@@ -174,30 +170,6 @@ class _Challenges1State extends State<Challenges1> {
             child: Container(
               child: Column(
                 children: [
-                  /*Container(
-                    child: Row(
-                      children: [
-                        Container(
-                          child: Icon(
-                            Feather.archive,
-                            size: 15,
-                            color: up,
-                          ),
-                        ),
-                        Container(
-                          child: Text(
-                            "Challenges",
-                            style: TextStyle(
-                              fontFamily: 'PoppinsSemiBold',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14.0,
-                              color: txtColor,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),*/
                   SizedBox(
                     height: 5,
                   ),
