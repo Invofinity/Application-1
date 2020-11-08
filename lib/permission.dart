@@ -36,36 +36,9 @@ class _AskPermissions extends State<AskPermissions> {
         _permissionStatus = status;
       });
     }
-
-    void initState() {
-      super.initState();
-      PermissionHandler()
-          .checkPermissionStatus(PermissionGroup.locationWhenInUse)
-          .then(_updateStatus);
-    }
-
-    Widget build(BuildContext context) {
-      return new Scaffold(
-        body: new Center(
-          child: new Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              new Text('Please provide Permissions'),
-              new MaterialButton(
-                child: new Text('Allow Permissions'),
-                onPressed: () {
-                  WelcomeScreen();
-                },
-              )
-            ],
-          ),
-        ),
-      );
-    }
   }
 
   @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-  }
+  // ignore: missing_return
+  Widget build(BuildContext context) {}
 }

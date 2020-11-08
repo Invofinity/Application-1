@@ -67,7 +67,7 @@ class _AboutUsState extends State<AboutUs> {
                           fontSize: 16),
                     ),
                     Text(
-                      "- Daily is developed to spread positivity and knowledge.There are various features like Feed,Articles,Tips and Tricks and Daily Challenges.\n- Daily pushes you special motivating and positive notifications twice a day.\n- Do check out the amazing Tips and Tricks and also complete the challenges.\n\n",
+                      "- Daily is developed to spread positivity and knowledge.There are various features like Feed, Articles, Tips & Tricks and Daily Challenges.\n- Daily pushes you special motivating and positive notifications twice a day.\n- Do check out the amazing Tips & Tricks and also complete the challenges.\n\n",
                       style: TextStyle(
                           fontFamily: "Poppins", color: txtColor, fontSize: 12),
                     ),
@@ -79,7 +79,7 @@ class _AboutUsState extends State<AboutUs> {
                           fontSize: 16),
                     ),
                     Text(
-                      "Daily promotes the habit of good reading and positivity.It helps you stay physically and mentally fit.It provides you with tons of knowledge regarding every field and also simple tips to ease your life.It can also help our youth to come out of the social media trap these days, and have a day full of knowledge and positivity.\n\n",
+                      "Daily promotes the habit of good reading and positivity.It helps you stay physically and mentally fit. It provides you with tons of knowledge regarding every field and also simple tips to ease your life. It can also help our youth to come out of the social media trap these days, and have a day full of knowledge and positivity.\n\n",
                       style: TextStyle(
                           fontFamily: "Poppins", color: txtColor, fontSize: 12),
                     ),
@@ -91,7 +91,7 @@ class _AboutUsState extends State<AboutUs> {
                           fontSize: 16),
                     ),
                     Text(
-                      "Daily has been foundes by Varun Lohade,Durgesh Kudalkar and Akshita Joshi, who are currently pursuing Computer Science from Walchand Institute of Technology,Solapur.\n\nWe believe in spreading knowledge and positivity around.We innovate and develop websites and applications to ease your life and catch up with trends.\nIn times of this pandemic all we need is some positivity in some or the other form.We present this application to you to get aware of your surroundings but also maintain your santiy by giving you positive dose of Articles and Daily Challenges.\n\n",
+                      "Daily has been founded by Varun Lohade ,Durgesh Kudalkar and Akshita Joshi, who are currently pursuing Computer Science from Walchand Institute of Technology,Solapur.\n\nWe believe in spreading knowledge and positivity. We innovate and develop websites and applications to ease your life and catch up with trends.\nIn times of this pandemic all we need is some positivity in some or the other form. We present this application to you to get aware of your surroundings but also maintain your santiy by giving you positive dose of Articles and Daily Challenges.\n\n",
                       style: TextStyle(
                           fontFamily: "Poppins", color: txtColor, fontSize: 12),
                     )

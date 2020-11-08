@@ -1,10 +1,6 @@
 import 'dart:async';
 import 'package:News_App/main.dart';
-
-import 'package:News_App/permission.dart';
-import 'package:News_App/screens/Welcome/components/body.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
-import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
