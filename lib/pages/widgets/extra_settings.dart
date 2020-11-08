@@ -150,7 +150,123 @@ class _HelpState extends State<Help> {
             width: MediaQuery.of(context).size.width - 32,
             height: MediaQuery.of(context).size.height * 0.75,
             child: SingleChildScrollView(
-              child: Text("data"),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "1. Why is the app not working? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "Kindly check your internet connection. If the problem continues feel free to report.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "2. What is the content of Feed section? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "The Feed section keeps you updated with the on-goings in different sectors all around the globe.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "3. What are the challenges? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "We include different challenges to make small changes- both physically and mentally- to create gains for your overall health and well-being. Fight hard the battle of life and take the challenges with courage, determination and perseverance.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "4. Are the Tips & Tricks effective? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "Tips & Tricks section includes simple life hacks, technical tips and various other tricks to ease your life. They are effective if practised properly.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "5. What topics are included in the Articles section? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "The Articles section has varieties to topics like Business, Health, Science & Technology, General, Finanace, etc. All articles help you enhance your knowledge.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "6. When will I get quotes notification? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "The quotes notifications will be received twice daily. We push positive notifications to boost your motivation and inspire you everyday.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "7. Can I turn off the notifications? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "Yes, you ca turn off the notifications in the Settings. Although we recommend you to keep the notifications on to receive amazing quotes to kick start your day with positivity and motivation & also end your day peacefully.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(

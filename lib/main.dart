@@ -14,12 +14,11 @@ void main() {
 final bool debugShowCheckedModeBanner = false;
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'My Application',
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'My Application',
       theme: ThemeData(
         primaryColor: Colors.black,
       ),
