@@ -169,6 +169,7 @@ class _Challenges1State extends State<Challenges1> {
         : SingleChildScrollView(
             child: Container(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
                     height: 5,
