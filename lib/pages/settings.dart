@@ -52,9 +52,9 @@ class _SettingsState extends State<Settings> {
   void initState() {
     super.initState();
     fetchNews();
-    receive
+    /* receive
         ? _fcm.subscribeToTopic('Invofinity')
-        : _fcm.unsubscribeFromTopic('Invofinity');
+        : _fcm.unsubscribeFromTopic('Invofinity');*/
   }
 
   @override
@@ -79,57 +79,51 @@ class _SettingsState extends State<Settings> {
                 SizedBox(
                   height: size.height * 0.02,
                 ),
-                GestureDetector(
-                  onTap: () => {
-                    receive ? receive = false : receive = true,
-                  },
-                  child: Container(
-                    height: 24,
-                    width: MediaQuery.of(context).size.width,
-                    color: bgColor,
-                    child: Center(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: size.width * 0.03,
-                          ),
-                          Icon(
-                            Feather.bell,
-                            color: txtColor,
-                          ),
-                          SizedBox(
-                            width: size.width * 0.04,
-                          ),
-                          Container(
-                            width: 250,
-                            child: Text('Notifications',
-                                style: TextStyle(
-                                  fontFamily: 'PoppinsSemiBold',
-                                  fontSize: 15,
-                                  color: txtColor,
-                                ),
-                                overflow: TextOverflow.visible),
-                          ),
-                          SizedBox(width: size.width * 0.08),
-                          Switch(
-                            value: receive,
-                            activeColor: down,
-                            inactiveThumbColor: Colors.grey[200],
-                            activeTrackColor: Colors.grey[400].withOpacity(0.4),
-                            inactiveTrackColor:
-                                Colors.grey[200].withOpacity(0.4),
-                            onChanged: (value) {
-                              setState(() {
-                                value
-                                    ? _fcm.subscribeToTopic('Invofinity')
-                                    : _fcm.unsubscribeFromTopic('Invofinity');
-                                receive = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
+                Container(
+                  height: 24,
+                  width: MediaQuery.of(context).size.width,
+                  color: bgColor,
+                  child: Center(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: size.width * 0.03,
+                        ),
+                        Icon(
+                          Feather.bell,
+                          color: txtColor,
+                        ),
+                        SizedBox(
+                          width: size.width * 0.04,
+                        ),
+                        Container(
+                          width: 250,
+                          child: Text('Notifications',
+                              style: TextStyle(
+                                fontFamily: 'PoppinsSemiBold',
+                                fontSize: 15,
+                                color: txtColor,
+                              ),
+                              overflow: TextOverflow.visible),
+                        ),
+                        SizedBox(width: size.width * 0.08),
+                        Switch(
+                          value: receive,
+                          activeColor: down,
+                          inactiveThumbColor: Colors.grey[200],
+                          activeTrackColor: Colors.grey[400].withOpacity(0.4),
+                          inactiveTrackColor: Colors.grey[200].withOpacity(0.4),
+                          onChanged: (value) {
+                            setState(() {
+                              value
+                                  ? _fcm.subscribeToTopic('Invofinity')
+                                  : _fcm.unsubscribeFromTopic('Invofinity');
+                              receive = value;
+                            });
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -249,6 +243,29 @@ class _SettingsState extends State<Settings> {
                             children: [
                               SizedBox(width: 20),
                               Text('Terms & Conditions',
+                                  style: TextStyle(
+                                      fontFamily: 'PoppinsSemiBold',
+                                      fontSize: 13,
+                                      color: txtColor),
+                                  overflow: TextOverflow.visible),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Help()));
+                        },
+                        child: Container(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20),
+                              Text('Help & FAQ',
                                   style: TextStyle(
                                       fontFamily: 'PoppinsSemiBold',
                                       fontSize: 13,
