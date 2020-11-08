@@ -37,8 +37,7 @@ class _ArticleTileState extends State<ArticleTile> {
             context,
             MaterialPageRoute(
                 builder: (context) => ArticleView(
-                      blogUrl:
-                          widget.domain != null ? widget.domain.toString() : "",
+                      blogUrl: widget.domain,
                     )));
       },
       child: Flexible(
@@ -57,6 +56,7 @@ class _ArticleTileState extends State<ArticleTile> {
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width - 46,

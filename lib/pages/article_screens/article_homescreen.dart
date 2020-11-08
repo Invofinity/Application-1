@@ -146,7 +146,6 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
               ),
             ),
           )
-<<<<<<< HEAD
         : /*ListWheelScrollView(
             itemExtent: 480,
             controller: scrollController,
@@ -167,10 +166,6 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
           ),*/
         CarouselSlider(
             height: 357,
-=======
-        : CarouselSlider(
-            height: double.maxFinite,
->>>>>>> 094f66aa35d839275a337098aa2ab0d9d5bc7cf7
             scrollDirection: Axis.vertical,
             enableInfiniteScroll: false,
             autoPlay: false,
