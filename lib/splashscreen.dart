@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:News_App/main.dart';
 
-import 'package:News_App/permission.dart';
-import 'package:News_App/screens/Welcome/components/body.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
-import 'package:News_App/views/home.dart';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    new Timer(new Duration(milliseconds: 800), () async {
+    new Timer(new Duration(seconds: 1), () async {
       await checkFirstSeen();
     });
   }

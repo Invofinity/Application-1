@@ -121,12 +121,6 @@ class _BodyState extends State<Body> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
                   color: down,
-                  /*gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [up, down],
-                      tileMode: TileMode.mirror,
-                    )*/
                 ),
                 child: Center(
                     child: Icon(

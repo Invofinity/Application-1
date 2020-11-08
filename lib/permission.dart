@@ -2,7 +2,6 @@ import 'package:News_App/screens/Welcome/welcome_screen.dart';
 import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AskPermissions extends StatefulWidget {
   @override
