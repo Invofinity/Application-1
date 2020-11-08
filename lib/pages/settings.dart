@@ -41,7 +41,9 @@ class _SettingsState extends State<Settings> {
 
   _onShare(BuildContext context) async {
     final RenderBox box = context.findRenderObject();
-    await Share.share('Download the Daily App-' + linkk[0].url,
+    await Share.share(
+        'Download the Daily App for daily dose of articles,challenges and feed-' +
+            linkk[0].url,
         subject: 'Invofinity',
         sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
   }
@@ -176,29 +178,6 @@ class _SettingsState extends State<Settings> {
                             children: [
                               SizedBox(width: 20),
                               Text('Rate Us',
-                                  style: TextStyle(
-                                      fontFamily: 'PoppinsSemiBold',
-                                      fontSize: 13,
-                                      color: txtColor),
-                                  overflow: TextOverflow.visible),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.03,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Help()));
-                        },
-                        child: Container(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(width: 20),
-                              Text('Help & FAQ',
                                   style: TextStyle(
                                       fontFamily: 'PoppinsSemiBold',
                                       fontSize: 13,

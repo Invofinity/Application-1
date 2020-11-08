@@ -1,8 +1,12 @@
 import 'dart:async';
 import 'package:News_App/main.dart';
+<<<<<<< HEAD
 
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
 
+=======
+import 'package:News_App/screens/Welcome/welcome_screen.dart';
+>>>>>>> f5c57749ca85553ec1c215847af45ac8339bfd90
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -60,34 +64,49 @@ class _SplashScreenState extends State<SplashScreen> {
                 Expanded(
                   flex: 7,
                   child: Container(
-                      child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset(
-                        'assets/daily_icon.png',
-                        height: 300,
-                        width: 300,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                      ),
-                    ],
+                      child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset(
+                          'assets/Untitled-2-[Recovered].png',
+                          height: 300,
+                          width: 300,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                        ),
+                        SizedBox(height: 220),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "by",
+                              style: TextStyle(
+                                fontFamily: "PoppinsSemiBold",
+                                fontSize: 12,
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            Text(
+                              "I N V O F I N I T Y",
+                              style: TextStyle(
+                                fontFamily: "NeonBold",
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   )),
-                ),
-                Expanded(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        height: 10,
-                      ),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            Spacer(),
-                            Text('by Invofinity'),
-                          ])
-                    ],
-                  ),
                 ),
               ],
             ),

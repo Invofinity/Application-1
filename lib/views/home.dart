@@ -44,7 +44,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    //final bgColor = const Color(0xFFffffff);
     final bgColor = Colors.black;
     final txtColor = Colors.white;
     final down = const Color(0xFFff4b2b);
