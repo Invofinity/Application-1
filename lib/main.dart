@@ -1,11 +1,10 @@
 import 'package:News_App/internet.dart';
-import 'package:News_App/views/home.dart';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:News_App/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:permission_handler/permission_handler.dart';
+
 import 'package:flutter/services.dart';
 
 void main() {
@@ -15,12 +14,11 @@ void main() {
 final bool debugShowCheckedModeBanner = false;
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'My Application',
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'My Application',
       theme: ThemeData(
         primaryColor: Colors.black,
       ),

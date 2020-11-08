@@ -22,6 +22,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<ArticleModel> articles = new List<ArticleModel>();
   int currentIndex = 0;
+  int index = 0;
   var pageController = PageController();
 
   @override
@@ -43,7 +44,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    //final bgColor = const Color(0xFFffffff);
     final bgColor = Colors.black;
     final txtColor = Colors.white;
     final down = const Color(0xFFff4b2b);
@@ -288,6 +288,8 @@ class _HomePageState extends State<HomePage>
                         enlargeCenterPage: true,
                         aspectRatio: 9 / 16,
                         autoPlay: true,
+                        autoPlayInterval: Duration(seconds: 4),
+                        initialPage: 0,
                         autoPlayAnimationDuration: Duration(seconds: 1),
                         autoPlayCurve: Curves.fastOutSlowIn,
                         enableInfiniteScroll: true,

@@ -44,17 +44,6 @@ class _ArticleViewState extends State<ArticleView> {
           ),
           centerTitle: true,
           elevation: 0.0,
-          /*actions: <Widget>[
-            Opacity(
-              opacity: 0,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Icon(Icons.save),
-              ),
-            )
-          ],
-          
-        ),*/
         ),
         body: Stack(children: [
           Container(

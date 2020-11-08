@@ -67,7 +67,7 @@ class _AboutUsState extends State<AboutUs> {
                           fontSize: 16),
                     ),
                     Text(
-                      "- Daily is developed to spread positivity and knowledge.There are various features like Feed,Articles,Tips and Tricks and Daily Challenges.\n- Daily pushes you special motivating and positive notifications twice a day.\n- Do check out the amazing Tips and Tricks and also complete the challenges.\n\n",
+                      "- Daily is developed to spread positivity and knowledge.There are various features like Feed, Articles, Tips & Tricks and Daily Challenges.\n- Daily pushes you special motivating and positive notifications twice a day.\n- Do check out the amazing Tips & Tricks and also complete the challenges.\n\n",
                       style: TextStyle(
                           fontFamily: "Poppins", color: txtColor, fontSize: 12),
                     ),
@@ -79,7 +79,7 @@ class _AboutUsState extends State<AboutUs> {
                           fontSize: 16),
                     ),
                     Text(
-                      "Daily promotes the habit of good reading and positivity.It helps you stay physically and mentally fit.It provides you with tons of knowledge regarding every field and also simple tips to ease your life.It can also help our youth to come out of the social media trap these days, and have a day full of knowledge and positivity.\n\n",
+                      "Daily promotes the habit of good reading and positivity.It helps you stay physically and mentally fit. It provides you with tons of knowledge regarding every field and also simple tips to ease your life. It can also help our youth to come out of the social media trap these days, and have a day full of knowledge and positivity.\n\n",
                       style: TextStyle(
                           fontFamily: "Poppins", color: txtColor, fontSize: 12),
                     ),
@@ -91,7 +91,7 @@ class _AboutUsState extends State<AboutUs> {
                           fontSize: 16),
                     ),
                     Text(
-                      "Daily has been foundes by Varun Lohade,Durgesh Kudalkar and Akshita Joshi, who are currently pursuing Computer Science from Walchand Institute of Technology,Solapur.\n\nWe believe in spreading knowledge and positivity around.We innovate and develop websites and applications to ease your life and catch up with trends.\nIn times of this pandemic all we need is some positivity in some or the other form.We present this application to you to get aware of your surroundings but also maintain your santiy by giving you positive dose of Articles and Daily Challenges.\n\n",
+                      "Daily has been founded by Varun Lohade ,Durgesh Kudalkar and Akshita Joshi, who are currently pursuing Computer Science from Walchand Institute of Technology,Solapur.\n\nWe believe in spreading knowledge and positivity. We innovate and develop websites and applications to ease your life and catch up with trends.\nIn times of this pandemic all we need is some positivity in some or the other form. We present this application to you to get aware of your surroundings but also maintain your santiy by giving you positive dose of Articles and Daily Challenges.\n\n",
                       style: TextStyle(
                           fontFamily: "Poppins", color: txtColor, fontSize: 12),
                     )
@@ -191,7 +191,123 @@ class _HelpState extends State<Help> {
             width: MediaQuery.of(context).size.width - 32,
             height: MediaQuery.of(context).size.height * 0.75,
             child: SingleChildScrollView(
-              child: Text("data"),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "1. Why is the app not working? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "Kindly check your internet connection. If the problem continues feel free to report.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "2. What is the content of Feed section? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "The Feed section keeps you updated with the on-goings in different sectors all around the globe.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "3. What are the challenges? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "We include different challenges to make small changes- both physically and mentally- to create gains for your overall health and well-being. Fight hard the battle of life and take the challenges with courage, determination and perseverance.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "4. Are the Tips & Tricks effective? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "Tips & Tricks section includes simple life hacks, technical tips and various other tricks to ease your life. They are effective if practised properly.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "5. What topics are included in the Articles section? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "The Articles section has varieties to topics like Business, Health, Science & Technology, General, Finanace, etc. All articles help you enhance your knowledge.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "6. When will I get quotes notification? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "The quotes notifications will be received twice daily. We push positive notifications to boost your motivation and inspire you everyday.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "7. Can I turn off the notifications? \n",
+                    style: TextStyle(
+                      fontFamily: "PoppinsBold",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "Yes, you ca turn off the notifications in the Settings. Although we recommend you to keep the notifications on to receive amazing quotes to kick start your day with positivity and motivation & also end your day peacefully.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: txtColor,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(

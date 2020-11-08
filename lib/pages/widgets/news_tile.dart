@@ -129,18 +129,6 @@ class _TileState extends State<Tile> {
                   ),
                 ],
               ),
-              /*SizedBox(
-                height: 12.0,
-              ),
-              Text(
-                widget.des,
-                maxLines: 2,
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 12,
-                  color: txtColor,
-                ),
-              ),*/
             ],
           ),
         ),
@@ -217,8 +205,6 @@ class _SavedState extends State<Saved> {
   String description;
 
   void setTodo(/*String img, String head*/ String des) {
-    //image = img;
-    //heading = head;
     description = des;
   }
 
@@ -244,17 +230,7 @@ class _SavedState extends State<Saved> {
                   itemCount: savedArticles.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () =>
-                          /*Navigator.pushNamed(context, '/information',
-                          arguments: {
-                            '/link': savedArticles[index].url,
-                            '/content': savedArticles[index].content,
-                            '/head': savedArticles[index].head,
-                            '/img': savedArticles[index].img
-                          })*/
-                          Tile(
-                        //img: image,
-                        //head: heading,
+                      onTap: () => Tile(
                         des: description,
                       ),
                     );

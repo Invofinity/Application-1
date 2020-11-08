@@ -1,18 +1,9 @@
-import 'package:News_App/components/rounded_button.dart';
 import 'package:News_App/constants.dart';
-import 'package:News_App/main.dart';
 import 'package:News_App/screens/Welcome/components/background.dart';
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
 import 'package:News_App/splashscreen.dart';
-
-import 'package:News_App/main.dart';
-import 'package:News_App/screens/Welcome/components/background.dart';
-import 'package:News_App/screens/Welcome/welcome_screen.dart';
-
-import 'package:News_App/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:News_App/main.dart';
 
 var incc = 0;
 
@@ -121,12 +112,6 @@ class _BodyState extends State<Body> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
                   color: down,
-                  /*gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [up, down],
-                      tileMode: TileMode.mirror,
-                    )*/
                 ),
                 child: Center(
                     child: Icon(
