@@ -1,12 +1,7 @@
 import 'dart:async';
 import 'package:News_App/main.dart';
-<<<<<<< HEAD
 
 import 'package:News_App/screens/Welcome/welcome_screen.dart';
-
-=======
-import 'package:News_App/screens/Welcome/welcome_screen.dart';
->>>>>>> f5c57749ca85553ec1c215847af45ac8339bfd90
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
