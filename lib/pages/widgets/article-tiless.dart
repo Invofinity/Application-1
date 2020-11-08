@@ -41,6 +41,7 @@ class _ArticleTileState extends State<ArticleTile> {
                     )));
       },
       child: Container(
+        height: 357,
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(horizontal: 2, vertical: 66),
         decoration: BoxDecoration(
