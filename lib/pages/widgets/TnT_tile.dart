@@ -1,7 +1,7 @@
 import 'package:News_App/views/article_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:News_App/components/components.dart';
+
 import 'package:share/share.dart';
 
 class TNTTile extends StatefulWidget {

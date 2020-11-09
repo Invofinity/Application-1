@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:News_App/models/models.dart';
 import 'package:http/http.dart' as http;
 
 class Articles {
