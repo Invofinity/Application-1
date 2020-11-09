@@ -66,8 +66,6 @@ class ArticleWelcome extends StatelessWidget {
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [up, down],
-                      tileMode: TileMode.mirror,
                     )),
                 child: Center(
                   child: Text(
