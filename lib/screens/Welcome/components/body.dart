@@ -35,38 +35,11 @@ class _BodyState extends State<Body> {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            /*Text(
-              "Welcome to DAILY \n",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'PoppinsBold',
-                  fontSize: 25),
-            ),
-            Text(
-              "by Invofinity",
-              style: TextStyle(fontFamily: 'Poppins', fontSize: 20),
-            ),
-            SizedBox(height: size.height * 0.15),*/
             Image.asset(
               "assets/welcome1.png",
               height: size.height * 0.5,
             ),
             SizedBox(height: size.height * 0.0),
-            /*Container(
-              child: RoundedButton(
-                text: "Get Started...", //add fontfamily
-                press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return Home();
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),*/
             Center(
               child: Text(
                 "Welcome",
