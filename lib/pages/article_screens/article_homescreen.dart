@@ -39,13 +39,44 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 13, vertical: 10),
-                    child: Center(
+                    child:
+                        /*RichText(
+                    text: TextSpan(
+                      // ignore: deprecated_member_use
+                      style: Theme.of(context).textTheme.display1,
+                      children: [
+                        TextSpan(
+                          text: "What are you \nreading ",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 30,
+                          ),
+                        ),
+                        TextSpan(
+                          text: "today?",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 30,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),*/
+                        Center(
                       child: Container(
                         height: 40,
                         width: MediaQuery.of(context).size.width - 16,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
+                          //color: Color(0xFFf6f6f6),
                           color: down,
+                          /*gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [up, down],
+                            tileMode: TileMode.mirror,
+                          )*/
                         ),
                         child: Center(
                           child: Text("What are you reading today?",
@@ -55,7 +86,7 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14.0,
                                   color: txtColor),
-                              overflow: TextOverflow.ellipsis),
+                              overflow: TextOverflow.visible),
                         ),
                       ),
                     ),
@@ -96,6 +127,8 @@ class ArticlesHomePage extends StatefulWidget {
 }
 
 class _ArticlesHomePageState extends State<ArticlesHomePage> {
+  //final bgColor = const Color(0xFFffffff);
+  //final txtColor = const Color(0xFF171717);
   final bgColor = Colors.black;
   final txtColor = Colors.white;
   final up = const Color(0xFFff416c);

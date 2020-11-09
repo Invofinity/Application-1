@@ -1,6 +1,6 @@
 import 'package:News_App/constants.dart';
 import 'package:flutter/material.dart';
-
+import 'package:News_App/components/components.dart';
 import 'package:News_App/views/article_view.dart';
 
 class AboutUs extends StatefulWidget {

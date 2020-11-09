@@ -31,6 +31,18 @@ class _ChallengesTileState extends State<ChallengesTile> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: down,
+                /*gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [up, down])*/
+                //color: Color(0xFFf6f6f6),
+                //border: Border.all(color: border, width: 1.5),
+                //boxShadow: [
+                /*BoxShadow(
+                    color: txtColor.withOpacity(0.25),
+                    offset: Offset(0, 1),
+                    blurRadius: 0.5),
+              ]*/
               ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -96,7 +108,15 @@ class _ChallengesTileState extends State<ChallengesTile> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 //color: Color(0xFFf6f6f6),
-                color: Colors.grey[850]),
+                color: Colors.grey[850]
+                //border: Border.all(color: border, width: 1.5),
+                //boxShadow: [
+                /*BoxShadow(
+                  color: txtColor.withOpacity(0.25),
+                  offset: Offset(0, 1),
+                  blurRadius: 0.5),
+            ]*/
+                ),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(

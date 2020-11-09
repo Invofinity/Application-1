@@ -1,7 +1,7 @@
 import 'package:News_App/views/article_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-
+import 'package:News_App/components/components.dart';
 import 'package:share/share.dart';
 
 class TNTTile extends StatefulWidget {
@@ -34,7 +34,9 @@ class _TNTTileState extends State<TNTTile> {
   final border1 = Colors.grey[400];
   final up = const Color(0xFFff416c);
   final down = const Color(0xFFff4b2b);
-
+  final Shader lineargradient = LinearGradient(
+    colors: <Color>[Color(0xFFff416c), Color(0xFFff4b2b)],
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 0.0, 0.0));
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -66,7 +68,8 @@ class _TNTTileState extends State<TNTTile> {
                                     fontFamily: 'PoppinsSemiBold',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14.0,
-                                    color: down,
+                                    foreground: Paint()
+                                      ..shader = lineargradient,
                                     //color: txtColor,
                                   ),
                                 ),
@@ -160,11 +163,12 @@ class _TNTTileState extends State<TNTTile> {
                               child: Text(
                                 widget.tag,
                                 style: TextStyle(
-                                    fontFamily: 'PoppinsSemiBold',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14.0,
-                                    //color: txtColor,
-                                    color: down),
+                                  fontFamily: 'PoppinsSemiBold',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  //color: txtColor,
+                                  foreground: Paint()..shader = lineargradient,
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -245,7 +249,7 @@ class _TNTTileState extends State<TNTTile> {
                                   fontFamily: 'PoppinsSemiBold',
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14.0,
-                                  color: down,
+                                  foreground: Paint()..shader = lineargradient,
                                   //color: txtColor,
                                 ),
                               ),
@@ -330,7 +334,7 @@ class _TNTTileState extends State<TNTTile> {
                                   fontFamily: 'PoppinsSemiBold',
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14.0,
-                                  color: down,
+                                  foreground: Paint()..shader = lineargradient,
                                   //color: txtColor,
                                 ),
                               ),

@@ -1,8 +1,7 @@
-import 'package:News_App/pages/article_screens/article_homescreen.dart';
+import 'package:News_App/pages/article_screens/discover_homescreen.dart';
 import 'package:flutter/material.dart';
-import 'package:News_App/constants.dart';
 
-class Articles extends StatelessWidget {
+class Discover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -10,7 +9,7 @@ class Articles extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: ArticleWelcome(),
+      home: DiscoverWelcome(),
     );
   }
 }
@@ -19,11 +18,12 @@ final bgColor = const Color(0xFFffffff);
 final txtColor = const Color(0xFF171717);
 final up = const Color(0xFFff416c);
 final down = const Color(0xFFff4b2b);
+
 final Shader linearGradient = LinearGradient(
   colors: <Color>[Color(0xFFff416c), Color(0xFFff4b2b)],
 ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
 
-class ArticleWelcome extends StatelessWidget {
+class DiscoverWelcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -34,7 +34,7 @@ class ArticleWelcome extends StatelessWidget {
           children: <Widget>[
             RichText(
               text: TextSpan(
-                text: "Articles",
+                text: "Discover",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: 'PoppinsBold',
@@ -43,8 +43,10 @@ class ArticleWelcome extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: size.height * 0.18),
-            Image.asset("assets/reading.png"),
+            SizedBox(height: size.height * 0.2),
+            Center(
+                child: Container(
+                    height: 260, child: Image.asset("assets/discover.png"))),
             SizedBox(
               height: 100,
             ),
@@ -54,7 +56,7 @@ class ArticleWelcome extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return ArticlesHomeScreen();
+                      return DiscoverHome();
                     },
                   ),
                 );
@@ -72,7 +74,7 @@ class ArticleWelcome extends StatelessWidget {
                     )),
                 child: Center(
                   child: Text(
-                    'Start Reading..',
+                    'Start Discovering..',
                     style: TextStyle(
                         fontFamily: 'PoppinsSemiBold',
                         fontSize: 18.0,

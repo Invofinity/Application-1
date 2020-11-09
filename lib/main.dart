@@ -1,8 +1,10 @@
 import 'package:News_App/internet.dart';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:News_App/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
+
 import 'package:flutter/services.dart';
 
 void main() {
@@ -73,6 +75,14 @@ class _HomieState extends State<Homie> {
         backgroundColor: Colors.black,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        /*title: Text(
+          'ERROR',
+          style: TextStyle(
+              fontWeight: FontWeight.normal,
+              fontSize: 20,
+              fontFamily: 'Poppins',
+              color: Colors.white),
+        ),*/
         content: Text("\n\nNo Internet Detected",
             style: TextStyle(
                 fontWeight: FontWeight.normal,

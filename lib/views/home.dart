@@ -36,6 +36,10 @@ class _HomeState extends State<Home> {
     setState(() {});
   }
 
+  final Shader linearGradient = LinearGradient(
+    colors: <Color>[Color(0xFFff416c), Color(0xFFff4b2b)],
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+
   @override
   Widget build(BuildContext context) {
     final bgColor = Colors.black;
@@ -217,13 +221,20 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-
+    //categories = getCategories();
+    //getNews();
     _loading = true;
     _loading2 = true;
     fetchNews();
     fetchNews2();
     tabcontroller = new TabController(vsync: this, length: 6);
   }
+
+  /*void getNews() async {
+    News newsClass = News();
+    await newsClass.getNews();
+    articles = newsClass.news;
+  }*/
 
   Future<void> fetchNews() async {
     ImpNews newsClass1 = ImpNews();
