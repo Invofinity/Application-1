@@ -5,7 +5,6 @@ import 'package:News_App/pages/article_screens/discover_homescreen.dart';
 import 'package:News_App/views/article_view.dart';
 import 'package:News_App/pages/widgets/TnT_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:News_App/models/lists.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -36,10 +35,6 @@ class _HomeState extends State<Home> {
     articles = newsClass.news;
     setState(() {});
   }
-
-  final Shader linearGradient = LinearGradient(
-    colors: <Color>[Color(0xFFff416c), Color(0xFFff4b2b)],
-  ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
 
   @override
   Widget build(BuildContext context) {
@@ -222,20 +217,13 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    //categories = getCategories();
-    //getNews();
+
     _loading = true;
     _loading2 = true;
     fetchNews();
     fetchNews2();
     tabcontroller = new TabController(vsync: this, length: 6);
   }
-
-  /*void getNews() async {
-    News newsClass = News();
-    await newsClass.getNews();
-    articles = newsClass.news;
-  }*/
 
   Future<void> fetchNews() async {
     ImpNews newsClass1 = ImpNews();
