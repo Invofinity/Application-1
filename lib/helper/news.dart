@@ -10,8 +10,10 @@ class News {
 
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
+    print(response.statusCode);
+   
 
-    jsonData.forEach((element) {
+    jsonData.forEach((element)async {
       ArticleModel articleModel = ArticleModel(
         title: element['title'],
         //author: element["author"],
@@ -21,8 +23,9 @@ class News {
         //content: element["content"]
       );
 
-      news.add(articleModel);
+      await news.add(articleModel);
     });
+  
   }
 }
 

@@ -175,16 +175,16 @@ class _HomeState extends State<Home> {
               BubbleBottomBarItem(
                   backgroundColor: down,
                   icon: Icon(
-                    Feather.settings,
+                    Feather.info,
                     size: 15.0,
                     color: down,
                   ),
                   activeIcon: Icon(
-                    Feather.settings,
+                    Feather.info,
                     size: 20.0,
                     color: bgColor,
                   ),
-                  title: Text('Settings',
+                  title: Text('Info',
                       style: TextStyle(
                           fontFamily: 'PoppinsSemiBold',
                           fontSize: 12,
@@ -225,6 +225,9 @@ class _HomePageState extends State<HomePage>
     //getNews();
     _loading = true;
     _loading2 = true;
+    
+   
+    
     fetchNews();
     fetchNews2();
     tabcontroller = new TabController(vsync: this, length: 6);
@@ -240,8 +243,13 @@ class _HomePageState extends State<HomePage>
     ImpNews newsClass1 = ImpNews();
     await newsClass1.getData();
     impList = newsClass1.news;
+     print(impList);
     setState(() {
-      _loading = false;
+      if(newsClass1.getData() == null){
+      _loading = true;}
+      else{
+      _loading = false;}
+     
     });
   }
 
@@ -249,6 +257,7 @@ class _HomePageState extends State<HomePage>
     FeedCall feedcontent = FeedCall();
     await feedcontent.getData();
     feed2 = feedcontent.feed;
+    print(feed2);
     setState(() {
       _loading2 = false;
     });
@@ -288,7 +297,6 @@ class _HomePageState extends State<HomePage>
                         aspectRatio: 9 / 16,
                         autoPlay: true,
                         autoPlayInterval: Duration(seconds: 4),
-                        initialPage: 0,
                         autoPlayAnimationDuration: Duration(seconds: 1),
                         autoPlayCurve: Curves.fastOutSlowIn,
                         enableInfiniteScroll: true,
@@ -314,6 +322,7 @@ class _HomePageState extends State<HomePage>
                                         margin: EdgeInsets.all(5.0),
                                         decoration: BoxDecoration(
                                             color: bgColor,
+                                            
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                             image: DecorationImage(

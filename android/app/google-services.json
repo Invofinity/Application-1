@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1083116059275:android:318a9ade45d94c9439f28e",
         "android_client_info": {
-          "package_name": "com.example.News_App"
+          "package_name": "com.invofinity.android.Daily"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1083116059275-ic731pul5fo9hpqj9itndbhr20hd4s5u.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.News_App",
+            "package_name": "com.invofinity.android.Daily",
             "certificate_hash": "bbf9de6fff64663254a70dbcb5f16b1989400e7a"
           }
         },
@@ -26,7 +26,7 @@
           "client_id": "1083116059275-f3a4c20apfshu2hvjnc510hm23enau48.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.News_App",
+            "package_name": "com.invofinity.android.Daily",
             "certificate_hash": "7d49fd349e4664d7604fd00c10c82c083bcd3005"
           }
         },

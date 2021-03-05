@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.News_App">
+    package="com.invofinity.android.Daily">
 
 
     <uses-permission android:name="android.permission.INTERNET"/>

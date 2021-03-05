@@ -27,12 +27,12 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.google.gms.google-services'
   def keystoreProperties = new Properties()
    def keystorePropertiesFile = rootProject.file('key.properties')
-   if (keystorePropertiesFile.exists()) {
+   if (keystorePropertiesFile.exists()) { 
        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
    }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -44,10 +44,10 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.News_App"
+        applicationId "com.invofinity.android.Daily"
         minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
+        targetSdkVersion 29
+        versionCode 2
         versionName flutterVersionName
     }
     signingConfigs {
@@ -66,11 +66,12 @@ android {
     }
 }
 
+println keystorePropertiesFile
 flutter {
     source '../..'
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    //implementation 'com.google.android.gms:play-services-auth:18.1.0'
 }

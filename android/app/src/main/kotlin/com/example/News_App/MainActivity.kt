@@ -1,4 +1,4 @@
-package com.example.News_App
+package com.invofinity.android.Daily
 
 import io.flutter.embedding.android.FlutterActivity
 

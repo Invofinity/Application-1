@@ -19,7 +19,7 @@ class TNTTile extends StatefulWidget {
 
 _onShare(BuildContext context, String url) async {
   final RenderBox box = context.findRenderObject();
-  await Share.share("For more Posts like this, Download the Daily App.\n" + url,
+  await Share.share("For more Content like this, Download the Daily App.\n" + url,
       subject: 'Invofinity',
       sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
 }
@@ -789,6 +789,115 @@ class _TNTTile2State extends State<TNTTile2> {
                             ),
                           ],
                         )),
+        ),
+      ),
+    );
+  }
+}
+
+class TNTTile3 extends StatefulWidget {
+  final String img;
+  final String head;
+  final String source;
+  final String des;
+  TNTTile3({this.img, this.head, this.source, this.des});
+  @override
+  _TNTTile3State createState() => _TNTTile3State();
+}
+
+class _TNTTile3State extends State<TNTTile3> {
+  //final bgColor = const Color(0xFFffffff);
+  final cardColor = const Color(0xFFf8f8f8);
+  //final txtColor = const Color(0xFF171717);
+  final bgColor = Colors.black;
+  final txtColor = Colors.white;
+  final border = Colors.grey[300];
+  final border1 = Colors.grey[400];
+  final up = const Color(0xFFff416c);
+  final down = const Color(0xFFff4b2b);
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ArticleView(
+                      blogUrl: widget.des,
+                    )));
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.grey[850].withOpacity(0.4)
+            //color: bgColor,
+            ),
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image(
+                    width: MediaQuery.of(context).size.width - 48,
+                    image: NetworkImage(widget.img),
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width - 48,
+                  child: Text(
+                    widget.head,
+                    style: TextStyle(
+                      fontFamily: 'PoppinsSemiBold',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.0,
+                      color: txtColor,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 14,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 200,
+                      child: Text("Author : " + (widget.source),
+                          style: TextStyle(
+                              fontFamily: 'PoppinsSemiBold',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10,
+                              color: border1)),
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width - 268),
+                    GestureDetector(
+                      onTap: () => _onShare(context, widget.des),
+                      child: Container(
+                        child: Icon(
+                          Feather.share_2,
+                          size: 15,
+                          color: border1,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height:4.0,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

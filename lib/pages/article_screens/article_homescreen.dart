@@ -1,3 +1,4 @@
+import 'package:News_App/pages/widgets/TnT_tile.dart';
 import 'package:News_App/pages/widgets/article-tiless.dart';
 import 'package:flutter/material.dart';
 import 'package:News_App/helper/books.dart';
@@ -26,96 +27,77 @@ class _ArticlesHomeScreenState extends State<ArticlesHomeScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: bgColor,
-      body: Stack(
-        children: [
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(height: size.height * 0.02),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 13, vertical: 10),
-                    child:
-                        /*RichText(
-                    text: TextSpan(
-                      // ignore: deprecated_member_use
-                      style: Theme.of(context).textTheme.display1,
-                      children: [
-                        TextSpan(
-                          text: "What are you \nreading ",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30,
-                          ),
-                        ),
-                        TextSpan(
-                          text: "today?",
-                          style: TextStyle(
+      body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(height: size.height * 0.02),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+              child:
+                  /*RichText(
+            text: TextSpan(
+              // ignore: deprecated_member_use
+              style: Theme.of(context).textTheme.display1,
+              children: [
+                TextSpan(
+                  text: "What are you \nreading ",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 30,
+                  ),
+                ),
+                TextSpan(
+                  text: "today?",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 30,
+                  ),
+                )
+              ],
+            ),
+          ),*/
+                  Center(
+                child: Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width - 16,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    //color: Color(0xFFf6f6f6),
+                    color: down,
+                    /*gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [up, down],
+                    tileMode: TileMode.mirror,
+                  )*/
+                  ),
+                  child: Center(
+                    child: Text("What are you reading today?",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'PoppinsSemiBold',
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 30,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),*/
-                        Center(
-                      child: Container(
-                        height: 40,
-                        width: MediaQuery.of(context).size.width - 16,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          //color: Color(0xFFf6f6f6),
-                          color: down,
-                          /*gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [up, down],
-                            tileMode: TileMode.mirror,
-                          )*/
-                        ),
-                        child: Center(
-                          child: Text("What are you reading today?",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: 'PoppinsSemiBold',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14.0,
-                                  color: txtColor),
-                              overflow: TextOverflow.visible),
-                        ),
-                      ),
-                    ),
+                            fontSize: 14.0,
+                            color: txtColor),
+                        overflow: TextOverflow.visible),
                   ),
-                  Expanded(
-                    child: ArticlesHomePage(),
-                  ),
-                  SingleChildScrollView(
-                    child: Container(
-                      height: 20,
-                      width: double.infinity,
-                      child: Center(
-                        child: Text("Scroll for content",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'PoppinsSemiBold',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 10.0,
-                              color: txtColor.withOpacity(0.4),
-                            ),
-                            overflow: TextOverflow.ellipsis),
-                      ),
-                    ),
-                  )
-                ],
+                ),
               ),
             ),
-          )
-        ],
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                physics: BouncingScrollPhysics(),
+                primary: true,
+                child: Container(
+                  child: ArticlesHomePage(),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -138,18 +120,19 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
   var incc = 0;
   var call = 1;
   var vad;
+  bool loading;
   FixedExtentScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
     _loading = true;
-    if (_loading == true) vad = 1;
-
+    getBooks();
+    loading = true;
     scrollController = FixedExtentScrollController();
-    getBooks().then((_loading) => setState(() {
+    /*getBooks().then((_loading) => setState(() {
           _loading = false;
-        }));
+        }));*/
   }
 
   @override
@@ -197,21 +180,50 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
                     }))
                 .toList(),
           ),*/
-        CarouselSlider(
+        /*CarouselSlider(
             height: 357,
+            initialPage: 0,
             scrollDirection: Axis.vertical,
             enableInfiniteScroll: false,
             autoPlay: false,
             items: bookss
                 .map((e) => Builder(builder: (BuildContext context) {
-                      return ArticleTile(
-                        domain: e.domain,
-                        title: e.title,
-                        thumbnail: e.thumbnail,
-                        source: e.source,
-                      );
+                      if (e.thumbnail == null) {
+                        return Container(
+                          height: 357,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor:
+                                  new AlwaysStoppedAnimation<Color>(down),
+                            ),
+                          ),
+                        );
+                      } else {
+                        return ArticleTile(
+                          domain: e.domain,
+                          title: e.title,
+                          thumbnail: e.thumbnail,
+                          source: e.source,
+                        );
+                      }
                     }))
                 .toList(),
-          );
+          );*/
+        Container(
+            child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                primary: false,
+                shrinkWrap: true,
+                itemCount: bookss.length,
+                itemBuilder: (context, index) {
+                  return TNTTile3(
+                    img: bookss[index].thumbnail,
+                    head: bookss[index].title,
+                    source: bookss[index].source,
+                    des: bookss[index].domain,
+                  );
+                }));
   }
 }
+/**/

@@ -7,6 +7,7 @@ import 'package:share/share.dart';
 import 'package:News_App/helper/data_new.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -15,9 +16,11 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   int currentIndex;
-  bool receive = true;
+  //bool receive = true;
   var linkk = [];
   var linkkk;
+  bool receive = true;
+  SharedPreferences sharedPreferences;
   final FirebaseMessaging _fcm = FirebaseMessaging();
 
   Future<void> fetchNews() async {
@@ -50,17 +53,48 @@ class _SettingsState extends State<Settings> {
 
   @override
   void initState() {
+    loadSharedPreferencesAndSwitchState();
     super.initState();
+    getSwitchValues();
     fetchNews();
-    receive
+    /*receive
         ? _fcm.subscribeToTopic('Invofinity')
-        : _fcm.unsubscribeFromTopic('Invofinity');
+        : _fcm.unsubscribeFromTopic('Invofinity');*/
+  }
+
+  /*getSwitchValues() async {
+    receive = await getSwitchState();
+    setState(() {});
+  }
+*/
+  void loadSharedPreferencesAndSwitchState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    receive = prefs.getBool("switchState");
+  }
+
+  getSwitchValues() async {
+    receive = await getSwitchState();
+    setState(() {});
+  }
+
+  Future<bool> saveSwitchState(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("switchState", value);
+    print('Switch Value saved $value');
+    return prefs.setBool("switchState", value);
+  }
+
+  Future<bool> getSwitchState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool receive = prefs.getBool("switchState");
+    print(receive);
+    return receive;
   }
 
   @override
   Widget build(BuildContext context) {
     // ignore: unnecessary_statements
-    false;
+
     //final bgColor = const Color(0xFFffffff);
     //final txtColor = const Color(0xFF171717);
     final bgColor = Colors.black;
@@ -76,72 +110,63 @@ class _SettingsState extends State<Settings> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                GestureDetector(
-                  onTap: () => {
-                    receive ? receive = false : receive = true,
-                  },
-                  child: Container(
-                    height: 24,
-                    width: MediaQuery.of(context).size.width,
-                    color: bgColor,
-                    child: Center(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: size.width * 0.03,
-                          ),
-                          Icon(
-                            Feather.bell,
-                            color: txtColor,
-                          ),
-                          SizedBox(
-                            width: size.width * 0.04,
-                          ),
-                          Container(
-                            width: 250,
-                            child: Text('Notifications',
-                                style: TextStyle(
-                                  fontFamily: 'PoppinsSemiBold',
-                                  fontSize: 15,
-                                  color: txtColor,
-                                ),
-                                overflow: TextOverflow.visible),
-                          ),
-                          SizedBox(width: size.width * 0.08),
-                          Switch(
-                            value: receive,
-                            activeColor: down,
-                            inactiveThumbColor: Colors.grey[200],
-                            activeTrackColor: Colors.grey[400].withOpacity(0.4),
-                            inactiveTrackColor:
-                                Colors.grey[200].withOpacity(0.4),
-                            onChanged: (value) {
-                              setState(() {
-                                value
-                                    ? _fcm.subscribeToTopic('Invofinity')
-                                    : _fcm.unsubscribeFromTopic('Invofinity');
-                                receive = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: size.height * 0.03,
-                ),
+               
+                // Container(
+                //   height: 24,
+                //   width: MediaQuery.of(context).size.width,
+                //   color: bgColor,
+                //   child: Center(
+                //     child: Row(
+                //       crossAxisAlignment: CrossAxisAlignment.center,
+                //       children: [
+                //         SizedBox(
+                //           width: size.width * 0.03,
+                //         ),
+                //         Icon(
+                //           Feather.bell,
+                //           color: txtColor,
+                //         ),
+                //         SizedBox(
+                //           width: size.width * 0.04,
+                //         ),
+                //         // Container(
+                //         //   width: 250,
+                //         //   child: Text('Notifications',
+                //         //       style: TextStyle(
+                //         //         fontFamily: 'PoppinsSemiBold',
+                //         //         fontSize: 15,
+                //         //         color: txtColor,
+                //         //       ),
+                //         //       overflow: TextOverflow.visible),
+                //         // ),
+                //         SizedBox(width: size.width * 0.08),
+                //         // Switch(
+                //         //   value: receive,
+                //         //   activeColor: down,
+                //         //   inactiveThumbColor: Colors.grey[200],
+                //         //   activeTrackColor: Colors.grey[400].withOpacity(0.4),
+                //         //   inactiveTrackColor: Colors.grey[200].withOpacity(0.4),
+                //         //   onChanged: (value) {
+                //         //     setState(() {
+                //         //       value
+                //         //           ? _fcm.subscribeToTopic('Invofinity')
+                //         //           : _fcm.unsubscribeFromTopic('Invofinity');
+                //         //       receive = value;
+                //         //       saveSwitchState(value);
+                //         //     });
+                //         //   },
+                //         // ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+               
                 Container(
                   //height: 394,
                   height: (MediaQuery.of(context).size.height) - 212,
                   width: MediaQuery.of(context).size.width,
                   //color: cardColor,
-                  color: Colors.grey[850].withOpacity(0.4),
+                  color: bgColor,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -218,14 +243,14 @@ class _SettingsState extends State<Settings> {
                       GestureDetector(
                         onTap: () {
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Help()));
+                              MaterialPageRoute(builder: (context) => Terms()));
                         },
                         child: Container(
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(width: 20),
-                              Text('HELP & FAQ',
+                              Text('Terms & Conditions',
                                   style: TextStyle(
                                       fontFamily: 'PoppinsSemiBold',
                                       fontSize: 13,
@@ -241,14 +266,14 @@ class _SettingsState extends State<Settings> {
                       GestureDetector(
                         onTap: () {
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Terms()));
+                              MaterialPageRoute(builder: (context) => Help()));
                         },
                         child: Container(
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(width: 20),
-                              Text('Terms & Conditions',
+                              Text('Help & FAQ',
                                   style: TextStyle(
                                       fontFamily: 'PoppinsSemiBold',
                                       fontSize: 13,
