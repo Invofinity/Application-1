@@ -41,6 +41,7 @@ dependencies:
   optimized_cached_image: ^1.0.0
   connectivity: ^2.0.1
   introduction_screen: ^1.0.7
+  flutter_pagination_helper: ^1.0.0+5
 
 
   # cloud_firestore_web: ^0.2.0+1

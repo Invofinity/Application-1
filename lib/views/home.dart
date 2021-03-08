@@ -12,6 +12,10 @@ import 'package:News_App/pages/settings.dart';
 import 'package:News_App/components/components.dart';
 import 'package:News_App/helper/data_new.dart';
 
+import 'package:flutter_pagination_helper/pagination_helper/event_model.dart';
+import 'package:flutter_pagination_helper/pagination_helper/item_list_callback.dart';
+import 'package:flutter_pagination_helper/pagination_helper/list_helper.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -213,6 +217,11 @@ class _HomePageState extends State<HomePage>
   var feed2 = [];
   bool _loading;
   bool _loading2;
+  ScrollController _scrollController = new ScrollController();
+  int k = 0;
+  int m = 0;
+  //print(k);
+  var feed3 = [];
 
   @override
   void initState() {
@@ -221,8 +230,27 @@ class _HomePageState extends State<HomePage>
     _loading = true;
     _loading2 = true;
     fetchNews();
-    fetchNews2();
+    fetchNews2(k);
+    setState(() {
+      k = k + 5;
+    });
     tabcontroller = new TabController(vsync: this, length: 6);
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        fetchNews2(k);
+        setState(() {
+          k = k + 5;
+          print(k);
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   Future<void> fetchNews() async {
@@ -234,10 +262,11 @@ class _HomePageState extends State<HomePage>
     });
   }
 
-  Future<void> fetchNews2() async {
+  Future<void> fetchNews2(int k) async {
     FeedCall feedcontent = FeedCall();
-    await feedcontent.getData();
+    await feedcontent.getData(k);
     feed2 = feedcontent.feed;
+    feed3.addAll(feed2);
     setState(() {
       _loading2 = false;
     });
@@ -251,9 +280,10 @@ class _HomePageState extends State<HomePage>
       child:
           LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
         return SingleChildScrollView(
+          controller: _scrollController,
           scrollDirection: Axis.vertical,
           physics: BouncingScrollPhysics(),
-          primary: true,
+          //primary: true,
           child: Container(
             child: Column(
               children: <Widget>[
@@ -368,21 +398,45 @@ class _HomePageState extends State<HomePage>
                         ),
                       )
                     : Container(
-                        child: ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            primary: false,
-                            shrinkWrap: true,
-                            itemCount: feed2.length,
-                            itemBuilder: (context, index) {
-                              return TNTTile2(
-                                img: feed2[index].img,
-                                head: feed2[index].head,
-                                des: feed2[index].url,
-                                source: feed2[index].source,
-                                tag: feed2[index].tag,
-                                content: feed2[index].des,
-                              );
-                            }))
+                        child:
+                            /*PaginatedListWidget(
+            progressWidget: Center(
+              child: Text("Loading..."),
+            ),
+            itemListCallback: OnScrollCallback()),
+      ),*/
+                            ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                primary: false,
+                                shrinkWrap: true,
+                                itemCount: feed3.length + 1,
+                                itemBuilder: (context, index) {
+                                  if (index < feed3.length) {
+                                    return TNTTile2(
+                                      img: feed3[index].img,
+                                      head: feed3[index].head,
+                                      des: feed3[index].url,
+                                      source: feed3[index].source,
+                                      tag: feed3[index].tag,
+                                      content: feed3[index].des,
+                                    );
+                                  } else {
+                                    return Center(
+                                        child: LinearProgressIndicator(
+                                      backgroundColor: bgColor,
+                                      minHeight: 1.5,
+                                      valueColor:
+                                          new AlwaysStoppedAnimation<Color>(
+                                              down),
+                                    ) /*CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      valueColor:
+                                          new AlwaysStoppedAnimation<Color>(
+                                              down),
+                                    )*/
+                                        );
+                                  }
+                                }))
               ],
             ),
           ),
@@ -391,3 +445,44 @@ class _HomePageState extends State<HomePage>
     );
   }
 }
+
+/*class OnScrollCallback<T extends Widget> extends ItemListCallback {
+  var feed2 = [];
+
+  Future<void> fetchNews2() async {
+    FeedCall feedcontent = FeedCall();
+    await feedcontent.getData();
+    feed2 = feedcontent.feed;
+    /*setState(() {
+      _loading2 = false;
+    });*/
+  }
+
+  @override
+  Future<EventModel<T>> getItemList() {
+    // TODO: implement getItemList
+    return TNTTile2(
+                                img: feed2[index].img,
+                                head: feed2[index].head,
+                                des: feed2[index].url,
+                                source: feed2[index].source,
+                                tag: feed2[index].tag,
+                                content: feed2[index].des,
+                              );
+  }
+}
+
+class EventModel<T extends Widget> {
+  final bool progress;
+  final List<T> data;
+  final String error;
+  final bool stopLoading;
+
+  EventModel({this.progress, this.data, this.error, this.stopLoading});
+}
+> data;
+  final String error;
+  final bool stopLoading;
+
+  EventModel({this.progress, this.data, this.error, this.stopLoading});
+}*/

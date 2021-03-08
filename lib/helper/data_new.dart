@@ -252,30 +252,34 @@ class Failure {
 class FeedCall {
   List<NewsArticles> feed = [];
 
-  Future<void> getData() async {
+  Future<void> getData(int k) async {
     try {
       var response =
           await get('https://fir-news-api-veokara.firebaseio.com/feed.json');
       var jsonData = jsonDecode(response.body);
       if (response.statusCode == 200) {
         //if (jsonData['status'] == "ok") {
-        jsonData.forEach((element) {
-          //if (element['urlToImage'] != null && element['description'] != null) {
+        //jsonData.forEach((element) {
+        //if (element['urlToImage'] != null && element['description'] != null) {
+        for (int i = 0; i < 5; i++) {
           NewsArticles feed1 = NewsArticles(
-            head: element['title'],
-            source: element['source'],
-            tag: element['tag'],
-            des: element['selftext'],
+            head: jsonData[k]['title'],
+            source: jsonData[k]['source'],
+            tag: jsonData[k]['tag'],
+            des: jsonData[k]['selftext'],
             // des: element['description'],
-            img: element['thumbnail'],
-            url: element['domain'],
+            img: jsonData[k]['thumbnail'],
+            url: jsonData[k]['domain'],
             //content: element['selftext'],
             //source: element['source'].name,
             // time: element['publishedAt'],
           );
           feed.add(feed1);
-          // }
-        });
+          k = k + 1;
+        }
+        // }
+        //}
+        //);
       }
       //}
     } catch (e) {}

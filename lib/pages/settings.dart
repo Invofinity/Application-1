@@ -8,6 +8,7 @@ import 'package:News_App/helper/data_new.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
 
 class Settings extends StatefulWidget {
   @override
@@ -53,9 +54,13 @@ class _SettingsState extends State<Settings> {
 
   @override
   void initState() {
-    loadSharedPreferencesAndSwitchState();
     super.initState();
-    getSwitchValues();
+    new Timer(new Duration(seconds: 1), () async {
+      await loadSharedPreferencesAndSwitchState();
+    });
+    new Timer(new Duration(seconds: 1), () async {
+      getSwitchValues();
+    });
     fetchNews();
     /*receive
         ? _fcm.subscribeToTopic('Invofinity')
@@ -73,8 +78,9 @@ class _SettingsState extends State<Settings> {
   }
 
   getSwitchValues() async {
-    receive = await getSwitchState();
-    setState(() {});
+    setState(() async {
+      receive = await getSwitchState();
+    });
   }
 
   Future<bool> saveSwitchState(bool value) async {
@@ -94,7 +100,6 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     // ignore: unnecessary_statements
-
     //final bgColor = const Color(0xFFffffff);
     //final txtColor = const Color(0xFF171717);
     final bgColor = Colors.black;
@@ -149,12 +154,12 @@ class _SettingsState extends State<Settings> {
                           activeTrackColor: Colors.grey[400].withOpacity(0.4),
                           inactiveTrackColor: Colors.grey[200].withOpacity(0.4),
                           onChanged: (value) {
-                            setState(() {
+                            setState(() async {
                               value
                                   ? _fcm.subscribeToTopic('Invofinity')
                                   : _fcm.unsubscribeFromTopic('Invofinity');
                               receive = value;
-                              saveSwitchState(value);
+                              await saveSwitchState(value);
                             });
                           },
                         ),
