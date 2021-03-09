@@ -279,165 +279,178 @@ class _HomePageState extends State<HomePage>
     return SafeArea(
       child:
           LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
-        return SingleChildScrollView(
-          controller: _scrollController,
-          scrollDirection: Axis.vertical,
-          physics: BouncingScrollPhysics(),
-          //primary: true,
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                //categories
-                _loading
-                    ? Container(
-                        height: 160,
-                        child: Center(
-                          child: Container(
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              valueColor:
-                                  new AlwaysStoppedAnimation<Color>(down),
+        return RefreshIndicator(
+          backgroundColor: bgColor,
+          color: down,
+          onRefresh: () {
+            setState(() {
+              feed3.clear();
+            });
+            fetchNews2(k);
+            return Future.value(false);
+          },
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            scrollDirection: Axis.vertical,
+            physics: BouncingScrollPhysics(),
+            //primary: true,
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  //categories
+                  _loading
+                      ? Container(
+                          height: 160,
+                          child: Center(
+                            child: Container(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor:
+                                    new AlwaysStoppedAnimation<Color>(down),
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                    : CarouselSlider(
-                        height: 170.0,
-                        enlargeCenterPage: true,
-                        aspectRatio: 9 / 16,
-                        autoPlay: true,
-                        autoPlayInterval: Duration(seconds: 4),
-                        initialPage: 0,
-                        autoPlayAnimationDuration: Duration(seconds: 1),
-                        autoPlayCurve: Curves.fastOutSlowIn,
-                        enableInfiniteScroll: true,
-                        onPageChanged: ((index) {
-                          setState(() {
-                            current = index;
-                          });
-                        }),
-                        items: impList
-                            .map((e) =>
-                                Builder(builder: (BuildContext context) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => ArticleView(
-                                                    blogUrl: e.url,
-                                                  )));
-                                    },
-                                    child: Stack(children: [
-                                      Container(
-                                        margin: EdgeInsets.all(5.0),
-                                        decoration: BoxDecoration(
-                                            color: bgColor,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            image: DecorationImage(
-                                              image: NetworkImage(e.img),
-                                              fit: BoxFit.cover,
-                                            )),
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.all(5.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            SizedBox(width: 510),
-                                            Container(
-                                              width: 200,
-                                              child: Text(
-                                                //imgInf[imgList.indexOf(e)],
-                                                e.head,
-                                                maxLines: 2,
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontFamily: 'PoppinsSemiBold',
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14.0,
-                                                  color: txtColor,
+                        )
+                      : CarouselSlider(
+                          height: 170.0,
+                          enlargeCenterPage: true,
+                          aspectRatio: 9 / 16,
+                          autoPlay: true,
+                          autoPlayInterval: Duration(seconds: 4),
+                          initialPage: 0,
+                          autoPlayAnimationDuration: Duration(seconds: 1),
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          enableInfiniteScroll: true,
+                          onPageChanged: ((index) {
+                            setState(() {
+                              current = index;
+                            });
+                          }),
+                          items: impList
+                              .map((e) =>
+                                  Builder(builder: (BuildContext context) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ArticleView(
+                                                      blogUrl: e.url,
+                                                    )));
+                                      },
+                                      child: Stack(children: [
+                                        Container(
+                                          margin: EdgeInsets.all(5.0),
+                                          decoration: BoxDecoration(
+                                              color: bgColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              image: DecorationImage(
+                                                image: NetworkImage(e.img),
+                                                fit: BoxFit.cover,
+                                              )),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.all(5.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              SizedBox(width: 510),
+                                              Container(
+                                                width: 200,
+                                                child: Text(
+                                                  //imgInf[imgList.indexOf(e)],
+                                                  e.head,
+                                                  maxLines: 2,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontFamily:
+                                                        'PoppinsSemiBold',
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 14.0,
+                                                    color: txtColor,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: bgColor.withOpacity(0.18),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      )
-                                    ]),
-                                  );
-                                }))
-                            .toList(),
-                      ),
-                SizedBox(
-                  height: 5,
-                ),
-                SelectedImage(noOfDots: 3, index: current),
-                SizedBox(
-                  height: 10,
-                ),
-                _loading2
-                    ? Container(
-                        height: 500,
-                        child: Center(
-                          child: Container(
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              valueColor:
-                                  new AlwaysStoppedAnimation<Color>(down),
+                                            ],
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: bgColor.withOpacity(0.18),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                        )
+                                      ]),
+                                    );
+                                  }))
+                              .toList(),
+                        ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  SelectedImage(noOfDots: 3, index: current),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  _loading2
+                      ? Container(
+                          height: 500,
+                          child: Center(
+                            child: Container(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor:
+                                    new AlwaysStoppedAnimation<Color>(down),
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                    : Container(
-                        child:
-                            /*PaginatedListWidget(
-            progressWidget: Center(
-              child: Text("Loading..."),
-            ),
-            itemListCallback: OnScrollCallback()),
+                        )
+                      : Container(
+                          child:
+                              /*PaginatedListWidget(
+              progressWidget: Center(
+                child: Text("Loading..."),
+              ),
+              itemListCallback: OnScrollCallback()),
       ),*/
-                            ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                primary: false,
-                                shrinkWrap: true,
-                                itemCount: feed3.length + 1,
-                                itemBuilder: (context, index) {
-                                  if (index < feed3.length) {
-                                    return TNTTile2(
-                                      img: feed3[index].img,
-                                      head: feed3[index].head,
-                                      des: feed3[index].url,
-                                      source: feed3[index].source,
-                                      tag: feed3[index].tag,
-                                      content: feed3[index].des,
-                                    );
-                                  } else {
-                                    return Center(
-                                        child: LinearProgressIndicator(
-                                      backgroundColor: bgColor,
-                                      minHeight: 1.5,
-                                      valueColor:
-                                          new AlwaysStoppedAnimation<Color>(
-                                              down),
-                                    ) /*CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                      valueColor:
-                                          new AlwaysStoppedAnimation<Color>(
-                                              down),
-                                    )*/
-                                        );
-                                  }
-                                }))
-              ],
+                              ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  primary: false,
+                                  shrinkWrap: true,
+                                  itemCount: feed3.length + 1,
+                                  itemBuilder: (context, index) {
+                                    if (index < feed3.length) {
+                                      return TNTTile2(
+                                        img: feed3[index].img,
+                                        head: feed3[index].head,
+                                        des: feed3[index].url,
+                                        source: feed3[index].source,
+                                        tag: feed3[index].tag,
+                                        content: feed3[index].des,
+                                      );
+                                    } else {
+                                      return Center(
+                                          child: LinearProgressIndicator(
+                                        backgroundColor: bgColor,
+                                        minHeight: 1.5,
+                                        valueColor:
+                                            new AlwaysStoppedAnimation<Color>(
+                                                down),
+                                      ) /*CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        valueColor:
+                                            new AlwaysStoppedAnimation<Color>(
+                                                down),
+                                      )*/
+                                          );
+                                    }
+                                  }))
+                ],
+              ),
             ),
           ),
         );
