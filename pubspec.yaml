@@ -30,7 +30,7 @@ dependencies:
   bubble_bottom_bar: ^1.2.0
   flutter_icons: ^1.1.0
   #cloud_firestore: ^0.14.0+2
-  firebase_core: ^0.5.0
+  shimmer:
   firebase_auth: ^0.18.1+1
   google_sign_in: ^4.5.4
   adobe_xd: ^1.0.0+1
@@ -42,6 +42,9 @@ dependencies:
   connectivity: ^2.0.1
   introduction_screen: ^1.0.7
   flutter_pagination_helper: ^1.0.0+5
+  firebase_database: 
+  firebase_core: 
+  incrementally_loading_listview:
 
 
   # cloud_firestore_web: ^0.2.0+1

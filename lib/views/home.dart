@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:News_App/helper/news.dart';
 import 'package:News_App/models/models.dart';
 import 'package:News_App/pages/article_screens/article_homescreen.dart';
@@ -11,10 +13,15 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:News_App/pages/settings.dart';
 import 'package:News_App/components/components.dart';
 import 'package:News_App/helper/data_new.dart';
-
+import 'package:incrementally_loading_listview/incrementally_loading_listview.dart';
 import 'package:flutter_pagination_helper/pagination_helper/event_model.dart';
 import 'package:flutter_pagination_helper/pagination_helper/item_list_callback.dart';
 import 'package:flutter_pagination_helper/pagination_helper/list_helper.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart';
+//import 'package:shimmer/shimmer.dart';
+import 'package:News_App/components/shimmer.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -222,34 +229,80 @@ class _HomePageState extends State<HomePage>
   int m = 0;
   //print(k);
   var feed3 = [];
+  var feed4 = [];
 
+  List items;
+  bool _loadingMore;
+  bool _hasMoreItems;
+  int _maxItems = 300;
+  int _numItemsPage = 1;
+  Future _initialLoad;
+
+  Future _loadMoreItems(int k) async {
+    final totalItems = items.length;
+    /*await Future.delayed(Duration(seconds: 3), () {
+      /*for (var i = 0; i < _numItemsPage; i++) {
+        //items.add(Item('Item ${totalItems + i + 1}'));
+      }*/
+    });*/
+    fetchNews2(k);
+    _hasMoreItems = true;
+  }
+
+  Timer timer;
   @override
   void initState() {
     super.initState();
-
     _loading = true;
     _loading2 = true;
-    fetchNews();
-    fetchNews2(k);
-    setState(() {
-      k = k + 5;
+    getOne(k);
+    timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
+      setState(() {
+        k = k + 1;
+      });
+      return fetchNews2(k); //getOne(k);
     });
+    fetchNews();
+    /*_hasMoreItems = true;
+    setState(() {
+      k = k + 1;
+    });*/
     tabcontroller = new TabController(vsync: this, length: 6);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         fetchNews2(k);
         setState(() {
-          k = k + 5;
+          k = k + 1;
           print(k);
         });
       }
     });
   }
 
+  var feedOne = [];
+  Future<void> getOne(int k) async {
+    var response =
+        await get('https://fir-news-api-veokara.firebaseio.com/feed/$k.json');
+    var jsonData = jsonDecode(response.body);
+    NewsArticles feed1 = NewsArticles(
+      head: jsonData[0]['title'],
+      source: jsonData[0]['source'],
+      tag: jsonData[0]['tag'],
+      des: jsonData[0]['selftext'],
+      img: jsonData[0]['thumbnail'],
+      url: jsonData[0]['domain'],
+    );
+    feedOne.add(feed1);
+    setState(() {
+      _loading2 = false;
+    });
+  }
+
   @override
   void dispose() {
     _scrollController.dispose();
+    timer?.cancel();
     super.dispose();
   }
 
@@ -286,11 +339,11 @@ class _HomePageState extends State<HomePage>
             setState(() {
               feed3.clear();
             });
-            fetchNews2(k);
+            //fetchNews2(k);
             return Future.value(false);
           },
           child: SingleChildScrollView(
-            controller: _scrollController,
+            //controller: _scrollController,
             scrollDirection: Axis.vertical,
             physics: BouncingScrollPhysics(),
             //primary: true,
@@ -411,6 +464,57 @@ class _HomePageState extends State<HomePage>
                         )
                       : Container(
                           child:
+                              /* IncrementallyLoadingListView(
+                          hasMore: true,
+                          itemCount: feed3.length,
+                          loadMore: () async {
+                            await _loadMoreItems(k);
+                            setState(() {
+                              k = k + 1;
+                            });
+                          },
+                          onLoadMore: () {
+                            setState(() {
+                              _loadingMore = true;
+                            });
+                          },
+                          onLoadMoreFinished: () {
+                            setState(() {
+                              _loadingMore = false;
+                            });
+                          },
+                          loadMoreOffsetFromBottom: 2,
+                          itemBuilder: (context, index) {
+                            //if (/*(_loadingMore ?? false) &&*/
+                            //index == items.length - 1) {
+                            return TNTTile2(
+                              img: feed3[index].img,
+                              head: feed3[index].head,
+                              des: feed3[index].url,
+                              source: feed3[index].source,
+                              tag: feed3[index].tag,
+                              content: feed3[index].des,
+                            );
+                            //}
+                          },
+                        )*/
+
+                              /*ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  primary: false,
+                                  shrinkWrap: true,
+                                  itemCount: feed3.length,
+                                  itemBuilder: (context, index) {
+                                    return TNTTile2(
+                                      img: feed3[index].img,
+                                      head: feed3[index].head,
+                                      des: feed3[index].url,
+                                      source: feed3[index].source,
+                                      tag: feed3[index].tag,
+                                      content: feed3[index].des,
+                                    );
+                                  })*/
+
                               /*PaginatedListWidget(
               progressWidget: Center(
                 child: Text("Loading..."),
@@ -433,7 +537,54 @@ class _HomePageState extends State<HomePage>
                                         content: feed3[index].des,
                                       );
                                     } else {
-                                      return Center(
+                                      return Container(
+                                        color: Colors.black,
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Shimmer(
+                                                child: Container(
+                                                  width: 100,
+                                                  height: 20,
+                                                ),
+                                                baseColor: Color(0xFF171717),
+                                                highlightColor:
+                                                    Color(0xFFffffff)),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Shimmer(
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  height: 400,
+                                                ),
+                                                baseColor: Color(0xFF171717),
+                                                highlightColor:
+                                                    Color(0xFFffffff)),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Shimmer(
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  height: 40,
+                                                ),
+                                                baseColor: Color(0xFF171717),
+                                                highlightColor:
+                                                    Color(0xFFffffff)),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                      /*Center(
                                           child: LinearProgressIndicator(
                                         backgroundColor: bgColor,
                                         minHeight: 1.5,
@@ -446,7 +597,7 @@ class _HomePageState extends State<HomePage>
                                             new AlwaysStoppedAnimation<Color>(
                                                 down),
                                       )*/
-                                          );
+                                          );*/
                                     }
                                   }))
                 ],

@@ -539,8 +539,8 @@ class _TNTTile2State extends State<TNTTile2> {
                               height: 20,
                             ),
                             Container(
-                              color: border1,
-                              height: 1,
+                              color: border1.withOpacity(0.5),
+                              height: 0.5,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],
@@ -624,8 +624,8 @@ class _TNTTile2State extends State<TNTTile2> {
                               height: 20,
                             ),
                             Container(
-                              color: border1,
-                              height: 1,
+                              color: border1.withOpacity(0.5),
+                              height: 0.5,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],
@@ -708,8 +708,8 @@ class _TNTTile2State extends State<TNTTile2> {
                               height: 20,
                             ),
                             Container(
-                              color: border1,
-                              height: 1,
+                              color: border1.withOpacity(0.5),
+                              height: 0.5,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],
@@ -779,8 +779,8 @@ class _TNTTile2State extends State<TNTTile2> {
                               height: 20,
                             ),
                             Container(
-                              color: border1,
-                              height: 1,
+                              color: border1.withOpacity(0.5),
+                              height: 0.5,
                               width: MediaQuery.of(context).size.width - 32,
                             ),
                           ],

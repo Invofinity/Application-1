@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
 import 'package:News_App/models/models.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class Data {
   List<NewsArticles> articles = [];
@@ -251,36 +252,36 @@ class Failure {
 
 class FeedCall {
   List<NewsArticles> feed = [];
+  //final databaseReference = FirebaseDatabase.instance.collection("feed");
 
   Future<void> getData(int k) async {
+    var response;
+    var response1;
+    //var jsonData = [];
     try {
       var response =
-          await get('https://fir-news-api-veokara.firebaseio.com/feed.json');
+          await get('https://fir-news-api-veokara.firebaseio.com/feed/$k.json');
+      // response1 = databaseReference.once();
       var jsonData = jsonDecode(response.body);
-      if (response.statusCode == 200) {
-        //if (jsonData['status'] == "ok") {
-        //jsonData.forEach((element) {
-        //if (element['urlToImage'] != null && element['description'] != null) {
-        for (int i = 0; i < 5; i++) {
-          NewsArticles feed1 = NewsArticles(
-            head: jsonData[k]['title'],
-            source: jsonData[k]['source'],
-            tag: jsonData[k]['tag'],
-            des: jsonData[k]['selftext'],
-            // des: element['description'],
-            img: jsonData[k]['thumbnail'],
-            url: jsonData[k]['domain'],
-            //content: element['selftext'],
-            //source: element['source'].name,
-            // time: element['publishedAt'],
-          );
-          feed.add(feed1);
-          k = k + 1;
-        }
-        // }
-        //}
-        //);
-      }
+      print(response.statusCode);
+      //print(jsonData);
+      //if (response.statusCode == 200) {
+      //if (jsonData['status'] == "ok") {
+      //jsonData.forEach((element) {
+      NewsArticles feed1 = NewsArticles(
+        head: jsonData['title'],
+        source: jsonData['source'],
+        tag: jsonData['tag'],
+        des: jsonData['selftext'],
+        img: jsonData['thumbnail'],
+        url: jsonData['domain'],
+      );
+      print(feed1);
+      feed.add(feed1);
+      //}
+      // }
+      //);
+      //}
       //}
     } catch (e) {}
   }
