@@ -255,7 +255,6 @@ class _HomePageState extends State<HomePage>
     super.initState();
     _loading = true;
     _loading2 = true;
-    getOne(k);
     timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
       setState(() {
         k = k + 1;
@@ -280,24 +279,7 @@ class _HomePageState extends State<HomePage>
     });
   }
 
-  var feedOne = [];
-  Future<void> getOne(int k) async {
-    var response =
-        await get('https://fir-news-api-veokara.firebaseio.com/feed/$k.json');
-    var jsonData = jsonDecode(response.body);
-    NewsArticles feed1 = NewsArticles(
-      head: jsonData[0]['title'],
-      source: jsonData[0]['source'],
-      tag: jsonData[0]['tag'],
-      des: jsonData[0]['selftext'],
-      img: jsonData[0]['thumbnail'],
-      url: jsonData[0]['domain'],
-    );
-    feedOne.add(feed1);
-    setState(() {
-      _loading2 = false;
-    });
-  }
+
 
   @override
   void dispose() {
@@ -365,6 +347,7 @@ class _HomePageState extends State<HomePage>
                           ),
                         )
                       : CarouselSlider(
+                        options: CarouselOptions(
                           height: 170.0,
                           enlargeCenterPage: true,
                           aspectRatio: 9 / 16,
@@ -374,13 +357,14 @@ class _HomePageState extends State<HomePage>
                           autoPlayAnimationDuration: Duration(seconds: 1),
                           autoPlayCurve: Curves.fastOutSlowIn,
                           enableInfiniteScroll: true,
-                          onPageChanged: ((index) {
+                          onPageChanged: ((index, reason) {
                             setState(() {
                               current = index;
                             });
-                          }),
-                          items: impList
-                              .map((e) =>
+                          }),),
+                             
+                             items: impList
+                             .map((e) =>
                                   Builder(builder: (BuildContext context) {
                                     return GestureDetector(
                                       onTap: () {

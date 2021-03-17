@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:http/http.dart';
 import 'package:News_App/models/models.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'dart:math';
 
 class Data {
   List<NewsArticles> articles = [];
@@ -258,6 +259,10 @@ class FeedCall {
     var response;
     var response1;
     //var jsonData = [];
+      var rng = new Random();
+    for (var i = 0; i < 10; i++) {
+      k = rng.nextInt(60);
+    }
     try {
       var response =
           await get('https://fir-news-api-veokara.firebaseio.com/feed/$k.json');
