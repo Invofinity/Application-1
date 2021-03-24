@@ -230,24 +230,7 @@ class _HomePageState extends State<HomePage>
   //print(k);
   var feed3 = [];
   var feed4 = [];
-
-  List items;
-  bool _loadingMore;
-  bool _hasMoreItems;
-  int _maxItems = 300;
-  int _numItemsPage = 1;
-  Future _initialLoad;
-
-  Future _loadMoreItems(int k) async {
-    final totalItems = items.length;
-    /*await Future.delayed(Duration(seconds: 3), () {
-      /*for (var i = 0; i < _numItemsPage; i++) {
-        //items.add(Item('Item ${totalItems + i + 1}'));
-      }*/
-    });*/
-    fetchNews2(k);
-    _hasMoreItems = true;
-  }
+  var feedOne = [];
 
   Timer timer;
   @override
@@ -256,47 +239,50 @@ class _HomePageState extends State<HomePage>
     _loading = true;
     _loading2 = true;
     getOne(k);
-    timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
+    /*timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
       setState(() {
         k = k + 1;
       });
       return fetchNews2(k); //getOne(k);
-    });
-    fetchNews();
-    /*_hasMoreItems = true;
-    setState(() {
-      k = k + 1;
     });*/
+    fetchNews();
+    /*_hasMoreItems = true;*/
+    setState(() {
+      k = k + 4;
+    });
     tabcontroller = new TabController(vsync: this, length: 6);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        fetchNews2(k);
+        /*fetchNews2(k);*/
+        getOne(k);
         setState(() {
-          k = k + 1;
+          k = k + 4;
           print(k);
         });
       }
     });
   }
 
-  var feedOne = [];
   Future<void> getOne(int k) async {
-    var response =
-        await get('https://fir-news-api-veokara.firebaseio.com/feed/$k.json');
-    var jsonData = jsonDecode(response.body);
-    NewsArticles feed1 = NewsArticles(
-      head: jsonData[0]['title'],
-      source: jsonData[0]['source'],
-      tag: jsonData[0]['tag'],
-      des: jsonData[0]['selftext'],
-      img: jsonData[0]['thumbnail'],
-      url: jsonData[0]['domain'],
-    );
-    feedOne.add(feed1);
-    setState(() {
-      _loading2 = false;
-    });
+    for (int i = 0; i < 4; i++) {
+      var response =
+          await get('https://fir-news-api-veokara.firebaseio.com/feed/$k.json');
+      var jsonData = jsonDecode(response.body);
+      NewsArticles feed1 = NewsArticles(
+        head: jsonData['title'],
+        source: jsonData['source'],
+        tag: jsonData['tag'],
+        des: jsonData['selftext'],
+        img: jsonData['thumbnail'],
+        url: jsonData['domain'],
+      );
+      feedOne.add(feed1);
+      setState(() {
+        _loading2 = false;
+        k = k + 1;
+      });
+    }
   }
 
   @override
@@ -343,7 +329,7 @@ class _HomePageState extends State<HomePage>
             return Future.value(false);
           },
           child: SingleChildScrollView(
-            //controller: _scrollController,
+            controller: _scrollController,
             scrollDirection: Axis.vertical,
             physics: BouncingScrollPhysics(),
             //primary: true,
@@ -525,16 +511,16 @@ class _HomePageState extends State<HomePage>
                                   physics: NeverScrollableScrollPhysics(),
                                   primary: false,
                                   shrinkWrap: true,
-                                  itemCount: feed3.length + 1,
+                                  itemCount: feedOne.length + 1,
                                   itemBuilder: (context, index) {
-                                    if (index < feed3.length) {
+                                    if (index < feedOne.length) {
                                       return TNTTile2(
-                                        img: feed3[index].img,
-                                        head: feed3[index].head,
-                                        des: feed3[index].url,
-                                        source: feed3[index].source,
-                                        tag: feed3[index].tag,
-                                        content: feed3[index].des,
+                                        img: feedOne[index].img,
+                                        head: feedOne[index].head,
+                                        des: feedOne[index].url,
+                                        source: feedOne[index].source,
+                                        tag: feedOne[index].tag,
+                                        content: feedOne[index].des,
                                       );
                                     } else {
                                       return Container(
@@ -544,43 +530,35 @@ class _HomePageState extends State<HomePage>
                                             SizedBox(
                                               height: 10,
                                             ),
-                                            Shimmer(
-                                                child: Container(
-                                                  width: 100,
-                                                  height: 20,
-                                                ),
-                                                baseColor: Color(0xFF171717),
-                                                highlightColor:
-                                                    Color(0xFFffffff)),
-                                            SizedBox(
+                                            Text(
+                                              "Loading...",
+                                              style: TextStyle(
+                                                color: Color(0xFFffffff),
+                                              ),
+                                            ),
+                                            /*SizedBox(
                                               height: 10,
                                             ),
-                                            Shimmer(
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
+                                            Container(
+                                              color: Color(0xFF171717),
+                                              width: MediaQuery.of(context)
                                                       .size
-                                                      .width,
-                                                  height: 400,
-                                                ),
-                                                baseColor: Color(0xFF171717),
-                                                highlightColor:
-                                                    Color(0xFFffffff)),
+                                                      .width -
+                                                  28,
+                                              height: 400,
+                                            ),
                                             SizedBox(
                                               height: 10,
                                             ),
-                                            Shimmer(
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  height: 40,
-                                                ),
-                                                baseColor: Color(0xFF171717),
-                                                highlightColor:
-                                                    Color(0xFFffffff)),
+                                            Text(
+                                              "Loading...",
+                                              style: TextStyle(
+                                                color: Color(0xFFffffff),
+                                              ),
+                                            ),
                                             SizedBox(
                                               height: 10,
-                                            ),
+                                            ),*/
                                           ],
                                         ),
                                       );
