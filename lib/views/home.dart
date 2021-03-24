@@ -240,6 +240,7 @@ class _HomePageState extends State<HomePage>
     _loading2 = true;
     getOne(k);
     /*timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
+    timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
       setState(() {
         k = k + 1;
       });
@@ -351,20 +352,22 @@ class _HomePageState extends State<HomePage>
                           ),
                         )
                       : CarouselSlider(
-                          height: 170.0,
-                          enlargeCenterPage: true,
-                          aspectRatio: 9 / 16,
-                          autoPlay: true,
-                          autoPlayInterval: Duration(seconds: 4),
-                          initialPage: 0,
-                          autoPlayAnimationDuration: Duration(seconds: 1),
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          enableInfiniteScroll: true,
-                          onPageChanged: ((index) {
-                            setState(() {
-                              current = index;
-                            });
-                          }),
+                          options: CarouselOptions(
+                            height: 170.0,
+                            enlargeCenterPage: true,
+                            aspectRatio: 9 / 16,
+                            autoPlay: true,
+                            autoPlayInterval: Duration(seconds: 4),
+                            initialPage: 0,
+                            autoPlayAnimationDuration: Duration(seconds: 1),
+                            autoPlayCurve: Curves.fastOutSlowIn,
+                            enableInfiniteScroll: true,
+                            onPageChanged: ((index, reason) {
+                              setState(() {
+                                current = index;
+                              });
+                            }),
+                          ),
                           items: impList
                               .map((e) =>
                                   Builder(builder: (BuildContext context) {

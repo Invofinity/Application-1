@@ -34,11 +34,11 @@ class _BodyState extends State<Body> {
         physics: BouncingScrollPhysics(),
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Image.asset(
-              "assets/welcome1.png",
-              height: size.height * 0.5,
-            ),
+            children: <Widget>[
+              Image.asset(
+                "assets/welcome1.png",
+                height: size.height * 0.5,
+              ),
             SizedBox(height: size.height * 0.0),
             Center(
               child: Text(
@@ -78,7 +78,7 @@ class _BodyState extends State<Body> {
                   ),
                 );
               },
-              child: Container(
+              child: Container( 
                 width: 60,
                 height: 60,
                 decoration: BoxDecoration(

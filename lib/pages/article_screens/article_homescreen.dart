@@ -165,10 +165,11 @@ class _ArticlesHomePageState extends State<ArticlesHomePage> {
                 .toList(),
           ),*/
         CarouselSlider(
+          options: CarouselOptions(
             height: 357,
             scrollDirection: Axis.vertical,
             enableInfiniteScroll: false,
-            autoPlay: false,
+            autoPlay: false,),
             items: bookss
                 .map((e) => Builder(builder: (BuildContext context) {
                       return ArticleTile(
