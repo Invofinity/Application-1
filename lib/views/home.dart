@@ -247,7 +247,7 @@ class _HomePageState extends State<HomePage>
     fetchNews();
     /*_hasMoreItems = true;*/
     setState(() {
-      k = k + 4;
+      k = k + 9;
     });
     tabcontroller = new TabController(vsync: this, length: 6);
     _scrollController.addListener(() {
@@ -256,7 +256,7 @@ class _HomePageState extends State<HomePage>
         /*fetchNews2(k);*/
         getOne(k);
         setState(() {
-          k = k + 4;
+          k = k + 9;
           print(k);
         });
       }
@@ -264,7 +264,7 @@ class _HomePageState extends State<HomePage>
   }
 
   Future<void> getOne(int k) async {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 10; i++) {
       var response =
           await get('https://fir-news-api-veokara.firebaseio.com/feed/$k.json');
       var jsonData = jsonDecode(response.body);
