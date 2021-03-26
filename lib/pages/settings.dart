@@ -2,7 +2,6 @@ import 'package:News_App/pages/widgets/extra_settings.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
 import 'package:News_App/helper/data_new.dart';
 import 'dart:convert';
@@ -40,7 +39,7 @@ class _SettingsState extends State<Settings> {
   }
 
   Future<void> _launch() async {
-    await launch(linkk[0].url);
+    await (linkk[0].url);
   }
 
   _onShare(BuildContext context) async {

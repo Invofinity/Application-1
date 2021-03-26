@@ -14,9 +14,7 @@ import 'package:News_App/pages/settings.dart';
 import 'package:News_App/components/components.dart';
 import 'package:News_App/helper/data_new.dart';
 import 'package:incrementally_loading_listview/incrementally_loading_listview.dart';
-import 'package:flutter_pagination_helper/pagination_helper/event_model.dart';
-import 'package:flutter_pagination_helper/pagination_helper/item_list_callback.dart';
-import 'package:flutter_pagination_helper/pagination_helper/list_helper.dart';
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';

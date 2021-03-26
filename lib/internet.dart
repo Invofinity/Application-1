@@ -40,7 +40,7 @@ class _ImageuiState extends State<Imageui> {
         showDialog(
           context: context,
           barrierDismissible: false,
-          child: AlertDialog(
+          builder:(_) => new AlertDialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             backgroundColor: Colors.black,

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
 import 'package:News_App/models/models.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'dart:math';
 
 class Data {
